@@ -1,8 +1,4 @@
-<style>
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css");
-</style>
-
-# <i class="fa fa-flag" style="color:#DA2A46"></i> RedFlags
+# RedFlags
 
 *A project by [K-Monitor](http://k-monitor.hu), [PetaByte Research Ltd.](http://petabyte-research.org) and [Transparency International Hungary](http://transparency.hu)*
 
