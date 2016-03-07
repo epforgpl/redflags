@@ -1,0 +1,3 @@
+#II\.?[AB]?\.? szakasz: .* tárgya.*
+#((A )?Részekre vonatkozó információk#)?Rész száma:? .*
+#((V\. szakasz.*#)?((A )?szerződés|Rész) száma.*|V\. SZAKASZ(?!: Eljárás).*)

@@ -1,0 +1,4 @@
+select count(*)
+from rfwl_organizations
+-- FILTER where name like "LIKE"
+;

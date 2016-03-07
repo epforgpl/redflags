@@ -1,0 +1,9 @@
+select n.id, n.date, n.title, n.total, n.totalCurr, n.flagCount
+from
+	rfwl_notices n
+	inner join (
+		select distinct substring(relationLeftId, 1, position("-A-" in relationLeftId)-1) nid
+		from te_relationdescriptor
+		where additonalInfo = "winnerOrg" and relationRightId = ?
+	) r on n.id = r.nid
+limit 10;

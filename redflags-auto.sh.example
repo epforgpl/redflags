@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#
+#   Copyright 2014-2016 PetaByte Research Ltd.
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+#
+
+BASE_DIR="/home/redflags"
+CACHE_DIR="$BASE_DIR/cache"
+ENGINE_DIR="$BASE_DIR/redflags-engine"
+ENGINE_JAR="$ENGINE_DIR/redflags-engine-1.1.0-SNAPSHOT.jar"
+ENGINE_ARGS=" --scope=auto --cache=$CACHE_DIR"
+LOCK_FILE="$BASE_DIR/__AUTO_SCRIPT_IS_RUNNING.lck"
+LOG_DIR="$BASE_DIR/automation-logs"
+LOG_FILE="$LOG_DIR/redflags-auto.log"
+OUT_FILE="$LOG_DIR/$(date '+%Y-%m-%d-%H-%M').log"
+SQL_SCRIPT="$BASE_DIR/redflags-helper-tables.sql"
+DBUSER="..."
+DBPASS="..."
+DBNAME="..."
+SEND_FILTER_EMAILS="wget -qO- http://.../send-filter-emails?secret=..."
+USERS_BACKUP_DIR="$BASE_DIR/backups"
+
+# <lock>
+if [ -f $LOCK_FILE ]; then echo "LOCK FILE DETECTED! ($LOCK_FILE)"
+	echo "If you sure the script isn't already running, delete the lock file."
+else echo "" >$LOCK_FILE
+# </lock>
+
+mkdir -p "$LOG_DIR"
+mkdir -p "$USERS_BACKUP_DIR"
+
+function log {
+	echo "$(date '+%Y-%m-%d @ %H:%M.%S')	$1" >>$LOG_FILE
+}
+
+log "Starting engine (java -jar $ENGINE_JAR $ENGINE_ARGS >$OUT_FILE)"
+cd $ENGINE_DIR && java -jar $ENGINE_JAR $ENGINE_ARGS >$OUT_FILE
+cd $BASE_DIR
+
+USERS_BACKUP_FILE="$USERS_BACKUP_DIR/users-filters-$(date '+%Y%m%d-%H%M%S').sql"
+log "Backuping users and filters ($USERS_BACKUP_FILE)"
+mysqldump -u $DBUSER -p$DBPASS $DBNAME rfwl_users rfwl_userfilters >$USERS_BACKUP_FILE
+gzip $USERS_BACKUP_DIR/*.sql
+
+log "Calling SQL script ($SQL_SCRIPT)"
+mysql -u $DBUSER -p$DBPASS $DBNAME <$SQL_SCRIPT
+
+log "Sending filter emails ($SEND_FILTER_EMAILS)"
+$SEND_FILTER_EMAILS &>/dev/null
+
+log "Session ended"
+
+# <unlock>
+rm $LOCK_FILE; fi
+# </unlock>

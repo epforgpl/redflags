@@ -1,0 +1,24 @@
+##############################################################################
+REDFLAGS ENGINE - Command line arguments
+##############################################################################
+
+java -jar redflags-engine-version.jar \
+    --scope=SCOPE [--cache=CACHE] [additonal options]
+
+SCOPE:
+    * "directory" - process a cache directory
+    * "continue" - continue last processing
+    * "123456-2015" - process a single notice (no progress saving)
+    * "123456-2015,234567-2015" - process the given notices (no progress saving)
+    * "123456-2015..234567-2015" - process notice range
+    * "123456-2015.." - process from notice till the freshest notice available
+    * "2015" - process a whole year
+    * "2013..2014" - process year range
+    * "2014.." - process from a year till the freshest notice available
+
+CACHE:
+    name of the cache directory, default is: "tenders"
+
+Most common additional options:
+    * --threads=# - number of notice threads
+    * --db=1 - turns on the MySQLExporter gear if it's added to the chain

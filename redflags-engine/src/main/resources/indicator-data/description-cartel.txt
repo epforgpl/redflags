@@ -1,0 +1,114 @@
+45221000-2
+Hidak, alagutak, aknák és aluljárók tervezése és építése
+45221100-3
+Hídépítés
+45221110-6
+Hidak építési munkái
+45221111-3
+Közúti híd építése
+45221112-0
+Vasúti híd építése
+45221113-7
+Gyalogoshíd építése
+45221114-4
+Vashídépítés
+45221115-1
+Acélhídépítés
+45221119-9
+Hídfelújítással kapcsolatos építési munkák
+45221120-9
+Viadukt építése
+45221121-6
+Közúti viadukt építése
+45221122-3
+Vasúti viadukt építése
+45233000-9
+Autópályák és közutak építése, alapozása és burkolása
+45233100-0
+Autópálya és közút építése
+45233110-3
+Autópálya építése
+45233120-6
+Közút építése
+45233121-3
+Főútvonal építése
+45233122-0
+Körgyűrű építése
+45233123-7
+Alárendelt út építése
+45233124-4
+Országos főútvonal építése
+45233126-8
+Többszintű útkereszteződés építése
+45233130-9
+Autópálya-építési munka
+45233131-6
+Magasút-építési munka
+45233139-3
+Autópálya-karbantartás
+45233140-2
+Közúton folyó munkák
+45233141-9
+Közútkarbantartás
+45233142-6
+Közútjavítás
+45233162-2
+Kerékpárút építése
+45233200-1
+Különféle útburkolatok
+45233210-4
+Autópálya burkolása
+45233220-7
+Közút burkolása
+45233223-8
+Úttest újraburkolása
+45233224-5
+Osztott pályás úttest építése
+45233225-2
+Osztatlan úttest építése
+45233226-9
+Bekötőút építése
+45233227-6
+Beszállítóút építése
+45233228-3
+Útburkolat építése
+45233300-2
+Autópályák, közutak, utcák és gyalogutak alapozása
+45233310-5
+Autópálya alapozása
+45233320-8
+Közút alapozása
+45234000-6
+Vasút és drótköteles szállítóeszköz építése
+45234100-7
+Vasútépítés
+45234110-0
+Helyközi (intercity) vasút építése
+45234111-7
+Városi vasút építése
+45234113-1
+Pályabontás
+45234114-8
+Vasúti töltés építése
+45234116-2
+Pályaépítés
+45234120-3
+Városi vasútpályával kapcsolatos munkálatok
+45234121-0
+Villamossal kapcsolatos munkálatok
+45234122-7
+Föld alatti vasútpályával kapcsolatos munkálatok
+45234123-4
+Kéregvasútpályával kapcsolatos munkálatok
+45234124-1
+Föld alatti személyvasúti szállítás
+45234125-8
+Föld alatti vasútállomás, metróállomás
+45234126-5
+Villamospálya építése
+45234129-6
+Városi vasútpálya építése
+45234130-6
+Útalapzat építése
+45234140-9
+Szintbeli keresztezés építése
