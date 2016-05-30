@@ -22,9 +22,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class IndicatorResult {
 
-	// TODO A description lehetne label ID -> honlap majd adná a message-eket.
-	// TODO Mellé lehetne egy proof mező, ami nyelvfüggetlen infó (pl. x > y).
-
 	public static enum IndicatorResultType {
 		MISSING_DATA, IRRELEVANT_DATA, NO_FLAG, FLAG;
 	}
@@ -109,8 +106,9 @@ public class IndicatorResult {
 
 	@Override
 	public String toString() {
-		return "IndicatorResult [indicator=" + indicator + ", type=" + type + ", flagCategory=" + flagCategory
-				+ ", weight=" + weight + ", description=" + description + "]";
+		return "IndicatorResult [indicator=" + indicator + ", type=" + type
+				+ ", flagCategory=" + flagCategory + ", weight=" + weight
+				+ ", description=" + description + "]";
 	}
 
 	public IndicatorResult type(IndicatorResultType type) {

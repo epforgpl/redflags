@@ -35,14 +35,15 @@ import hu.petabyte.redflags.engine.gear.indicator.hu.TechCapGeoCondIndicator;
 import hu.petabyte.redflags.engine.gear.indicator.hu.TechCapRefCondExceedEstimValIndicator;
 import hu.petabyte.redflags.engine.gear.indicator.hu.TechCapSingleContractRefCondIndicator;
 import hu.petabyte.redflags.engine.gear.indicator.hu.TotalQuantityHiDeltaIndicator;
+import hu.petabyte.redflags.engine.gear.indicator.hu.UnsuccessfulProcWithRiskIndicator;
 import hu.petabyte.redflags.engine.gear.indicator.hu.UnsuccessfulProcWithoutInfo1Indicator;
 import hu.petabyte.redflags.engine.gear.indicator.hu.WinnerOrgInKMDBIndicator;
 import hu.petabyte.redflags.engine.gear.indicator.hu.depr.AwCritNoPriceCondIndicator;
 import hu.petabyte.redflags.engine.gear.indicator.hu.depr.FinAbRevenueCondExceedEstimValIndicator2;
 import hu.petabyte.redflags.engine.gear.indicator.hu.depr.RenewableContractIndicator;
 import hu.petabyte.redflags.engine.model.IndicatorResult;
-import hu.petabyte.redflags.engine.model.Notice;
 import hu.petabyte.redflags.engine.model.IndicatorResult.IndicatorResultType;
+import hu.petabyte.redflags.engine.model.Notice;
 import hu.petabyte.redflags.engine.tedintf.TedInterface;
 import hu.petabyte.redflags.engine.tedintf.TedInterfaceHolder;
 import hu.petabyte.redflags.engine.tedintf.cached.CachedTedInterface;
@@ -562,6 +563,13 @@ public class IndicatorsTest {
 		assertFalse(flags("33225-2013", clazz));
 		assertFalse(flags("29800-2013", clazz));
 		assertFalse(flags("386203-2012", clazz));
+	}
+
+	@Test
+	public void unsuccRiskIndicatorTest() throws InterruptedException {
+		Class<? extends AbstractIndicator> clazz = UnsuccessfulProcWithRiskIndicator.class;
+		assertFalse(flags("285541-2015", clazz));
+		assertTrue(flags("294877-2015", clazz));
 	}
 
 }

@@ -33,12 +33,15 @@ public class UnsuccessfulProcWithRiskIndicator extends AbstractTD7Indicator {
 	protected IndicatorResult flagImpl(Notice notice) {
 		String s = fetchAdditionalInfo(notice).trim();
 		for (String line : s.split("\n")) {
+			if (line.contains("hivatkozhat")) {
+				continue;
+			}
 			if (line.matches(".*76.{0,15}\\(1\\).{0,15} [bde]\\).*")
 					|| /* b) */line.matches(".*kizárólag érvénytelen.*")
 					|| /* d) */line
-							.matches(".*ajánlat(ot )?tevő.*(megkötés|teljesítés).*képtelen.*")
+					.matches(".*ajánlat(ot )?tevő.*(megkötés|teljesítés).*képtelen.*")
 					|| /* e) */line
-							.matches(".*ajánlat(ot )?tevő.*sértő cselekmény.*")) {
+					.matches(".*ajánlat(ot )?tevő.*sértő cselekmény.*")) {
 				return returnFlag();
 			}
 		}
