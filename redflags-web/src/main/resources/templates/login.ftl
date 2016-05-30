@@ -68,8 +68,11 @@
 							</div>
 							<div class="col-md-6 col-md-offset-3">
 								<div class="form-group">
-									<#-- <p class="text-warning"><strong>A Captcha ideiglenesen nincs ellenőrizve, hogy könnyebb legyen a többi funkció tesztelése.</strong><p> -->
-									<div class="g-recaptcha" id="loginCaptcha"></div>
+									<#if printCaptcha>
+										<div class="g-recaptcha" id="loginCaptcha"></div>
+									<#else>
+										<p class="text-warning"><strong>Captcha is turned off for test purposes.</strong><p>
+									</#if>
 								</div>		
 							</div>													
 							<div class="col-md-4 col-md-offset-4">								
@@ -116,7 +119,11 @@
 							</div>	
 							<div class="col-md-6 col-md-offset-3">
 								<div class="form-group">
-									<div class="g-recaptcha" id="forgotCaptcha"></div>
+									<#if printCaptcha>
+										<div class="g-recaptcha" id="forgotCaptcha"></div>
+									<#else>
+										<p class="text-warning"><strong>Captcha is turned off for test purposes.</strong><p>
+									</#if>
 								</div>		
 							</div>						
 							<div class="col-md-6 col-md-offset-3 text-center">
@@ -160,7 +167,11 @@
 							</div>
 							<div class="col-md-6 col-md-offset-3">
 								<div class="form-group">
-									<div class="g-recaptcha" id="registerCaptcha"></div>
+									<#if printCaptcha>
+										<div class="g-recaptcha" id="registerCaptcha"></div>
+									<#else>
+										<p class="text-warning"><strong>Captcha is turned off for test purposes.</strong><p>
+									</#if>									
 								</div>
 							</div>
 							<div class="col-md-6 col-md-offset-3 text-center">

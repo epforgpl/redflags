@@ -16,6 +16,7 @@
 package hu.petabyte.redflags.web.cfg;
 
 import hu.petabyte.redflags.web.svc.LoginCaptchaFilter;
+import hu.petabyte.redflags.web.svc.SecuritySvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +40,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 public class SecurityRoles extends WebSecurityConfigurerAdapter {
 
 	private @Autowired JdbcTemplate jdbc;
+	private @Autowired SecuritySvc security;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -46,7 +48,7 @@ public class SecurityRoles extends WebSecurityConfigurerAdapter {
 		filter.setEncoding("UTF-8");
 		filter.setForceEncoding(true);
 
-		http.addFilterBefore(new LoginCaptchaFilter(), CsrfFilter.class)
+		http.addFilterBefore(new LoginCaptchaFilter(security), CsrfFilter.class)
 				//
 		.authorizeRequests()
 				//

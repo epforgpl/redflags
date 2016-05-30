@@ -30,11 +30,6 @@ public class LangAdvice {
 	@Value("${site.languages:en,hu}")
 	private String languages;
 
-	@ModelAttribute("languages")
-	public String[] languages() {
-		return languages.split(",");
-	}
-
 	@ModelAttribute("lang")
 	public String lang(Locale loc) {
 		return loc.getLanguage();
@@ -43,5 +38,10 @@ public class LangAdvice {
 	@ModelAttribute("language")
 	public String language(Locale loc) {
 		return loc.getDisplayLanguage();
+	}
+
+	@ModelAttribute("languages")
+	public String[] languages() {
+		return languages.split(",");
 	}
 }

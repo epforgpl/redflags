@@ -32,21 +32,23 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginCaptchaFilter implements Filter {
 
 	// it's out of Spring context so @Autowire is not working :(
-	private CaptchaValidator security = new SecuritySvc();
+	// but we can get it from constructor caller component ;)
+	private final CaptchaValidator security;
+
+	public LoginCaptchaFilter(CaptchaValidator security) {
+		this.security = security;
+	}
 
 	@Override
 	public void destroy() {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		// if (1 == 1) { // TODO DEBUG
-		// chain.doFilter(request, response);
-		// return;
-		// }
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		if ("POST".equals(httpRequest.getMethod()) && "/login".equals(httpRequest.getRequestURI())) {
+		if ("POST".equals(httpRequest.getMethod())
+				&& "/login".equals(httpRequest.getRequestURI())) {
 			String captcha = httpRequest.getParameter("g-recaptcha-response");
 			if (!security.validateCaptcha(captcha)) {
 				HttpServletResponse httpResponse = (HttpServletResponse) response;

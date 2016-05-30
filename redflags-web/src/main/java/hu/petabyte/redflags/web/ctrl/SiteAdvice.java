@@ -15,6 +15,9 @@
  */
 package hu.petabyte.redflags.web.ctrl;
 
+import hu.petabyte.redflags.web.svc.SecuritySvc;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +28,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
  *
  */
 @ControllerAdvice
-public class SiteMessageAdvice {
+public class SiteAdvice {
+
+	private @Autowired SecuritySvc security;
 
 	@Value("${site.message:}")
 	private String message;
@@ -33,6 +38,11 @@ public class SiteMessageAdvice {
 	@ModelAttribute("message")
 	public String getMessage() {
 		return message;
+	}
+
+	@ModelAttribute("printCaptcha")
+	public boolean getPrintCaptcha() {
+		return security.isUseCaptcha();
 	}
 
 }
