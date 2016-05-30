@@ -24,6 +24,10 @@ redflags:
     url:                       http://www.redflags.eu
     triggerSecret:             ...
 
+#site.message:                  site.message.newDirective
+site.languages:                en,hu
+
+
 
 # -----------------------------------------------------------------------------
 # LOGGING

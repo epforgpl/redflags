@@ -17,6 +17,7 @@ package hu.petabyte.redflags.web.ctrl;
 
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -25,6 +26,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
  */
 @ControllerAdvice
 public class LangAdvice {
+
+	@Value("${site.languages:en,hu}")
+	private String languages;
+
+	@ModelAttribute("languages")
+	public String[] languages() {
+		return languages.split(",");
+	}
 
 	@ModelAttribute("lang")
 	public String lang(Locale loc) {

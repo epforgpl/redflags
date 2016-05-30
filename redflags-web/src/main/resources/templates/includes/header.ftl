@@ -61,6 +61,7 @@ Model:
 	<meta property="og:image" content="http://www.redflags.eu/img/redflags-logo-official.png"/>
 	<title><#if pageTitle?? && "" != pageTitle>${pageTitle?replace("<[^>]+>", "", "r")} - </#if>${appTitle}</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/lumen/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,300,700&subset=latin,latin-ext" />
 	<#if needDateRangePicker??>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/1.3.23/daterangepicker-bs3.min.css" />
@@ -125,11 +126,14 @@ Model:
 						<span class="badge opacity badge-debug"><span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;${queryTime}ms</span>
 					</#if>
 					-->
-					<#list ['en:English version', 'hu:Magyar változat'] as e>
-						<#if lang?? && lang != e?split(":")[0]>
-							<a href="?lang=${e?split(":")[0]}"><span class="badge opacity">${e?split(":")[1]}</span></a>
+					
+					<#list languages as e>
+						<#if lang?? && lang != e>
+							<a href="?lang=${e}" data-toggle="tooltip" data-placement="bottom" title="<@label "lang.${e}" />"
+							><span class="badge opacity"><i class="fa fa-language"></i> ${e?upper_case}</span></a>
 						</#if>
 					</#list>
+					
 					<#if Session["SPRING_SECURITY_CONTEXT"]?exists>
 						<#if Session["SPRING_SECURITY_CONTEXT"].authentication.name??>
 							<a href="/logout"><span class="badge opacity"><@label "logout" /></span></a>

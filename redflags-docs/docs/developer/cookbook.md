@@ -94,6 +94,7 @@ flag.MyIndicator.info2=My flag when condition2 is true, where p1 is {p1} and p2 
 </pre>
 
 
+
 ## Adding an own downloader/importer gear
 
 
@@ -123,3 +124,48 @@ If you write your own parsers you probably won't need these gears:
 - awardCriteriaParser
 - openingDateParser
 </pre>
+
+
+
+## Adding a new language to the webapp
+
+
+
+### Step 1: Create messages.properties file
+
+Add a file named `messages_{LANG}.properties` to the classpath root, where `{LANG}` is the **language code**, e.g. `hu`, `en`, `pl`.
+
+Existing messages files are under `src/main/resources/` directory.
+
+
+
+### Step 2: Translate the strings
+
+Translate every line in your messages file leaving the **property name** before the `=` symbol **unmodified**.
+
+Be careful around `flag.{classname}.info` properties, keep the format where **variables are between braces** (`{var}`), and don't modify variable names. **DO NOT** use *Google Translate* or any other automated translation service, because they will mess up this format.
+
+**Special characters** (outside Latin-1) **must be escaped** using `\uHHHH` format. It is suggested to use an editor which can handle property files, it will do the dirty work. (*Eclipse* can do this for example.)
+
+**Optional strings**
+
+* When you are sure you won't need for example `IndicatorX` gear, you don't have to translate and can remove all message lines which contain `IndicatorX`.
+* Also any `site.message.*` message is only needed if you use it in `site.message` application property.
+
+
+
+### Step 3: Strings for language chooser
+
+`lang.{LANG}` messages are for the language chooser, these strings appear as **tooltips** when the visitor moves the mouse over the language button.
+
+I think each buttons must have the same tooltip in any language, I mean `lang.en=English version` should be the same in any language file, because this button is only for people who speak English. So I suggest to **leave them without translating**.
+
+But you shoud **add your language to every language file** in the mentioned style.
+
+
+
+### Step 4: Add language to language chooser
+
+Language chooser is generated in `header.ftl`, it can be configured easily through `site.languages` application property. You have to **add your language code to the list**, for example: `site.languages: en,hu,pl`.
+
+The language chooser will print out all languages that are not the current one.
