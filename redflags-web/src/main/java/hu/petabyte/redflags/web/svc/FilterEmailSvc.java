@@ -107,9 +107,10 @@ public class FilterEmailSvc {
 			if (null != text) {
 				String subject = msg.getMessage("filter.email.subject", null,
 						loc)
+						+ " "
 						+ (null == userFilter.getName()
-						|| userFilter.getName().trim().isEmpty() ? "#"
-						+ userFilter.getId() : userFilter.getName());
+								|| userFilter.getName().trim().isEmpty() ? "#"
+								+ userFilter.getId() : userFilter.getName());
 				String to = a.getEmailAddress();
 				if (email.send(to, subject, text)) {
 					// success

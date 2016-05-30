@@ -27,6 +27,18 @@
 			<a class="btn btn-primary btn-lg" href="/organizations"><span class="glyphicon glyphicon-folder-open"></span>&nbsp;&nbsp;&nbsp;<@label "organizations.title" /> »</a>
 			</p>
 		</div>
+		
+		<div class="well">
+			<div class="embed-responsive embed-responsive-16by9">
+				<iframe class="embed-responsive-item"
+					<#if "hu" == lang>
+						src="https://www.youtube.com/embed/v3Xco8832RY"
+					<#else>
+						src="https://www.youtube.com/embed/SCBd6bynbqw"
+					</#if>
+				allowfullscreen></iframe>
+			</div>
+		</div>
 	</div>
 
 	<div class="col-md-6 col-md-pull-6">
@@ -289,63 +301,5 @@ $(function() {
 	});
 });
 </script>
-
-<!-- jatek -->
-
-<#if "hu" == lang>
-<div class="modal fade" id="jatek" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Redflags.hu - Merülj el benne és <strong>nyerj!</strong></h4>
-			</div>
-			<div class="modal-body">
-				<p class="text-justify"><em>
-					Február 1-jén elindult a <strong><a href="https://www.facebook.com/TransparencyInternationalMagyarorszag/" target="_blank">
-					Transparency International Magyarország</a></strong> és a
-					<strong><a href="https://www.facebook.com/Kmonitor/" target="_blank">
-					K-Monitor</a></strong> közös játéka.
-				</em></p>
-				<p class="text-justify">
-					Minden héten 3 kérdést fogtok találni felváltva a TI és a
-					K-Monitor Facebook oldalán.
-				</p>
-				<p class="text-justify">
-					<strong>15. találós kérdésünk a következő:</strong>
-				</p>
-				<p class="text-justify">
-					Tudod milyen az, amikor nagyon sürgősen fel kell újítani egy
-					kastélyt? A <strong><a href="http://444.hu/2014/10/17/hogy-nez-ki-egy-igazan-gyanus-kozbeszerzes-pontosan-igy/" target="_blank">444.hu cikkéből
-					</a></strong> kiderül, hogyan is nézett ki a
-					keszthelyi Festetics-kastély felújítási pályázata.
-				</p>
-				<p class="text-justify">
-					Keresd meg a cikkben szereplő közbeszerzési eljárást a
-					Redflags adatbázisában, és a link megküldésével együtt írd
-					meg nekünk, hogy miért olyan gyanús ez a közbeszerzési kiírás!
-				</p>
-				<p class="text-justify">
-					A megfejtéseket <strong>március 6-án éjfélig</strong> várjuk
-					a <strong><a href="mailto:jatek@redflags.eu">jatek@redflags.eu</a></strong>
-					email címre.
-					A helyes megfejtők között egy <strong><a href="http://www.symatoys.com/product/show/1918.html" target="_blank">
-					mini drónt</a></strong> sorsolunk ki, az első 5 leggyorsabb
-					megfejtő pedig pólót kap ajándékba. 
-					Egy kis segítség az oldal használatához:
-				</p>
-				<div class="embed-responsive embed-responsive-16by9">
-					<iframe src="https://www.youtube.com/embed/v3Xco8832RY" frameborder="0" allowfullscreen></iframe>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<a href="/notices" class="btn btn-primary">Hirdetménykereső</a>
-			</div>
-		</div>
-	</div>
-</div>
-<script>$(function(){ $('#jatek').modal('show'); });</script>
-</#if>
-
 
 <#include "/includes/footer.ftl">

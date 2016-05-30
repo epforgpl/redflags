@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  -->
- 
+
 <#include "/includes/import-spring.ftl">
 <#include "/includes/general-macros.ftl">
 
@@ -27,15 +27,15 @@ Model:
 	pageTitle
 		You can pass here the title of the page. It will be shown in the window
 		header as "pageTitle - appTitle".
-	
+
 	pageTitleLabel
 		You can pass the label name to be used as page title. This attribute
 		sets and overrides the value of 'pageTitle'.
-	
+
 	prevPageTitleLabel
 		You can pass the label name to be used as the title of the previous
 		page.
-	
+
 	prevPageUrl
 		You can pass the url of the previous page.
 
@@ -77,7 +77,7 @@ Model:
 		ga('create', 'UA-70253429-1', 'auto', 'km');
 		ga('send', 'pageview');
 		ga('km.send', 'pageview');
-	</script>	
+	</script>
 </head>
 <body>
 	<#if springMacroRequestContext.requestUri == "/">
@@ -96,7 +96,7 @@ Model:
 		<div class="container">
 			<div id="header-table">
 				<div id="logo"><a href="/"></a></div>
-				
+
 				<div id="header-nav" class="animated fadeInDown">
 					<div class="row">
 						<ul class="menu hidden-xs hidden-sm visible-md visible-lg">
@@ -116,7 +116,7 @@ Model:
 						</div>
 					</#if>
 				</div>
-				
+
 				<div id="header-right" class="animated fadeInDown">
 					<#--
 					<span class="badge opacity"><span class="glyphicon glyphicon-tag"></span>&nbsp;&nbsp;v${version}</span>
@@ -129,13 +129,13 @@ Model:
 						<#if lang?? && lang != e?split(":")[0]>
 							<a href="?lang=${e?split(":")[0]}"><span class="badge opacity">${e?split(":")[1]}</span></a>
 						</#if>
-					</#list>				
+					</#list>
 					<#if Session["SPRING_SECURITY_CONTEXT"]?exists>
 						<#if Session["SPRING_SECURITY_CONTEXT"].authentication.name??>
 							<a href="/logout"><span class="badge opacity"><@label "logout" /></span></a>
 							<strong>
 								${Session["SPRING_SECURITY_CONTEXT"].authentication.principal.account.name}&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span>
-							</strong>		
+							</strong>
 						</#if>
 					<#else>
 						<a href="/login"><span class="badge opacity"><@label "login" /></span></a>
@@ -152,7 +152,13 @@ Model:
 				  <@label "noscript" />
 				</div>
 			</noscript>
-		
+			
+			<#if message?? && message?length &gt; 0 >
+				<div class="col-md-10 col-md-offset-1 well well-sm text-danger text-center">
+					<strong><@label message /></strong>
+				</div>
+			</#if>
+
 			<#if pageTitle??>
 				<div class="row">
 					<h1>${pageTitle}</h1>
