@@ -1,0 +1,278 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css);
+
+/* TYPO */
+
+a, .navbar {
+	font-weight: 400;
+}
+
+body {
+	font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.dropdown-menu a {
+	font-size: 14px;
+}
+
+h4 {
+	font-weight: 700;
+}
+
+p {
+	text-align: justify;
+}
+
+/* SPACING */
+
+.affix {
+	margin-bottom: 75px;
+}
+
+.dropdown-submenu a:after {
+	padding-right: 5px;
+}
+
+footer {
+	padding-bottom: 20px;
+}
+
+h1[id] {
+	margin-top: 50px;
+	margin-bottom: 75px;
+}
+
+h2[id] {
+	margin-top: -25px;
+	padding-top: 75px;
+	margin-bottom: 25px;
+}
+
+h3[id] {
+	margin-top: -25px;
+	padding-top: 65px;
+	margin-bottom: 25px;
+}
+
+h4[id] {
+	margin-top: -25px;
+	padding-top: 55px;
+	margin-bottom: 10px;
+}
+
+i.fa, .glyphicon {
+	text-align: center;
+	width: 20px !important;
+}
+
+.navbar a {
+	padding: 15px 11px !important;
+}
+
+.navbar .dropdown-menu a {
+	padding: 5px 10px !important;
+}
+
+.navbar .dropdown-menu {
+	padding: 0px !important;
+}
+
+.navbar li.disabled {
+	display: none;
+}
+
+/* NUMBERED HEADINGS */
+/*
+.container, .affix {
+	counter-reset: section;
+}
+
+h2[id] {
+	counter-reset: subsection;
+}
+
+h2[id]:before, .affix a:before {
+	counter-increment: section;
+	content: counter(section) "." !important;
+	display: inline !important;
+	margin-right: 20px;
+}
+
+.affix a:before {
+	margin-right: 10px;
+}
+
+h3[id]:before {
+	counter-increment: subsection;
+	content: counter(section) "." counter(subsection) "." !important;
+	display: inline !important;
+	margin-right: 20px;
+}*/
+
+/* FOOTER */
+
+body {
+	margin-bottom: 75px;
+}
+
+footer {
+	bottom: 20px;
+    position: absolute !important;
+}
+
+html {
+	position: relative;
+    min-height: 100%;
+}
+
+/* REDFLAGS STYLE */
+
+a {
+	color: #DA2A46;
+}
+
+a:hover {
+	color: #EA465F;
+}
+
+body {
+	background-color: #E4E3D8;
+	background-image: url("../img/background.png");
+	background-attachment: fixed;
+	background-position: center -1px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+blockquote, hr {
+	border-color: #DA2A46;
+}
+
+.btn-primary, .btn-primary:focus {
+	background: #DA2A46;
+}
+
+.btn-primary:hover {
+	background: -moz-linear-gradient(top,  #ea465f 0%, #da2a46 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #ea465f 0%,#da2a46 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #ea465f 0%,#da2a46 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea465f', endColorstr='#da2a46',GradientType=0 ); /* IE6-9 */
+	border-color: #BC2A52;
+}
+
+.breadcrumb>li+li:before {
+	color: #da2a46;
+}
+
+code, pre {
+	background-color: rgba(252, 250, 248, 0.5) !important;
+	/*color: #76A8A6;*/
+	color: #666;
+}
+
+.dropdown-menu {
+	background-color: #da2a46;
+}
+
+pre code {
+	border-radius: 4px;
+}
+
+.nav a:hover,
+.nav a:focus,
+.nav .active,
+.dropdown-menu li.active > a {
+	background-color: rgba(252, 250, 248, 0.2) !important;
+}
+
+.nav .dropdown-submenu a:after,
+.nav .dropdown-submenu a:hover:after {
+	border-left-color: white;
+}
+
+.navbar, .well {
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.2);
+	-moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 50, 0.2);
+	box-shadow:         0px 0px 10px 0px rgba(50, 50, 50, 0.2);
+}
+
+.navbar-brand {
+	background-image: url("../img/redflags-logo.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	text-indent: 50px;
+}
+
+.navbar-default {
+	background-color: #DA2A46;
+	background: -moz-linear-gradient(top,  #ea465f 0%, #da2a46 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #ea465f 0%,#da2a46 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #ea465f 0%,#da2a46 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea465f', endColorstr='#da2a46',GradientType=0 ); /* IE6-9 */
+	border-color: #BC2A52;
+
+	-webkit-box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.25);
+	-moz-box-shadow:    0px 4px 8px 0px rgba(0,0,0,0.25);
+	box-shadow:         0px 4px 8px 0px rgba(0,0,0,0.25);
+}
+
+.navbar-default a {
+	color: white !important;
+}
+
+.table>tbody>tr>td {
+	border: none;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) td {
+	background-color: rgba(195, 193, 191, 0.2) !important;
+}
+
+.table-striped tr:hover td {
+	background-color: inherit !important;
+}
+
+.well {
+	background-color: rgba(252, 250, 248, 0.3) !important;
+}
+
+/* TUNE */
+
+.affix li:first-child {
+	display: none;
+}
+
+.dropdown:hover > .dropdown-menu {
+	display: block;
+	margin-top: 0;
+}
+
+img[src*=shields] {
+	position: absolute;
+	left: 50%;
+	opacity: 0.5;
+}
+
+li:hover > img[src*=shields] {
+	opacity: 1.0;
+}
+
+/* ADDITIONAL ELEMENTS */
+
+.top-link {
+	float: right;
+}
+
+@media print {
+	.top-link { display: none;}
+}
+
+.intro-pic {
+	float:right;
+	margin: 20px 0px 20px 50px;
+	height: 250px;
+	width:  250px;
+}

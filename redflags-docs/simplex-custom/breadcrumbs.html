@@ -1,0 +1,13 @@
+<ol class="well breadcrumb">
+	<li><a href="{{ homepage_url }}">Table of contents</a></li>
+	{% if current_page %}
+		{% for doc in current_page.ancestors %}
+			{% if doc.link %}
+				<li><a href="{{ doc.link|e }}">{{ doc.title }}</a></li>
+			{% else %}
+				<li>{{ doc.title }}</li>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+	{% if current_page %}<li>{{ current_page.title }}</li>{% endif %}
+</ol>

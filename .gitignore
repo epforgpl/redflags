@@ -14,6 +14,7 @@ hs_err_pid*
 
 target/
 default-users.sql
+redflags-docs/docs/doc/
 
 # there are censored versions of these with ".example" suffix:
 application.yml
