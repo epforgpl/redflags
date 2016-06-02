@@ -43,6 +43,8 @@ You can read more about configuration parameters in the maintainer documentation
 
 
 
+Both the engine and the webapp are **Maven projects** and written in **Java**.
+
 To build the engine,
 
 1. navigate to `redflags-engine` directory,
@@ -50,3 +52,45 @@ To build the engine,
 3. You'll get a JAR file in the `target` directory of the project.
 
 To build the webapp, do the exact same thing in `redflags-web` directory.
+
+
+
+## Projects and packages
+
+
+
+There are two projects in the repository: `redflags-engine` and `redflags-web`. Both are **Spring Boot projects**.
+
+`redflags-engine` is the magic thing which **downloads, processes and stores** the data. Its packages are:
+
+<pre>
+hu.petabyte.redflags.engine		Main package of the application
+	boot						Components responsible for the engine initialization.
+	gear						Engine gears
+		archiver				Archiver (downloader) gears
+		export					Exporter gears
+		filter					Filter gears
+		indicator				Indicators gears
+			helper				Indicator helper classes
+			hu					Indicators for Hungarian documents
+				depr			Deprecated indicators
+		parser					Parser gears
+			hu					Specific parser gears for Hungarian documents
+	model						Data model POJO definitions
+		noticeparts				Components of a notice
+	parser						Template parser
+	scope						Notice iterators for various cases
+	tedintf						TED Interface and cache implementations
+	util						Utility classes
+</pre>
+
+`redflags-web` is the webapplication which **serves** the data. Its packages are:
+
+<pre>
+hu.petabyte.redflags.web		Main package of the application
+	cfg							Configuration classes
+	ctrl						Controllers and controller advices
+	model						Model classes for webapp features (users, filters)
+	svc							Services
+	util						Utility classes
+</pre>

@@ -65,4 +65,4 @@ On the welcome page, the header shows links also for the sections (described [ab
 
 
 
-Currently *Red Flags* can display 2 languages, **English and Hungarian**. Switching between them can be done by clicking the *"Magyar változat"* (means *"Hungarian version"*) or *"English version"* links in the **top right corner**.
+Currently *Red Flags* can display 2 languages, **English and Hungarian**. Switching between them can be done by clicking the *"HU"* or *"EN"* links in the **top right corner**.

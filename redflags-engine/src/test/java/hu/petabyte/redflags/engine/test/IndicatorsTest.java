@@ -324,7 +324,7 @@ public class IndicatorsTest {
 		try {
 			notice = processedNoticeProvider.notice(id);
 			IndicatorResult ir = notice.getIndicatorResults().get(
-					indicator.getSimpleName());
+					AbstractIndicator.getIdForIndicatorClass(indicator));
 			return null != ir && ir.getType() == IndicatorResultType.FLAG;
 		} catch (InterruptedException e) {
 			throw new IllegalStateException(e);

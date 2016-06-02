@@ -87,11 +87,13 @@ Both of them are optional, the defaults are `null` for the category and `1.0` fo
 Add the following lines to your `messages.properties` file(s):
 
 <pre>
-flag.MyIndicator.name=My indicator
-flag.MyIndicator.desc=My indicator tests notices for condition1 and condition2.
-flag.MyIndicator.info=My flag when condition1 is true
-flag.MyIndicator.info2=My flag when condition2 is true, where p1 is {p1} and p2 is {p2}
+flag.lang.MyIndicator.name=My indicator
+flag.lang.MyIndicator.desc=My indicator tests notices for condition1 and condition2.
+flag.lang.MyIndicator.info=My flag when condition1 is true
+flag.lang.MyIndicator.info2=My flag when condition2 is true, where p1 is {p1} and p2 is {p2}
 </pre>
+
+As you can see after `flag.`, we identify indicators by the name of their direct parent package and their simple class name.
 
 
 
@@ -147,20 +149,15 @@ Be careful around `flag.{classname}.info` properties, keep the format where **va
 
 **Special characters** (outside Latin-1) **must be escaped** using `\uHHHH` format. It is suggested to use an editor which can handle property files, it will do the dirty work. (*Eclipse* can do this for example.)
 
-**Optional strings**
-
-* When you are sure you won't need for example `IndicatorX` gear, you don't have to translate and can remove all message lines which contain `IndicatorX`.
-* Also any `site.message.*` message is only needed if you use it in `site.message` application property.
 
 
-
-### Step 3: Strings for language chooser
+### Step 3: Define strings for language chooser
 
 `lang.{LANG}` messages are for the language chooser, these strings appear as **tooltips** when the visitor moves the mouse over the language button.
 
-I think each buttons must have the same tooltip in any language, I mean `lang.en=English version` should be the same in any language file, because this button is only for people who speak English. So I suggest to **leave them without translating**.
+**Add your language to every language file** for example: `lang.en=English version`
 
-But you shoud **add your language to every language file** in the mentioned style.
+I think each button must have the same tooltip in every language, I mean `lang.en=English version` should be the same in any language file, because this button is only for people who speak English. So I suggest to **leave them without translating** and just copy your line to every language file.
 
 
 

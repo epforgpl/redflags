@@ -15,6 +15,13 @@
  */
 package hu.petabyte.redflags.engine.gear.export;
 
+import hu.petabyte.redflags.engine.boot.GearLoader;
+import hu.petabyte.redflags.engine.gear.AbstractGear;
+import hu.petabyte.redflags.engine.gear.indicator.AbstractIndicator;
+import hu.petabyte.redflags.engine.model.IndicatorResult;
+import hu.petabyte.redflags.engine.model.IndicatorResult.IndicatorResultType;
+import hu.petabyte.redflags.engine.model.Notice;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,13 +41,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import hu.petabyte.redflags.engine.boot.GearLoader;
-import hu.petabyte.redflags.engine.gear.AbstractGear;
-import hu.petabyte.redflags.engine.gear.indicator.AbstractIndicator;
-import hu.petabyte.redflags.engine.model.IndicatorResult;
-import hu.petabyte.redflags.engine.model.Notice;
-import hu.petabyte.redflags.engine.model.IndicatorResult.IndicatorResultType;
-
 /**
  * @author Zsolt Jurányi
  */
@@ -48,7 +48,8 @@ import hu.petabyte.redflags.engine.model.IndicatorResult.IndicatorResultType;
 @Scope("prototype")
 public class FlagExporter extends AbstractExporter {
 
-	private static final Logger LOG = LoggerFactory.getLogger(FlagExporter.class);
+	private static final Logger LOG = LoggerFactory
+			.getLogger(FlagExporter.class);
 	private static final String MISSING_DATA_CELL = "@ Missing data";
 	private static final String IRRELEVANT_DATA_CELL = "@ Irrelevant data";
 
@@ -75,16 +76,19 @@ public class FlagExporter extends AbstractExporter {
 		ArrayList<String> sumRow = new ArrayList<String>();
 		grid.add(0, sumRow);
 
-		sumRow.add("REDFLAGS ON " + new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+		sumRow.add("REDFLAGS ON "
+				+ new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		sumRow.add("Count of notices: " + all);
 		for (int i = 0; i < indicators.size() + 1; i++) { // +1: flag count col
 			int flagged = 0, relevant = all;
 			for (int n = 0; n < all; n++) {
 				String cell = grid.get(n + 2).get(i + 2);
-				if (!"0".equals(cell) && !"".equals(cell) && !MISSING_DATA_CELL.equals(cell)
+				if (!"0".equals(cell) && !"".equals(cell)
+						&& !MISSING_DATA_CELL.equals(cell)
 						&& !IRRELEVANT_DATA_CELL.equals(cell)) {
 					flagged++;
-				} else if (MISSING_DATA_CELL.equals(cell) || IRRELEVANT_DATA_CELL.equals(cell)) {
+				} else if (MISSING_DATA_CELL.equals(cell)
+						|| IRRELEVANT_DATA_CELL.equals(cell)) {
 					relevant--;
 				}
 			}
@@ -92,7 +96,8 @@ public class FlagExporter extends AbstractExporter {
 			StringBuilder sb = new StringBuilder();
 
 			// flagged count
-			sb.append(0 == flagged ? "NO FLAG, " : String.format("F=%d, ", flagged));
+			sb.append(0 == flagged ? "NO FLAG, " : String.format("F=%d, ",
+					flagged));
 
 			// relevant count
 			if (0 == relevant) {
@@ -170,7 +175,8 @@ public class FlagExporter extends AbstractExporter {
 
 		int count = 0;
 		for (AbstractIndicator indicator : indicators) {
-			IndicatorResult r = notice.getIndicatorResults().get(indicator.getClass().getSimpleName());
+			IndicatorResult r = notice.getIndicatorResults().get(
+					indicator.getIndicatorId());
 			String s = "";
 			if (null != r) {
 				if (IndicatorResultType.MISSING_DATA == r.getType()) {
@@ -179,7 +185,8 @@ public class FlagExporter extends AbstractExporter {
 					s = IRRELEVANT_DATA_CELL;
 				} else if (IndicatorResultType.FLAG == r.getType()) {
 					String c = r.getFlagCategory();
-					s = String.format("(%s %s) %s", null == c ? "" : c, r.getWeight(), r.getDescription());
+					s = String.format("(%s %s) %s", null == c ? "" : c,
+							r.getWeight(), r.getDescription());
 					count++;
 				}
 			}
@@ -189,7 +196,8 @@ public class FlagExporter extends AbstractExporter {
 	}
 
 	protected String filename() {
-		return String.format("redflags-%s.csv", new SimpleDateFormat("yyyyMMdd-HHmmss").format(new Date()));
+		return String.format("redflags-%s.csv", new SimpleDateFormat(
+				"yyyyMMdd-HHmmss").format(new Date()));
 	}
 
 	protected boolean shouldInclude(AbstractIndicator i) {
@@ -214,7 +222,8 @@ public class FlagExporter extends AbstractExporter {
 
 	private void writeFile() throws IOException {
 		File csvFile = new File(filename);
-		Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csvFile), "UTF-8"));
+		Writer out = new BufferedWriter(new OutputStreamWriter(
+				new FileOutputStream(csvFile), "UTF-8"));
 		for (ArrayList<String> row : grid) {
 			for (String col : row) {
 				if (null != col) {

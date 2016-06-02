@@ -20,6 +20,8 @@ package hu.petabyte.redflags.engine.model;
  */
 public interface IndicatorMeta {
 
+	String getIndicatorId();
+
 	String getCategory();
 
 	double getWeight();

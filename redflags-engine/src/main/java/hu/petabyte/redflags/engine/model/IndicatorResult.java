@@ -37,7 +37,7 @@ public class IndicatorResult {
 	}
 
 	public IndicatorResult(IndicatorMeta indicator, IndicatorResultType type) {
-		this.indicator = checkNotNull(indicator.getClass().getSimpleName());
+		this.indicator = checkNotNull(indicator).getIndicatorId();
 		this.type = type;
 		this.flagCategory = indicator.getCategory();
 		this.weight = indicator.getWeight();

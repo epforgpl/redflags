@@ -231,11 +231,13 @@ Fortunately `AbstractIndicator` has **helper methods** to generate description s
 
 |
 ----------------------------------------------------------|---
-`label(String label, String... args)`                     | generates a description string where the label identifier will be `flag.ClassName.specifiedLabel` and parameters will be the `param=value` pairs given in `args`
+`label(String label, String... args)`                     | generates a description string where the label identifier will be `flag.IndicatorId.specifiedLabel` and parameters will be the `param=value` pairs given in `args`
 `irrelevantData()` and `missingData()`                    | generates `IndicatorResult` objects with the corresponding flag types
-`returnFlag()`                                            | generates a result with label `flag.ClassName.info` and type `FLAG`, category and weight will be copied from the current indicator class
+`returnFlag()`                                            | generates a result with label `flag.IndicatorId.info` and type `FLAG`, category and weight will be copied from the current indicator class
 `returnFlag(String label, String... args)`                | lets you replace `info` to another label and add parameters
 `returnFlag(double weight, String lable, String... args)` | lets you override the indicator's weight too
+
+`IndicatorId` **is generated from the name of the direct parent package and the simple class name**, e.g. `hu.petabyte.redflags.engine.gear.indicator.pl.AwCritLacksIndicator` will have `pl.AwCritLacksIndicator` as its id. This way indicators of different languages/countries can be separated in language files too.
 
 If you want to return `NO_FLAG` you can simply return `null` from your `flag(Notice)` method.
 

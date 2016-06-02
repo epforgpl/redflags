@@ -50,7 +50,28 @@ Both of them are implementing `FilesystemNoticeCache` abstract class and both of
 
 
 
-## Configuration (TODO)
+## Configuration
+
+*TED Interface* stores its configuration in a `TedInterfaceConf` POJO. It has the following options:
+
+Field                 | Type     | Default value  | Description
+----------------------|----------|----------------|------------
+`addSleepBeforeRetry` | `long`   | `0`            | Sleep before a retry is calculated this way: `previousSleep * mulSleepBeforeRetry + addSleepBeforeRetry`
+`maxBodySize`         | `int`    | `10 000 000`   | Max body size option of the Jsoup connection
+`mulSleepBeforeRetry` | `double` | `2.0`          | Sleep before a retry is calculated this way: `previousSleep * mulSleepBeforeRetry + addSleepBeforeRetry`
+`mustHaveContent`     | `String` | `"docContent"` | A String to be searched in the response. If it's not in there, we have a `MISSING_CONTENT` error case (see below).
+`retryCount`          | `int`    | `2`            | Maximum number of retries in those error case where it can help
+`sleepBeforeRequest`  | `long`   | `2 000`        | Amount of sleep in milliseconds to be performed before any request to *TED*.
+`timeout`             | `int`    | `120 000`      | Timeout option of the Jsoup connection
+
+In *Red Flags*, these properties can be set via application properties, e.g.:
+
+<pre>
+redflags.engine.tedintf:
+   timeout:                  240000
+   sleepBeforeRequest:         5000
+</pre>
+
 
 
 ## Error handling
@@ -73,6 +94,12 @@ Enum value        | Can&nbsp;retry help? | Can&nbsp;crawling be&nbsp;continued? 
 
 
 
-## MaxNumberDeterminer (TODO)
+## MaxNumberDeterminer
 
-used by scopes not tedintf
+`MaxNumberDeterminer` is a tool which can find the highest available notice number in a given year, using a `TedInterface` instance. It's defined as a service, and the `TedInterfaceHolder` is autowired.
+
+It's only public method is `int maxNumberForYear(int year)` which will return 0 if the algorythm fails or the year is invalid. The algorythm does something like a binary search and checks whether the current number has a valid *TED* response or not.
+
+To increase its efficiency, it has it's own special cache. When you need the maxnumber for a year earlier than the current, it will read the number from the cache. The cache file is `ted-maxnumber.properties`.
+
+This tool is used by some `Scope` implementations to detect the end of each year.

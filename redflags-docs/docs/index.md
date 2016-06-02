@@ -38,21 +38,22 @@ The developer documentation goes deep into the **architecture** of the *Red Flag
 
 * [Getting started with the source code](/developer/first/)
 * Data model
-	* [Overview](/developer/data/)
+	* [Overview                  ](/developer/data/)
 	* [Data classes in the engine](/developer/data/classes/)
-	* [Tables of the engine](/developer/data/engine-tables/)
-	* [Tables of the webapp](/developer/data/webapp-tables/)
+	* [Tables of the engine      ](/developer/data/engine-tables/)
+	* [Tables of the webapp      ](/developer/data/webapp-tables/)
 * Engine
-	* [Understanding the engine](/developer/engine/)
+	* [Understanding the engine  ](/developer/engine/)
 	* List of implemented gears:
-		* [Downloader gears](/developer/engine/gears/downloaders/)
-		* [Parser gears    ](/developer/engine/gears/parsers/)     ![](https://img.shields.io/badge/progress-0_%-red.svg)
-		* [Filter gears    ](/developer/engine/gears/filters/)
-		* [Indicator gears ](/developer/engine/gears/indicators/)  ![](https://img.shields.io/badge/progress-0_%-red.svg)
-		* [Exporter gears  ](/developer/engine/gears/exporters/)
-	* [TED Interface](/developer/engine/tedinterface/)             ![](https://img.shields.io/badge/progress-75_%-yellow.svg)
-	* [Template parser](/developer/engine/templateparser/)         ![](https://img.shields.io/badge/progress-75_%-yellow.svg)
-* [Cookbook for extending](/developer/cookbook/)                   ![](https://img.shields.io/badge/progress-25_%-orange.svg)
+		* [Downloader gears      ](/developer/engine/gears/downloaders/)
+		* [Parser gears          ](/developer/engine/gears/parsers/)     ![](https://img.shields.io/badge/progress-0_%-red.svg)
+		* [Filter gears          ](/developer/engine/gears/filters/)
+		* [Indicator gears       ](/developer/engine/gears/indicators/)  ![](https://img.shields.io/badge/progress-0_%-red.svg)
+		* [Exporter gears        ](/developer/engine/gears/exporters/)
+	* [TED Interface             ](/developer/engine/tedinterface/)
+	* [Template parser           ](/developer/engine/templateparser/)    ![](https://img.shields.io/badge/progress-75_%-yellow.svg)
+	* [Webapp                    ](/developer/webapp/basic/)             ![](https://img.shields.io/badge/progress-10_%-red.svg)
+* [Cookbook for extending        ](/developer/cookbook/)                 ![](https://img.shields.io/badge/progress-25_%-orange.svg)
 
 
 

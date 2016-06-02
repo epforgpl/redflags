@@ -18,9 +18,12 @@ package hu.petabyte.redflags.engine.gear.indicator;
 import hu.petabyte.redflags.engine.gear.AbstractGear;
 import hu.petabyte.redflags.engine.model.IndicatorMeta;
 import hu.petabyte.redflags.engine.model.IndicatorResult;
-import hu.petabyte.redflags.engine.model.Notice;
 import hu.petabyte.redflags.engine.model.IndicatorResult.IndicatorResultType;
+import hu.petabyte.redflags.engine.model.Notice;
 import hu.petabyte.redflags.engine.model.noticeparts.ObjOfTheContract;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +34,7 @@ import org.springframework.core.env.Environment;
  * @author Zsolt Jurányi
  */
 public abstract class AbstractIndicator extends AbstractGear implements
-		IndicatorMeta {
+IndicatorMeta {
 
 	private static final Logger LOG = LoggerFactory
 			.getLogger(AbstractIndicator.class);
@@ -164,6 +167,36 @@ public abstract class AbstractIndicator extends AbstractGear implements
 		return category;
 	}
 
+	/**
+	 * Generates an identifier for the given indicator class from the name of
+	 * the direct parent package and the simple class name. So
+	 * <code>hu.petabyte.redflags.engine.gear.indicator.hu.AwCritLacksIndicator</code>
+	 * will have <code>hu.AwCritLacksIndicator</code> as its identifier.
+	 *
+	 * @param clazz
+	 *            Indicator class to generate identifier for
+	 * @return Identifier for the indicator generated from the name of the
+	 *         direct parent package and the simple class name.
+	 */
+	public static String getIdForIndicatorClass(
+			Class<? extends AbstractIndicator> clazz) {
+		Matcher m = Pattern.compile("(^|.*\\.)([^.]+\\.[^.]+)$").matcher(
+				clazz.getName());
+		return m.find() ? m.group(2) : clazz.getSimpleName();
+	}
+
+	/**
+	 * Calls {@link #getIdForIndicatorClass} to generates an identifier for this
+	 * indicator.
+	 *
+	 * @see #getIdForIndicatorClass(Class)
+	 * @return Identifier for the indicator.
+	 */
+	@Override
+	public final String getIndicatorId() {
+		return getIdForIndicatorClass(this.getClass());
+	}
+
 	@Override
 	public double getWeight() {
 		return weight;
@@ -176,7 +209,7 @@ public abstract class AbstractIndicator extends AbstractGear implements
 	protected String label(String label, String... args) {
 		StringBuilder s = new StringBuilder();
 		s.append("flag.");
-		s.append(getClass().getSimpleName());
+		s.append(getIndicatorId());
 		s.append(".");
 		s.append(label);
 		for (String arg : args) {
@@ -198,7 +231,7 @@ public abstract class AbstractIndicator extends AbstractGear implements
 			r = null == r ? new IndicatorResult(this) : r;
 			LOG.debug("{} << {}", notice.getId().toString(), r.toString());
 			// toString prints Indicator name too
-			notice.getIndicatorResults().put(getClass().getSimpleName(), r);
+			notice.getIndicatorResults().put(getIndicatorId(), r);
 		} else {
 			LOG.debug("{} is a cancelled notice, no flagging", notice.getId()
 					.toString());
@@ -231,8 +264,8 @@ public abstract class AbstractIndicator extends AbstractGear implements
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + " [category=" + category
-				+ ", weight=" + weight + "]";
+		return getIndicatorId() + " [category=" + category + ", weight="
+				+ weight + "]";
 	}
 
 }

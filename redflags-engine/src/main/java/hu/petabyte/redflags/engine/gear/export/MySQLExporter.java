@@ -20,11 +20,11 @@ import hu.petabyte.redflags.engine.model.CPV;
 import hu.petabyte.redflags.engine.model.Data;
 import hu.petabyte.redflags.engine.model.Duration;
 import hu.petabyte.redflags.engine.model.IndicatorResult;
+import hu.petabyte.redflags.engine.model.IndicatorResult.IndicatorResultType;
 import hu.petabyte.redflags.engine.model.Notice;
 import hu.petabyte.redflags.engine.model.NoticeID;
 import hu.petabyte.redflags.engine.model.Organization;
 import hu.petabyte.redflags.engine.model.Type;
-import hu.petabyte.redflags.engine.model.IndicatorResult.IndicatorResultType;
 import hu.petabyte.redflags.engine.model.noticeparts.Award;
 import hu.petabyte.redflags.engine.model.noticeparts.ComplementaryInfo;
 import hu.petabyte.redflags.engine.model.noticeparts.ContractingAuthority;
@@ -191,7 +191,7 @@ public class MySQLExporter extends AbstractExporter {
 				exportOrganization(a.getWinnerOrg());
 				exportRelation(//
 						"AWARD-" + a.getId() + "-2-ORG-"
-								+ a.getWinnerOrg().getId(), //
+						+ a.getWinnerOrg().getId(), //
 						"AWARD_TO_ORGANIZATION", "winnerOrg", //
 						a.getId(), a.getWinnerOrg().getId());
 			}
@@ -319,7 +319,7 @@ public class MySQLExporter extends AbstractExporter {
 		for (CPV cpv : data.getOriginalCpvCodes()) {
 			exportRelation(//
 					"DATA-" + data.getId() + "-2-CPV-" + cpv.getId()
-							+ "-originalCpv", //
+					+ "-originalCpv", //
 					"DATA_TO_CPV", "originalCpvCodes", //
 					data.getId(), Integer.toString(cpv.getId()));
 		}
@@ -366,7 +366,6 @@ public class MySQLExporter extends AbstractExporter {
 				csv.endLine();
 			}
 		}
-
 	}
 
 	private void exportLEFT(Notice notice) throws IOException {
@@ -651,7 +650,7 @@ public class MySQLExporter extends AbstractExporter {
 						+ proc.getQualificationSystemDuration().getId(),
 						"PROCEDURE_TO_DURATION", "qualificationSystemDuration",
 						proc.getId(), proc.getQualificationSystemDuration()
-								.getId());
+						.getId());
 			}
 		}
 
