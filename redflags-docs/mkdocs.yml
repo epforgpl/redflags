@@ -38,5 +38,8 @@ pages:
       - Exporter gears:              developer/engine/gears/exporters.md
     - TED Interface:                 developer/engine/tedinterface.md
     - Template parser:               developer/engine/templateparser.md
-  - Webapp:                          developer/webapp/basic.md
+  - Webapp:
+    - Webapp basics:                 developer/webapp/basic.md
+    - ControllerAdvice beans:        developer/webapp/controller-advices.md
+    - Controllers:                   developer/webapp/controllers.md
   - Cookbook for extending:          developer/cookbook.md

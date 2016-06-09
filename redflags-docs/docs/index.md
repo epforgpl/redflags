@@ -52,7 +52,13 @@ The developer documentation goes deep into the **architecture** of the *Red Flag
 		* [Exporter gears        ](/developer/engine/gears/exporters/)
 	* [TED Interface             ](/developer/engine/tedinterface/)
 	* [Template parser           ](/developer/engine/templateparser/)    ![](https://img.shields.io/badge/progress-75_%-yellow.svg)
-	* [Webapp                    ](/developer/webapp/basic/)             ![](https://img.shields.io/badge/progress-10_%-red.svg)
+	* Webapp
+		* [Basics                ](/developer/webapp/basic/)
+		* [ControllerAdvice beans](/developer/webapp/controller-advices/)
+		* [Controllers           ](/developer/webapp/controllers/)
+		* [Services              ](/developer/webapp/services/)          ![](https://img.shields.io/badge/progress-0_%-red.svg)
+		* [Views                 ](/developer/webapp/views/)             ![](https://img.shields.io/badge/progress-0_%-red.svg)
+		* [Filters               ](/developer/webapp/filters/)           ![](https://img.shields.io/badge/progress-0_%-red.svg)
 * [Cookbook for extending        ](/developer/cookbook/)                 ![](https://img.shields.io/badge/progress-25_%-orange.svg)
 
 

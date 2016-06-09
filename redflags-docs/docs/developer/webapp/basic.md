@@ -22,9 +22,11 @@ You can read about the most important configuration properties [here](/maintaine
 
 Of course, the *Red Flags* website designed to be able to read in multiple langauges. All of the displayed texts are loaded from **language files**, from `src/main/resources/`. Language files are named `messages_{LANG}.properties` to the classpath root, where `{LANG}` is the **language code**, e.g. `hu`, `en`, `pl`. In these properties files, **special characters** (outside Latin-1) **must be escaped** using `\uHHHH` format. (The *Spring* configuration is in `I18n.java`.)
 
-The language chooser loads the list of languages from the `site.languages` property (handled in `LangAdvice.java`), which must contain language codes separated by comma, e.g. `site.languages: en,hu,pl`.
+The language chooser loads the **list of languages** from the `site.languages` property (handled in `LangAdvice.java`), which must contain language codes separated by comma, e.g. `site.languages: en,hu,pl`.
 
-The tooltip texts of the language chooser buttons are defined in `lang.{LANG}` message properties, e.g. `lang.en=English version`. I think each button must have the same tooltip in every language, I mean `lang.en=English version` should be the same in any language file, because this button is only for people who speak English.
+The tooltip texts of the **language chooser buttons** are defined in `lang.{LANG}` message properties, e.g. `lang.en=English version`. I think each button must have the same tooltip in every language, I mean `lang.en=English version` should be the same in any language file, because this button is only for people who speak English.
+
+One last thing: the *"About the project"* section on the front page is also multilingual but it's outside of properties files. The texts are in `src/main/resources/templates/about_{LANG}.html` files and imported automatically by `index.ftl`.
 
 
 
@@ -45,3 +47,23 @@ The message can contain HTML tags as well. It will be wrapped inside a `well-sm`
 Users need to fill a captcha to log in, register or request a password change. Sometimes it gets annoying to fill in everytime when developers need to test the site. There is an option to turn off the captcha for test purposes.
 
 If you set `site.useCaptcha` property to `false` the captcha validator mechanism (`SecuritySvc.java` and `LoginCaptchaFilter.java`) will return constant `true` and also the captchas won't appear on the site (handled in `SiteAdvice.java` and `login.ftl`).
+
+
+
+## Default user accounts
+
+Defaults users are handled by `DefaultUsers.java`. It's an `InitializingBean`, which reads and executes the SQL script in `default-users.sql` using `JdbcTemplate`.
+
+It can contain something like this:
+
+```sql
+replace rfwl_users (id, active, crypted_password, email_address, lang, name, registered_at, remember_token, remember_token_expires_at) values (1, 1, 'PASSWORD-HASH', 'EMAIL', 'en', 'DISPLAY NAME', '2016-06-01 00:00:00', null, null);
+```
+
+There is a password crypter utility in `src/test/java`: `PassEncoder.java`. How to use:
+
+* run it
+* enter a password
+* copy the result hash
+* press enter to exit
+* then paste the hash into your SQL command

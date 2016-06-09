@@ -145,13 +145,21 @@ Existing messages files are under `src/main/resources/` directory.
 
 Translate every line in your messages file leaving the **property name** before the `=` symbol **unmodified**.
 
-Be careful around `flag.{classname}.info` properties, keep the format where **variables are between braces** (`{var}`), and don't modify variable names. **DO NOT** use *Google Translate* or any other automated translation service, because they will mess up this format.
+Be careful around `flag.{IndicatorId}.info` properties, keep the format where **variables are between braces** (`{var}`), and don't modify variable names. **DO NOT** use *Google Translate* or any other automated translation service, because they will mess up this format.
 
 **Special characters** (outside Latin-1) **must be escaped** using `\uHHHH` format. It is suggested to use an editor which can handle property files, it will do the dirty work. (*Eclipse* can do this for example.)
 
 
 
-### Step 3: Define strings for language chooser
+### Step 3: Translate *About the project* section
+
+The texts of *"About the project"* section are in `src/main/resources/templates/about_{LANG}.html` files.
+
+Create a new file with your language code and insert the translated text.
+
+
+
+### Step 4: Define strings for language chooser
 
 `lang.{LANG}` messages are for the language chooser, these strings appear as **tooltips** when the visitor moves the mouse over the language button.
 
@@ -161,7 +169,7 @@ I think each button must have the same tooltip in every language, I mean `lang.e
 
 
 
-### Step 4: Add language to language chooser
+### Step 5: Add language to language chooser
 
 Language chooser is generated in `header.ftl`, it can be configured easily through `site.languages` application property. You have to **add your language code to the list**, for example: `site.languages: en,hu,pl`.
 

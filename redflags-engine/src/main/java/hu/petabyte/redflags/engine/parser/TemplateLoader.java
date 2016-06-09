@@ -15,14 +15,14 @@
  */
 package hu.petabyte.redflags.engine.parser;
 
+import hu.petabyte.redflags.engine.model.Notice;
+import hu.petabyte.redflags.engine.util.IOUtils;
+import hu.petabyte.redflags.engine.util.MappingUtils;
+
 import java.io.IOException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import hu.petabyte.redflags.engine.model.Notice;
-import hu.petabyte.redflags.engine.util.IOUtils;
-import hu.petabyte.redflags.engine.util.MappingUtils;
 
 /**
  *
@@ -30,7 +30,8 @@ import hu.petabyte.redflags.engine.util.MappingUtils;
  *
  */
 public class TemplateLoader {
-	private static final Logger LOG = LoggerFactory.getLogger(TemplateLoader.class);
+	private static final Logger LOG = LoggerFactory
+			.getLogger(TemplateLoader.class);
 
 	public static String getTemplate(String name) {
 		try {
@@ -48,9 +49,25 @@ public class TemplateLoader {
 	}
 
 	public static String getTemplateFor(Notice notice, String language) {
-		String td = (String) MappingUtils.getDeepPropertyIfExists(notice, "data.documentType.id");
+		String td = (String) MappingUtils.getDeepPropertyIfExists(notice,
+				"data.documentType.id");
+		String di = (String) MappingUtils.getDeepPropertyIfExists(notice,
+				"data.directive");
+		if (null != di) {
+			di = di.replaceAll(".*\\(", "").replaceAll("\\).*", "")
+					.replaceAll("/", "");
+		}
 		if (null != td && td.matches("^TD-.$")) {
-			return getTemplate(td + "-" + language);
+			String name = String.format("%s-%s", td, language);
+			String template = null;
+			if (null != di) {
+				name += "-" + di;
+				template = getTemplate(name);
+			}
+			if (null == template) { // if no DI or no template for DI
+				template = getTemplate(name);
+			}
+			return template;
 		} else {
 			LOG.error("Invalid TD field: {}", td);
 			return null;

@@ -58,7 +58,7 @@ import org.springframework.stereotype.Component;
 public class MySQLExporter extends AbstractExporter {
 
 	private static final Logger LOG = LoggerFactory
-			.getLogger(FlagExporter.class);
+			.getLogger(MySQLExporter.class);
 	private static final String CSV_COLUMN_DELIMITER = "|||||";
 	private static final String CSV_ROW_DELIMITER = "$$$$$";
 
@@ -191,7 +191,7 @@ public class MySQLExporter extends AbstractExporter {
 				exportOrganization(a.getWinnerOrg());
 				exportRelation(//
 						"AWARD-" + a.getId() + "-2-ORG-"
-						+ a.getWinnerOrg().getId(), //
+								+ a.getWinnerOrg().getId(), //
 						"AWARD_TO_ORGANIZATION", "winnerOrg", //
 						a.getId(), a.getWinnerOrg().getId());
 			}
@@ -319,7 +319,7 @@ public class MySQLExporter extends AbstractExporter {
 		for (CPV cpv : data.getOriginalCpvCodes()) {
 			exportRelation(//
 					"DATA-" + data.getId() + "-2-CPV-" + cpv.getId()
-					+ "-originalCpv", //
+							+ "-originalCpv", //
 					"DATA_TO_CPV", "originalCpvCodes", //
 					data.getId(), Integer.toString(cpv.getId()));
 		}
@@ -650,7 +650,7 @@ public class MySQLExporter extends AbstractExporter {
 						+ proc.getQualificationSystemDuration().getId(),
 						"PROCEDURE_TO_DURATION", "qualificationSystemDuration",
 						proc.getId(), proc.getQualificationSystemDuration()
-						.getId());
+								.getId());
 			}
 		}
 

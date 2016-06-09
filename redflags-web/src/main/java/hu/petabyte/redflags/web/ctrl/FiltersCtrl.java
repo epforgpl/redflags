@@ -17,11 +17,9 @@ package hu.petabyte.redflags.web.ctrl;
 
 import hu.petabyte.redflags.web.svc.FiltersSvc;
 
-import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,15 +30,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FiltersCtrl {
 
 	private @Autowired FiltersSvc filters;
-	private @Autowired MessageSource msg;
 
 	@RequestMapping("/filters")
-	public String filters(Map<String, Object> m, Locale loc) {
+	public String filters(Map<String, Object> m) {
 		m.put("filters", filters.getFilters());
-		// m.put("pageTitle",
-		// String.format("<a href='/notices'>%s</a> / %s",
-		// msg.getMessage("notices.title", null, loc),
-		// msg.getMessage("filters.list", null, loc)));
 		m.put("pageTitleLabel", "filters.list");
 		m.put("prevPageTitleLabel", "notices.title");
 		m.put("prevPageUrl", "/notices");
