@@ -15,9 +15,9 @@
  */
 package hu.petabyte.redflags.engine.model.noticeparts;
 
-import java.util.Date;
-
 import hu.petabyte.redflags.engine.model.Duration;
+
+import java.util.Date;
 
 /**
  *
@@ -27,6 +27,7 @@ import hu.petabyte.redflags.engine.model.Duration;
 public class ObjOfTheContract {
 
 	private String additionalInfo;
+	private String awardCriteria;
 	private String contractTitle;
 	private String contractTypeInfo;
 	private Duration duration;
@@ -39,11 +40,17 @@ public class ObjOfTheContract {
 	private int frameworkParticipants;
 	private String gpa;
 	private String id;
+	private long lotEstimatedValue;
+	private String lotEstimatedValueCurr;
 	private String lots;
+	private String lotTitle;
 	private String options;
 	private String pcFaDps;
 	private String placeOfPerformance;
 	private Date plannedStartDate;
+	private String rawEstimatedValue;
+	private String rawLotCpvCodes;
+	private String rawLotEstimatedValue;
 	private String rawPlannedStartDate;
 	private String rawRenewable;
 	private String rawRenewalCount;
@@ -65,6 +72,10 @@ public class ObjOfTheContract {
 
 	public String getAdditionalInfo() {
 		return additionalInfo;
+	}
+
+	public String getAwardCriteria() {
+		return awardCriteria;
 	}
 
 	public String getContractTitle() {
@@ -115,8 +126,20 @@ public class ObjOfTheContract {
 		return id;
 	}
 
+	public long getLotEstimatedValue() {
+		return lotEstimatedValue;
+	}
+
+	public String getLotEstimatedValueCurr() {
+		return lotEstimatedValueCurr;
+	}
+
 	public String getLots() {
 		return lots;
+	}
+
+	public String getLotTitle() {
+		return lotTitle;
 	}
 
 	public String getOptions() {
@@ -133,6 +156,18 @@ public class ObjOfTheContract {
 
 	public Date getPlannedStartDate() {
 		return plannedStartDate;
+	}
+
+	public String getRawEstimatedValue() {
+		return rawEstimatedValue;
+	}
+
+	public String getRawLotCpvCodes() {
+		return rawLotCpvCodes;
+	}
+
+	public String getRawLotEstimatedValue() {
+		return rawLotEstimatedValue;
 	}
 
 	public String getRawPlannedStartDate() {
@@ -195,6 +230,10 @@ public class ObjOfTheContract {
 		this.additionalInfo = additionalInfo;
 	}
 
+	public void setAwardCriteria(String awardCriteria) {
+		this.awardCriteria = awardCriteria;
+	}
+
 	public void setContractTitle(String contractTitle) {
 		this.contractTitle = contractTitle;
 	}
@@ -243,8 +282,20 @@ public class ObjOfTheContract {
 		this.id = id;
 	}
 
+	public void setLotEstimatedValue(long lotEstimatedValue) {
+		this.lotEstimatedValue = lotEstimatedValue;
+	}
+
+	public void setLotEstimatedValueCurr(String lotEstimatedValueCurr) {
+		this.lotEstimatedValueCurr = lotEstimatedValueCurr;
+	}
+
 	public void setLots(String lots) {
 		this.lots = lots;
+	}
+
+	public void setLotTitle(String lotTitle) {
+		this.lotTitle = lotTitle;
 	}
 
 	public void setOptions(String options) {
@@ -261,6 +312,18 @@ public class ObjOfTheContract {
 
 	public void setPlannedStartDate(Date plannedStartDate) {
 		this.plannedStartDate = plannedStartDate;
+	}
+
+	public void setRawEstimatedValue(String rawEstimatedValue) {
+		this.rawEstimatedValue = rawEstimatedValue;
+	}
+
+	public void setRawLotCpvCodes(String rawLotCpvCodes) {
+		this.rawLotCpvCodes = rawLotCpvCodes;
+	}
+
+	public void setRawLotEstimatedValue(String rawLotEstimatedValue) {
+		this.rawLotEstimatedValue = rawLotEstimatedValue;
 	}
 
 	public void setRawPlannedStartDate(String rawPlannedStartDate) {
@@ -321,16 +384,24 @@ public class ObjOfTheContract {
 
 	@Override
 	public String toString() {
-		return "ObjOfTheContract [additionalInfo=" + additionalInfo + ", contractTitle=" + contractTitle
-				+ ", contractTypeInfo=" + contractTypeInfo + ", duration=" + duration + ", estimatedValue="
-				+ estimatedValue + ", estimatedValueCurr=" + estimatedValueCurr + ", financingConditions="
-				+ financingConditions + ", frameworkAgreement=" + frameworkAgreement + ", gpa=" + gpa + ", lots=" + lots
-				+ ", options=" + options + ", pcFaDps=" + pcFaDps + ", placeOfPerformance=" + placeOfPerformance
-				+ ", plannedStartDate=" + plannedStartDate + ", renewable=" + renewable + ", renewalCount="
-				+ renewalCount + ", renewalDuration=" + renewalDuration + ", shortDescription=" + shortDescription
-				+ ", totalFinalValue=" + totalFinalValue + ", totalFinalValueCurr=" + totalFinalValueCurr
-				+ ", totalFinalValueVat=" + totalFinalValueVat + ", totalQuantity=" + totalQuantity + ", variants="
-				+ variants + "]";
+		return "ObjOfTheContract [additionalInfo=" + additionalInfo
+				+ ", contractTitle=" + contractTitle + ", contractTypeInfo="
+				+ contractTypeInfo + ", duration=" + duration
+				+ ", estimatedValue=" + estimatedValue
+				+ ", estimatedValueCurr=" + estimatedValueCurr
+				+ ", financingConditions=" + financingConditions
+				+ ", frameworkAgreement=" + frameworkAgreement + ", gpa=" + gpa
+				+ ", lots=" + lots + ", options=" + options + ", pcFaDps="
+				+ pcFaDps + ", placeOfPerformance=" + placeOfPerformance
+				+ ", plannedStartDate=" + plannedStartDate + ", renewable="
+				+ renewable + ", renewalCount=" + renewalCount
+				+ ", renewalDuration=" + renewalDuration
+				+ ", shortDescription=" + shortDescription
+				+ ", totalFinalValue=" + totalFinalValue
+				+ ", totalFinalValueCurr=" + totalFinalValueCurr
+				+ ", totalFinalValueVat=" + totalFinalValueVat
+				+ ", totalQuantity=" + totalQuantity + ", variants=" + variants
+				+ "]";
 	}
 
 }

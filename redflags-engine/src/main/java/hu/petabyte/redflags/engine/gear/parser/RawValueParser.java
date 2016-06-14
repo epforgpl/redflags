@@ -61,20 +61,32 @@ public class RawValueParser extends AbstractGear {
 		LOG.debug("Parsing language is {}", lang);
 	}
 
-	private void parseAddress(Address address) {
-		String addressTemplate = TemplateLoader.getTemplate("address-"
-				+ lang.toString());
-		if (null != address && null != addressTemplate) {
-			Map<String, String> map = new TemplateParser().parse(
-					address.getRaw(), addressTemplate);
-			MappingUtils.setDeepProperties(address, map);
+	private void parseAddress(Address address, Notice notice) {
+		if (null != address) {
+			String name = "address-" + lang.toString();
+			String addressTemplate = null;
+			String di = (String) MappingUtils.getDeepPropertyIfExists(notice,
+					"data.directive");
+			if (null != di) {
+				di = di.replaceAll(".*\\(", "").replaceAll("\\).*", "")
+						.replaceAll("/", "");
+				addressTemplate = TemplateLoader.getTemplate(name + "-" + di);
+			}
+			if (null == addressTemplate) {
+				addressTemplate = TemplateLoader.getTemplate(name);
+			}
+			if (null != addressTemplate) {
+				Map<String, String> map = new TemplateParser().parse(
+						address.getRaw(), addressTemplate);
+				MappingUtils.setDeepProperties(address, map);
+			}
 		}
 	}
 
-	private void parseAddress(Object root, String property) {
+	private void parseAddress(Object root, String property, Notice notice) {
 		Address address = (Address) MappingUtils.getDeepPropertyIfExists(root,
 				property);
-		parseAddress(address);
+		parseAddress(address, notice);
 	}
 
 	private void parseAwards(Notice notice) {
@@ -93,7 +105,7 @@ public class RawValueParser extends AbstractGear {
 			parseVat(a, "rawTotalEstimatedValueVat", "totalEstimatedValueVat");
 			parseLong(a, "rawTotalFinalValue", "totalFinalValue");
 			parseVat(a, "rawTotalFinalValueVat", "totalFinalValueVat");
-			parseAddress(a, "winnerOrg.address");
+			parseAddress(a, "winnerOrg.address", notice);
 
 			if (null != a.getSubcontracting()) {
 				Matcher m = Pattern.compile("([0-9,.]+) ?%").matcher(
@@ -144,22 +156,23 @@ public class RawValueParser extends AbstractGear {
 	}
 
 	private void parseCompl(Notice notice) {
-		parseAddress(notice, "compl.obtainLodgingOfAppealsInfoFromOrg.address");
-		parseAddress(notice, "compl.respForAppealOrg.address");
+		parseAddress(notice, "compl.obtainLodgingOfAppealsInfoFromOrg.address",
+				notice);
+		parseAddress(notice, "compl.respForAppealOrg.address", notice);
 		parseBoolean(notice, "compl.rawRelToEUProjects",
 				"compl.relToEUProjects");
 	}
 
 	private void parseContr(Notice notice) {
-		parseAddress(notice, "contr.contractingOrg.address");
+		parseAddress(notice, "contr.contractingOrg.address", notice);
 		parseList(notice, "contr.contractingOrg.rawMainActivities",
 				"contr.contractingOrg.mainActivities", "\n");
 		parseBoolean(notice, "contr.rawPurchasingOnBehalfOfOther",
 				"contr.purchasingOnBehalfOfOther");
-		parseAddress(notice, "contr.obtainFurtherInfoFromOrg.address");
-		parseAddress(notice, "contr.obtainSpecsFromOrg.address");
-		parseAddress(notice, "contr.purchasingOnBehalfOfOrg.address");
-		parseAddress(notice, "contr.sendTendersToOrg.address");
+		parseAddress(notice, "contr.obtainFurtherInfoFromOrg.address", notice);
+		parseAddress(notice, "contr.obtainSpecsFromOrg.address", notice);
+		parseAddress(notice, "contr.purchasingOnBehalfOfOrg.address", notice);
+		parseAddress(notice, "contr.sendTendersToOrg.address", notice);
 	}
 
 	private void parseDate(Object root, String fromProperty, String toProperty) {
@@ -170,8 +183,13 @@ public class RawValueParser extends AbstractGear {
 
 	public Date parseDate(String s) {
 		try {
-			SimpleDateFormat df = new SimpleDateFormat("d.M.yyyy");
-			return df.parse(s.trim());
+			SimpleDateFormat df = null;
+			if (s.matches("\\d+\\.\\d+\\.\\d{4}")) {
+				df = new SimpleDateFormat("d.M.yyyy");
+			} else if (s.matches("\\d{2}/\\d{2}/\\d{4}")) {
+				df = new SimpleDateFormat("dd/MM/yyyy");
+			}
+			return null == df ? null : df.parse(s.trim());
 		} catch (Exception ex) {
 			return null;
 		}
@@ -230,7 +248,7 @@ public class RawValueParser extends AbstractGear {
 		return list;
 	}
 
-	private void parseLong(Object root, String fromProperty, String toProperty) {
+	public void parseLong(Object root, String fromProperty, String toProperty) {
 		String f = (String) MappingUtils.getDeepPropertyIfExists(root,
 				fromProperty);
 		MappingUtils.setDeepProperty(root, toProperty, parseLong(f));

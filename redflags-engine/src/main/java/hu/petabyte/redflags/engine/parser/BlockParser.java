@@ -40,9 +40,18 @@ public class BlockParser {
 	 * ted.parser.block.Block, hu.juranyi.zsolt.ted.parser.block.Block)
 	 */
 	public void parse(Block documentBlock, Block templateBlock) {
-		documentBlock.getVariables().putAll(templateParser.parse(documentBlock.getTitle(), templateBlock.getTitle()));
-		documentBlock.getVariables()
-				.putAll(templateParser.parse(documentBlock.getContent(), templateBlock.getContent()));
+		// System.out.println("[TITLE] " + documentBlock.getTitle());
+		// System.out.println("[CONTENT] " + documentBlock.getContent());
+
+		documentBlock.getVariables().putAll(
+				templateParser.parse(documentBlock.getTitle(),
+						templateBlock.getTitle()));
+
+		documentBlock.getVariables().putAll(
+				templateParser.parse(documentBlock.getContent(),
+						templateBlock.getContent()));
+
+		// System.out.println("[VARS]" + documentBlock.getVariables());
 
 		// convert "a0b0c0d" variable names to "a.b.c.d" valid property names
 		MappingUtils.normalizeMapKeys(documentBlock.getVariables());

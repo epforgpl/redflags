@@ -15,13 +15,13 @@
  */
 package hu.petabyte.redflags.engine.parser;
 
+import hu.petabyte.redflags.engine.util.StrUtils;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import hu.petabyte.redflags.engine.util.StrUtils;
 
 /**
  *
@@ -64,7 +64,10 @@ public class TemplateParser {
 	}
 
 	protected boolean match(int ii, int tt) {
-		return ii < inp.length && tt < tpl.length && StrUtils.matchesCaseInsensitive(inp[ii], stripPrefix(tpl[tt]));
+		return ii < inp.length
+				&& tt < tpl.length
+				&& StrUtils.matchesCaseInsensitive(inp[ii],
+						stripPrefix(tpl[tt]));
 	}
 
 	protected boolean optional(String templateLine) {
@@ -113,7 +116,8 @@ public class TemplateParser {
 	}
 
 	protected void parseVars() {
-		Set<String> groupNames = StrUtils.getNamedGroupCandidates(stripPrefix(tpl[t]));
+		Set<String> groupNames = StrUtils
+				.getNamedGroupCandidates(stripPrefix(tpl[t]));
 		String p = StrUtils.makeHunCharsCaseInsensitive(stripPrefix(tpl[t]));
 		Pattern pattern = Pattern.compile(p, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(inp[i]);
@@ -133,7 +137,8 @@ public class TemplateParser {
 	}
 
 	protected String stripPrefix(String templateLine) {
-		return optional(templateLine) ? templateLine.substring(OPT_PREFIX.length()) : templateLine;
+		return optional(templateLine) ? templateLine.substring(OPT_PREFIX
+				.length()) : templateLine;
 	}
 
 }

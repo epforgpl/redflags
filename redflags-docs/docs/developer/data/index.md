@@ -78,7 +78,7 @@ Other classes in `model` package are representing **data types**:
 
 
 
-## Database schema (TODO)
+## Database schema
 
 
 

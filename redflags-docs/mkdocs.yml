@@ -42,4 +42,5 @@ pages:
     - Webapp basics:                 developer/webapp/basic.md
     - ControllerAdvice beans:        developer/webapp/controller-advices.md
     - Controllers:                   developer/webapp/controllers.md
+    - Views:                         developer/webapp/views.md
   - Cookbook for extending:          developer/cookbook.md

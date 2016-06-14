@@ -466,7 +466,7 @@ public class MySQLExporter extends AbstractExporter {
 			csv.writeCell(obj.getPcFaDps());
 			csv.writeCell(obj.getPlaceOfPerformance());
 			csv.writeCell(obj.getPlannedStartDate());
-			csv.writeCell(""); // TODO RawEstimatedValue remove from table
+			csv.writeCell(obj.getRawEstimatedValue());
 			csv.writeCell(obj.getRawPlannedStartDate());
 			csv.writeCell(obj.getRawRenewable());
 			csv.writeCell(obj.getRawRenewalCount());
@@ -483,6 +483,13 @@ public class MySQLExporter extends AbstractExporter {
 			csv.writeCell(notice.getId().toString());
 			csv.writeCell(rev);
 			csv.writeCell(obj.getFrameworkParticipants());
+			// 2014/24/EU:
+			csv.writeCell(obj.getLotTitle());
+			csv.writeCell(obj.getRawLotCpvCodes());
+			csv.writeCell(obj.getAwardCriteria());
+			csv.writeCell(obj.getRawLotEstimatedValue());
+			csv.writeCell(obj.getLotEstimatedValue());
+			csv.writeCell(obj.getLotEstimatedValueCurr());
 			csv.endLine();
 
 			if (null != obj.getDuration()) {
@@ -630,6 +637,9 @@ public class MySQLExporter extends AbstractExporter {
 			csv.writeCell(proc.getTenderLanguage());
 			csv.writeCell(rev);
 			csv.writeCell(notice.getId().toString());
+			// 2014/24/EU
+			csv.writeCell(proc.getFaDps());
+			csv.writeCell(proc.getGpa());
 			csv.endLine();
 
 			if (null != proc.getMinMaintainDuration()) {

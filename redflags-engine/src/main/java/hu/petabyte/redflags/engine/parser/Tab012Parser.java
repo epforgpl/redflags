@@ -54,12 +54,23 @@ public class Tab012Parser {
 		this.languageSpecificConfig = config.getLangspec().get(lang);
 	}
 
-	protected void debugPrintBlockTitles(List<Block> documentBlocks) {
+	protected void debugPrintBlocks(List<Block> documentBlocks) {
 		System.out.println("---DEBUG");
 		for (Block b : documentBlocks) {
-			System.out.println(b.getTitle());
+			System.out.println("[TITLE] " + b.getTitle());
+			if (null != b.getContent()) {
+				System.out.println("[CONTENT]\n" + b.getContent().trim()
+						+ "\n[/CONTENT]");
+			}
+			System.out.println("[VARS] " + b.getVariables());
 			for (Block bb : b.getChildren()) {
-				System.out.println("  " + bb.getTitle());
+				System.out.println("\t[TITLE] " + bb.getTitle());
+				if (null != bb.getContent()) {
+					System.out.println("\t[CONTENT]\n"
+							+ bb.getContent().trim().replaceAll("^", "\t")
+							+ "\n\t[/CONTENT]");
+				}
+				System.out.println("\t[VARS] " + bb.getVariables());
 			}
 		}
 		System.out.println("---/DEBUG");
@@ -135,8 +146,13 @@ public class Tab012Parser {
 				"##V\\.1\\.?\\).*", "TD-7");
 		resolveRepeatingSubBlockSeqs(documentBlocks,
 				"#II\\.?[AB]?\\.? szakasz.*", "##II\\.1\\.?\\).*", "TD-0");
+		resolveRepeatingSubBlockSeqs(documentBlocks, "#II\\. szakasz: Tárgy",
+				"##II\\.2\\) Meghatározás", "TD-3");
 
 		documentParser.parse(documentBlocks, templateBlocks);
+
+		// debugPrintBlocks(documentBlocks); // XXX DEBUG
+
 		mapBlocks(notice, documentBlocks);
 	}
 

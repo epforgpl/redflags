@@ -15,14 +15,14 @@
  */
 package hu.petabyte.redflags.engine.parser;
 
-import java.util.List;
-
 import hu.petabyte.redflags.engine.util.StrUtils;
 
+import java.util.List;
+
 /**
- * 
+ *
  * @author Zsolt Jurányi
- * 
+ *
  */
 public class DocumentParser {
 

@@ -206,7 +206,7 @@ Model:
 		<#assign i = 0 />
 		<#list objs as o>
 			<@accordion_panel id="obj-${o.id}" headingLabel="notice.objOfTheContract" open=false headingSuffix="(${i+1}/${objs?size})">
-				<@details map=o fields=['contractTitle', 'shortDescription', 'placeOfPerformance', 'totalQuantity', 'frameworkAgreement'] labelPrefix="notice.obj" />
+				<@details map=o fields=['contractTitle', 'shortDescription', 'lotTitle', 'placeOfPerformance', 'totalQuantity', 'frameworkAgreement', 'awardCriteria'] labelPrefix="notice.obj" />
 				
 				<#if o.estimatedValue?? && o.estimatedValueCurr?? && o.estimatedValue &gt; 0 >
 					<div class="row details-row">
@@ -215,6 +215,17 @@ Model:
 						</div>
 						<div class="col-md-9">
 							${o.estimatedValue} ${o.estimatedValueCurr}				
+						</div>
+					</div>
+				</#if>
+				
+				<#if o.lotEstimatedValue?? && o.lotEstimatedValueCurr?? && o.lotEstimatedValue &gt; 0 >
+					<div class="row details-row">
+						<div class="col-md-3">
+							<strong><@label "notice.obj.lotEstimatedValue" /></strong>
+						</div>
+						<div class="col-md-9">
+							${o.lotEstimatedValue} ${o.lotEstimatedValueCurr}				
 						</div>
 					</div>
 				</#if>

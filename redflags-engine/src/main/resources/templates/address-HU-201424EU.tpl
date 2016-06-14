@@ -1,0 +1,7 @@
+(?<street>.*\d.*)
+(?<city>.*)
+(?<zip>\d{4})
+(?<country>.*)
+???#Kapcsolattartási pont\(ok\): (?<contactPoint>.*)
+???#(Címzett|Figyelmébe|Kapcsolattartó személy): (?<contactPerson>.*)
+(Tel(efon:|\.) (?<phone>.*)|E-mail:? (?<email>.*)|Internet(cím)?:? (?<url>.*)|Fax:? (?<fax>.*))

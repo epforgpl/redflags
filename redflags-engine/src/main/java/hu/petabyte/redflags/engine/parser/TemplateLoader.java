@@ -61,8 +61,7 @@ public class TemplateLoader {
 			String name = String.format("%s-%s", td, language);
 			String template = null;
 			if (null != di) {
-				name += "-" + di;
-				template = getTemplate(name);
+				template = getTemplate(name + "-" + di);
 			}
 			if (null == template) { // if no DI or no template for DI
 				template = getTemplate(name);

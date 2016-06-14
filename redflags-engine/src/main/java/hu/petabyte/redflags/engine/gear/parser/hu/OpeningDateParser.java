@@ -47,12 +47,16 @@ public class OpeningDateParser extends AbstractGear {
 		if (null != notice.getProc()) {
 			String s = notice.getProc().getOpeningConditions();
 			if (null != s) {
-				Pattern p = Pattern
-						.compile("(?<d>\\d{1,2}\\.\\d{1,2}\\.\\d{4})");
-				Matcher m = p.matcher(s);
+				Matcher m = Pattern.compile(
+						"(?<d>\\d{1,2}\\.\\d{1,2}\\.\\d{4})").matcher(s);
 				if (m.find()) {
 					notice.getProc()
 							.setOpeningDate(rvp.parseDate(m.group("d")));
+				}
+				m = Pattern.compile("(?<d>\\d{2}/\\d{2}/\\d{4})").matcher(s);
+				if (m.find()) {
+					notice.getProc()
+					.setOpeningDate(rvp.parseDate(m.group("d")));
 				}
 			}
 			if (null == notice.getProc().getOpeningDate()) {

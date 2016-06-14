@@ -15,11 +15,11 @@
  */
 package hu.petabyte.redflags.engine.parser;
 
+import hu.petabyte.redflags.engine.util.StrUtils;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import hu.petabyte.redflags.engine.util.StrUtils;
 
 /**
  *
@@ -28,7 +28,8 @@ import hu.petabyte.redflags.engine.util.StrUtils;
  */
 public class DocumentNormalizer {
 
-	protected static void buildTitle(Element element, String selector, String linePrefix, StringBuilder builder) {
+	protected static void buildTitle(Element element, String selector,
+			String linePrefix, StringBuilder builder) {
 		for (Element titleElement : element.select(selector)) {
 			builder.append(linePrefix);
 			builder.append(titleElement.text());
@@ -59,7 +60,8 @@ public class DocumentNormalizer {
 				sb.append("\n");
 				mlioccur.select("> span.nomark").remove();
 				mlioccur.select("> span.timark").remove();
-				sb.append(StrUtils.cleanHtmlCode(mlioccur.html()).replaceAll("#+", "××").trim());
+				sb.append(StrUtils.cleanHtmlCode(mlioccur.html())
+						.replaceAll("#+", "××").trim());
 				// replace is needed because there are '#' in the text
 				// and they confuse the Splitter (I don't know why...)
 				sb.append("\n");

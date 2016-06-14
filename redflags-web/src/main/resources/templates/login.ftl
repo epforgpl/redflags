@@ -14,7 +14,9 @@
    limitations under the License.
  -->
  
-<#assign needReCaptcha></#assign>
+<#if printCaptcha>
+	<#assign needReCaptcha></#assign>
+</#if>
 <#include "/includes/header.ftl">
 <#assign mode>${mode!"login"}</#assign>
 
@@ -194,12 +196,14 @@
 	<div class="col-md-6 col-md-offset-3">
 	</div>
 </div>
-<script type="text/javascript">
-    var CaptchaCallback = function(){
-    	var sk = '6LdI6wYTAAAAAOX4tE-4x2R50o0DTpaQt17JcEcB';
-    	grecaptcha.render('loginCaptcha', {'sitekey' : sk});
-        grecaptcha.render('forgotCaptcha', {'sitekey' : sk});
-        grecaptcha.render('registerCaptcha', {'sitekey' : sk});
-    };
-</script>
+<#if printCaptcha>
+	<script type="text/javascript">
+	    var CaptchaCallback = function(){
+	    	var sk = '6LdI6wYTAAAAAOX4tE-4x2R50o0DTpaQt17JcEcB';
+	    	grecaptcha.render('loginCaptcha', {'sitekey' : sk});
+	        grecaptcha.render('forgotCaptcha', {'sitekey' : sk});
+	        grecaptcha.render('registerCaptcha', {'sitekey' : sk});
+	    };
+	</script>
+</#if>
 <#include "/includes/footer.ftl">

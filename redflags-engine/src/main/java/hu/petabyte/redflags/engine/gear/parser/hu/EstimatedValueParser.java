@@ -38,14 +38,74 @@ import org.springframework.stereotype.Component;
 @Component
 public class EstimatedValueParser extends AbstractGear {
 
-	private static final Logger LOG = LoggerFactory
-			.getLogger(EstimatedValueParser.class);
 	protected static final Pattern ESTIM_VAL_PATTERN = Pattern
 			.compile("^((Becsült( nettó)? érték( áfa nélkül)?|Áfa nélkül):?( nettó)?|.*?becsült.*? (összérték|nettó).*?) (?<v>[0-9 ,]+ )(?<c>[A-Z]{2,})[^\\/]*$|^(?<min>[0-9 ,]+ )és (?<max>[0-9 ,]+ )között (?<c2>[A-Z]+)$");
 	protected static final Pattern EXCL_PATTERN = Pattern
 			.compile("beruházás|építés|kivitelezés|projekt|tartalékkeretet tartalmaz|tartalék(kal|kerettel) együtt|[Ee]lszámolható|tartalékkeret|támogatott feladat|szolgáltatás|rekonstrukció|feladat|eszköz");
+	private static final Logger LOG = LoggerFactory
+			.getLogger(EstimatedValueParser.class);
 
 	private @Autowired RawValueParser rvp;
+
+	/**
+	 * Experimental feature. It made a lot of wrong decisions and results.
+	 *
+	 * @param notice
+	 */
+	@Deprecated
+	private void fixFromTotalQ(Notice notice) {
+		for (ObjOfTheContract obj : notice.getObjs()) {
+
+			if (notice.getObjs().get(0).getEstimatedValueMin() < notice
+					.getObjs().get(0).getEstimatedValue()) {
+				LOG.trace(
+						"Estimated value fix skipped, we found minimum earlier: {}",
+						notice.getObjs().get(0).getEstimatedValueMin());
+				return;
+			}
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(obj.getTotalQuantity());
+
+			List<Long> evs = new ArrayList<Long>();
+
+			for (String line : sb.toString().split("\n")) {
+				if (EXCL_PATTERN.matcher(line).find()) {
+					continue;
+				}
+				Matcher m = ESTIM_VAL_PATTERN.matcher(line);
+				while (m.find()) {
+					String v = m.group("v");
+					String c = m.group("c");
+					String min = m.group("min");
+					String max = m.group("max");
+					String c2 = m.group("c2");
+					LOG.trace("Fixer method found: " + v + "," + c + "," + min
+							+ "," + max + "," + c2);
+					evs.add(rvp.parseLong(null == max ? v : max));
+				}
+			}
+
+			long sum = 0;
+			long last = 0;
+			for (Long ev : evs) {
+				sum += ev;
+				last = ev;
+			}
+			if (0 < sum) {
+				if (2 < evs.size() && sum / 2 == last) {
+					// if SUM(a[1..N-1]) == a[N]
+					obj.setEstimatedValue(last);
+					LOG.trace("Notice {}, estimated value fixed: last = {}",
+							notice.getId().toString(), last);
+				} else if (1 < evs.size()) {
+					obj.setEstimatedValue(sum);
+					LOG.trace("Notice {}, estimated value fixed: sum = {}",
+							notice.getId().toString(), sum);
+				}
+			}
+		}
+	}
 
 	public RawValueParser getRvp() {
 		return rvp;
@@ -123,8 +183,24 @@ public class EstimatedValueParser extends AbstractGear {
 		}
 	}
 
+	private void parseFromObjIn201424EU(Notice notice) {
+		for (ObjOfTheContract o : notice.getObjs()) {
+			if (0 == o.getEstimatedValue()) { // parseAwards can calculate it
+				rvp.parseLong(o, "rawEstimatedValue", "estimatedValue");
+			}
+			rvp.parseLong(o, "rawLotEstimatedValue", "lotEstimatedValue");
+		}
+		// TODO sum lot values?
+	}
+
 	@Override
 	protected Notice processImpl(Notice notice) throws Exception {
+		String di = notice.getData().getDirective();
+		if (null != di && di.matches(".*2014/24/EU.*")) {
+			parseFromObjIn201424EU(notice);
+			return notice;
+		}
+
 		boolean foundInLots = parseFromLots(notice);
 		if (!foundInLots) {
 			parseFromObj(notice);
@@ -136,66 +212,6 @@ public class EstimatedValueParser extends AbstractGear {
 			fixFromTotalQ(notice); // experimental
 		}
 		return notice;
-	}
-
-	/**
-	 * Experimental feature. It made a lot of wrong decisions and results.
-	 *
-	 * @param notice
-	 */
-	@Deprecated
-	private void fixFromTotalQ(Notice notice) {
-		for (ObjOfTheContract obj : notice.getObjs()) {
-
-			if (notice.getObjs().get(0).getEstimatedValueMin() < notice
-					.getObjs().get(0).getEstimatedValue()) {
-				LOG.trace(
-						"Estimated value fix skipped, we found minimum earlier: {}",
-						notice.getObjs().get(0).getEstimatedValueMin());
-				return;
-			}
-
-			StringBuilder sb = new StringBuilder();
-			sb.append(obj.getTotalQuantity());
-
-			List<Long> evs = new ArrayList<Long>();
-
-			for (String line : sb.toString().split("\n")) {
-				if (EXCL_PATTERN.matcher(line).find()) {
-					continue;
-				}
-				Matcher m = ESTIM_VAL_PATTERN.matcher(line);
-				while (m.find()) {
-					String v = m.group("v");
-					String c = m.group("c");
-					String min = m.group("min");
-					String max = m.group("max");
-					String c2 = m.group("c2");
-					LOG.trace("Fixer method found: " + v + "," + c + "," + min
-							+ "," + max + "," + c2);
-					evs.add(rvp.parseLong(null == max ? v : max));
-				}
-			}
-
-			long sum = 0;
-			long last = 0;
-			for (Long ev : evs) {
-				sum += ev;
-				last = ev;
-			}
-			if (0 < sum) {
-				if (2 < evs.size() && sum / 2 == last) {
-					// if SUM(a[1..N-1]) == a[N]
-					obj.setEstimatedValue(last);
-					LOG.trace("Notice {}, estimated value fixed: last = {}",
-							notice.getId().toString(), last);
-				} else if (1 < evs.size()) {
-					obj.setEstimatedValue(sum);
-					LOG.trace("Notice {}, estimated value fixed: sum = {}",
-							notice.getId().toString(), sum);
-				}
-			}
-		}
 	}
 
 	public void setRvp(RawValueParser rvp) {

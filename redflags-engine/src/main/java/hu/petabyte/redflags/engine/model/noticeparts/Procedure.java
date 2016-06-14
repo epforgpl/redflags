@@ -15,9 +15,9 @@
  */
 package hu.petabyte.redflags.engine.model.noticeparts;
 
-import java.util.Date;
-
 import hu.petabyte.redflags.engine.model.Duration;
+
+import java.util.Date;
 
 /**
  *
@@ -35,7 +35,9 @@ public class Procedure {
 	private double awardCriteriaWeightSum;
 	private int countOfInvitedOperators;
 	private String electronicAuction;
+	private String faDps;
 	private String fileRefNumber;
+	private String gpa;
 	private String id;
 	private Date interestDeadline;
 	private Date invitationsDispatchDate;
@@ -86,8 +88,16 @@ public class Procedure {
 		return electronicAuction;
 	}
 
+	public String getFaDps() {
+		return faDps;
+	}
+
 	public String getFileRefNumber() {
 		return fileRefNumber;
+	}
+
+	public String getGpa() {
+		return gpa;
 	}
 
 	public String getId() {
@@ -174,7 +184,8 @@ public class Procedure {
 		this.awardCriteriaCondCount = awardCriteriaCondCount;
 	}
 
-	public void setAwardCriteriaPaymentDeadline(boolean awardCriteriaPaymentDeadline) {
+	public void setAwardCriteriaPaymentDeadline(
+			boolean awardCriteriaPaymentDeadline) {
 		this.awardCriteriaPaymentDeadline = awardCriteriaPaymentDeadline;
 	}
 
@@ -202,8 +213,16 @@ public class Procedure {
 		this.electronicAuction = electronicAuction;
 	}
 
+	public void setFaDps(String faDps) {
+		this.faDps = faDps;
+	}
+
 	public void setFileRefNumber(String fileRefNumber) {
 		this.fileRefNumber = fileRefNumber;
+	}
+
+	public void setGpa(String gpa) {
+		this.gpa = gpa;
 	}
 
 	public void setId(String id) {
@@ -246,7 +265,8 @@ public class Procedure {
 		this.procedureTypeInfo = procedureTypeInfo;
 	}
 
-	public void setQualificationSystemDuration(Duration qualificationSystemDuration) {
+	public void setQualificationSystemDuration(
+			Duration qualificationSystemDuration) {
 		this.qualificationSystemDuration = qualificationSystemDuration;
 	}
 

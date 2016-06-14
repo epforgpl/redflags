@@ -129,6 +129,38 @@ If you write your own parsers you probably won't need these gears:
 
 
 
+### Step 3: Add custom notice iterator
+
+The *Red Flags* engine was designed to work with *TED*. When you are developing an importer which does not rely on *TED* and its notice identifiers, you need to add your own *Scope* implementation and wire it into *ScopeProvider*
+
+#### Step 3.1
+
+Define your *Scope* this way:
+
+{!docs/incl/scope.md!}
+
+#### Step 3.2:
+
+Edit `ScopeProvider.java` and its `scope` method by adding new lines before the last one:
+
+```java
+public AbstractScope scope(String scopeStr) {
+
+  // ... existing scopes
+
+  // CUSTOM SCOPE: "custom pattern"
+  if (scopeStr.matches("regular expression which identifies your pattern")) { // e.g. "pl:\d+-\d+"
+    // return new instance of MyScope with appropriate arguments
+  }
+
+  throw new IllegalArgumentException("Invalid scope format: " + scopeStr);
+}
+```
+
+This is a quick and dirty way to add your scope, it may change to a sophisticated solution in the future.
+
+
+
 ## Adding a new language to the webapp
 
 

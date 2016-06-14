@@ -23,7 +23,7 @@ Handles requests of filter edit pages.
 URL                   | Description
 ----------------------|------------
 `/filter/delete/{id}` | Initiates the deletion of the specified filter then redirects to `/filters`
-`GET /filter/{id}`    | Displays the edit page of a filter
+`GET /filter/{id}`    | Displays the edit page of a filter (view: [filter](/developer/webapp/views/#filter))
 `POST /filter/{id}`   | Initiates modification of the specified filter then redirects to `/filters`
 
 
@@ -44,7 +44,7 @@ Displays the saved filters list.
 
 URL        | Description
 -----------|------------
-`/filters` | Displays the saved filters list page
+`/filters` | Displays the saved filters list page (view: [filters](/developer/webapp/views/#filters))
 
 
 
@@ -54,7 +54,7 @@ Serves the front page and related stuff.
 
 URL           | Description
 --------------|------------
-`/`           | Displays the front page
+`/`           | Displays the front page (view: [index](/developer/webapp/views/#index))
 `/*`          | Redirects every non-mapped URLs to `/`
 `/robots.txt` | Serves `robots.txt`
 `/version`    | Displays version information
@@ -69,7 +69,7 @@ URL            | Description
 ---------------|------------
 `/notice`      | Redirects to `/notices`
 `/notice/`     | Redirects to `/notices`
-`/notice/{id}` | Displays notice page for the given notice ID
+`/notice/{id}` | Displays notice page for the given notice ID (view: [notice](/developer/webapp/views/#notice))
 
 
 
@@ -84,7 +84,7 @@ URL                               | Description
 `/notices/{count}`                | Redirects to `/notices/{count}/1/by-date`
 `/notices/{count}/`               | Redirects to `/notices/{count}/1/by-date`
 `/notices/{count}/{page}`         | Redirects to `/notices/{count}/{page}/by-date`
-`/notices/{count}/{page}/{order}` | Validates parameters, gathers filtered data, builds model and displays list page
+`/notices/{count}/{page}/{order}` | Validates parameters, gathers filtered data, builds model and displays list page (view: [notices](/developer/webapp/views/#notices))
 
 
 
@@ -96,7 +96,7 @@ URL                  | Description
 ---------------------|------------
 `/organization`      | Redirects to `/organizations`
 `/organization/`     | Redirects to `/organizations`
-`/organization/{id}` | Displays organization page for the given organization ID
+`/organization/{id}` | Displays organization page for the given organization ID (view: [organization](/developer/webapp/views/#organization))
 
 
 
@@ -110,7 +110,7 @@ URL                             | Description
 `/organizations/`               | Redirects to `/organizations/10/1`
 `/organizations/{count}`        | Redirects to `/organizations/{count}/1`
 `/organizations/{count}/`       | Redirects to `/organizations/{count}/1`
-`/organizations/{count}/{page}` | Validates parameters, gathers filtered data, builds model and displays list page
+`/organizations/{count}/{page}` | Validates parameters, gathers filtered data, builds model and displays list page (view: [organizations](/developer/webapp/views/#organizations))
 
 
 
@@ -120,11 +120,11 @@ Handles requests related to user accounts.
 
 URL                                 | Description
 ------------------------------------|------------
-`/activate/{id}/{token}`            | Initiates user account activation then displays login page
-`GET /change-password/{id}/{token}` | Displays password changer page
-`POST /change-password`             | Saves new password then displays login page
-`GET /forgot`                       | Displays forgotten password page
-`POST /forgot`                      | Initiates password change then displays forgotten password page
-`/login`                            | Displays login page
-`GET /register`                     | Displays registration page
-`POST /register`                    | Initiates registration then displays registration
+`/activate/{id}/{token}`            | Initiates user account activation then displays login page (view: [login](/developer/webapp/views/#login))
+`GET /change-password/{id}/{token}` | Displays password changer page (view: [change-password](/developer/webapp/views/#change-password))
+`POST /change-password`             | Saves new password then displays login page (view: [login](/developer/webapp/views/#login))
+`GET /forgot`                       | Displays forgotten password page (view: [login](/developer/webapp/views/#login))
+`POST /forgot`                      | Initiates password change then displays forgotten password page (view: [login](/developer/webapp/views/#login))
+`/login`                            | Displays login page (view: [login](/developer/webapp/views/#login))
+`GET /register`                     | Displays registration page (view: [login](/developer/webapp/views/#login))
+`POST /register`                    | Initiates registration then displays registration (view: [login](/developer/webapp/views/#login))

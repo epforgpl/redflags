@@ -35,7 +35,7 @@ public class SiteAdvice {
 	@Value("${site.message:}")
 	private String message;
 
-	@ModelAttribute("message")
+	@ModelAttribute("siteMessage")
 	public String getMessage() {
 		return message;
 	}
