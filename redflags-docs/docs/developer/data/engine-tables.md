@@ -292,11 +292,22 @@ Field                   | Type            | Description
 `totalQuantity`         | `longtext`      |
 `variants`              | `longtext`      |
 
+To be able to map documents using *2014/24/EU* directive, we introduced the following new fields:
+
+Field                   | Type            | Description
+------------------------|-----------------|------------
+`lotTitle`              | `longtext`      |
+`rawLotCpvCodes`        | `longtext`      |
+`awardCriteria`         | `longtext`      |
+`rawLotEstimatedValue`  | `varchar(200)`  |
+`lotEstimatedValue`     | `decimal(22,0)` |
+`lotEstimatedValueCurr` | `varchar(200)`  |
+
 Durations are stored in `te_duration` with IDs:
 
-* `obj.getId() + "-CONTRACT-DUR"
-* `obj.getId() + "-FRAMEW-DUR"
-* `obj.getId() + "-RENEWAL-DUR"
+* `obj.getId() + "-CONTRACT-DUR"`
+* `obj.getId() + "-FRAMEW-DUR"`
+* `obj.getId() + "-RENEWAL-DUR"`
 
 The relations in `te_relationdescriptor` look like this:
 
@@ -347,6 +358,13 @@ Field                        | Type            | Description
 `renewalInfo`                | `longtext`      |
 `rev`                        | `decimal(22,0)` |
 `tenderLanguage`             | `varchar(200)`  |
+
+To be able to map documents using *2014/24/EU* directive, we introduced the following new fields:
+
+Field                        | Type            | Description
+-----------------------------|-----------------|------------
+`faDps`                      | `longtext`      |
+`gpa`                        | `longtext`      |
 
 Durations are stored in `te_duration` with IDs:
 

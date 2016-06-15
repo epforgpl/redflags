@@ -4,6 +4,9 @@
 
 I think it's the best to start from `Notice`, so it's at the beginning of the list, then the rest is ordered by classname.
 
+**Remark:** chapter numbers may not be applicable for documents using *Public procurement (2014/24/EU)* directive.
+
+
 
 ## Notice.java
 
@@ -289,6 +292,17 @@ Field                   | Type       | Description
 `totalQuantity`         | `String`   | *II.2.1) Total quantity or scope*
 `variants`              | `String`   | *II.1.9) Information about variants*
 
+To be able to map documents using *2014/24/EU* directive, we introduced the following new fields:
+
+Field                   | Type       | Description
+------------------------|------------|------------
+`awardCriteria`         | `String`   | *II.2.5) Award criteria*
+`lotEstimatedValue`     | `long`     | Estimated value of lot given in *II.2.6) Estimated value*
+`lotEstimatedValueCurr` | `String`   | Currency of lot estimated value given in *II.2.6) Estimated value*
+`lotTitle`              | `String`   | *II.2.1) Title*
+`rawLotCpvCodes`        | `String`   | *II.2.2) Additional CPV code(s)*
+`rawLotEstimatedValue`  | `String`   | Estimated value of lot given in *II.2.6) Estimated value*
+
 
 
 ## Organization.java
@@ -336,6 +350,13 @@ Field                          | Type       | Description
 `reductionOfOperators`         | `String`   | *IV.1.3) Reduction of the number of operators during the negotiation or dialogue*
 `renewalInfo`                  | `String`   | *IV.2.3) Information about renewals* (Qualification system with call for competition)
 `tenderLanguage`               | `String`   | *IV.3.4 / IV.3.5 / IV.3.6) Language(s) in which tenders or requests to participate may be drawn up*
+
+To be able to map documents using *2014/24/EU* directive, we introduced the following new fields:
+
+Field                          | Type       | Description
+-------------------------------|------------|------------
+`faDps`                        | `String`   | *IV.1.3) Information about a framework agreement or a dynamic purchasing system*
+`gpa`                          | `String`   | *IV.1.8) Information about the Government Procurement Agreement (GPA)*
 
 
 

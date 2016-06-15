@@ -48,129 +48,6 @@ CREATE TABLE `persistent_logins` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `rfwl_barplot`
---
-
-DROP TABLE IF EXISTS `rfwl_barplot`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rfwl_barplot` (
-  `y` int(4) DEFAULT NULL,
-  `c` varchar(200) DEFAULT NULL,
-  `v` decimal(65,4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `rfwl_cpvs`
---
-
-DROP TABLE IF EXISTS `rfwl_cpvs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rfwl_cpvs` (
-  `noticeId` varchar(200) DEFAULT NULL,
-  `cpvs` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `rfwl_notices`
---
-
-DROP TABLE IF EXISTS `rfwl_notices`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rfwl_notices` (
-  `id` varchar(200) NOT NULL,
-  `documentFamilyId` varchar(200) DEFAULT NULL,
-  `url` varchar(200) DEFAULT NULL,
-  `date` datetime DEFAULT NULL,
-  `typeId` varchar(200) DEFAULT NULL,
-  `type` varchar(200) DEFAULT NULL,
-  `contractingOrgId` varchar(200) DEFAULT NULL,
-  `contractingOrgName` longtext,
-  `title` text,
-  `estimated` decimal(44,0) DEFAULT NULL,
-  `estimatedCurr` text,
-  `total` decimal(44,0) DEFAULT NULL,
-  `totalCurr` text,
-  `flagCount` bigint(21) DEFAULT '0',
-  KEY `flagCount` (`flagCount`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `rfwl_organizations`
---
-
-DROP TABLE IF EXISTS `rfwl_organizations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rfwl_organizations` (
-  `id` varchar(200) NOT NULL,
-  `name` longtext,
-  `type` varchar(200) DEFAULT NULL,
-  `calls` bigint(21) DEFAULT '0',
-  `wins` bigint(21) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `rfwl_userfilters`
---
-
-DROP TABLE IF EXISTS `rfwl_userfilters`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rfwl_userfilters` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `filter` varchar(255) NOT NULL,
-  `last_sent_number` int(11) DEFAULT NULL,
-  `last_sent_year` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `subscribe` bit(1) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `rfwl_users`
---
-
-DROP TABLE IF EXISTS `rfwl_users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rfwl_users` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `active` bit(1) DEFAULT NULL,
-  `crypted_password` varchar(255) NOT NULL,
-  `email_address` varchar(255) NOT NULL,
-  `lang` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `registered_at` datetime DEFAULT NULL,
-  `remember_token` varchar(255) DEFAULT NULL,
-  `remember_token_expires_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `rfwl_winners`
---
-
-DROP TABLE IF EXISTS `rfwl_winners`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `rfwl_winners` (
-  `noticeId` text,
-  `winnerOrgId` varchar(200) DEFAULT NULL,
-  `winnerOrgName` longtext
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `te_address`
 --
 
@@ -475,6 +352,12 @@ CREATE TABLE `te_objofthecontract` (
   `noticeId` varchar(200) DEFAULT NULL,
   `rev` decimal(22,0) DEFAULT NULL,
   `frameworkParticipants` decimal(22,0) DEFAULT NULL,
+  `lotTitle` longtext,
+  `rawLotCpvCodes` longtext,
+  `awardCriteria` longtext,
+  `rawLotEstimatedValue` varchar(200) DEFAULT NULL,
+  `lotEstimatedValue` decimal(22,0) DEFAULT NULL,
+  `lotEstimatedValueCurr` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -525,6 +408,8 @@ CREATE TABLE `te_procedure` (
   `tenderLanguage` varchar(200) DEFAULT NULL,
   `rev` decimal(22,0) DEFAULT NULL,
   `noticeId` varchar(200) DEFAULT NULL,
+  `faDps` longtext,
+  `gpa` longtext,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -556,4 +441,4 @@ CREATE TABLE `te_relationdescriptor` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-14 11:59:33
+-- Dump completed on 2016-06-15  9:45:01
