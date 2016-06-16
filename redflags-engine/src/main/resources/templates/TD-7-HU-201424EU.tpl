@@ -61,9 +61,11 @@
 ##IV\.2\.9\) Információ előzetes tájékoztató formájában közzétett eljárást megindító felhívás lezárásáról
 
 #V\. szakasz: Az eljárás eredménye
-Rész száma: (?<rawLotNumber>\d+).*
-Elnevezés:
-(?<lotTitle>.*)
+
+???#A szerződés száma: (?<rawNumber>\d+).*
+(?<rawHeader>.*)
+##V\.1\) Befejezetlen eljárással kapcsolatos információ
+(?<nonAward>.*)
 ##V\.2\) Az eljárás eredménye
 ##V\.2\.1\) A szerződés megkötésének dátuma:
 (?<rawDecisionDate>.*)

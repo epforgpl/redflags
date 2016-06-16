@@ -80,6 +80,14 @@ Field                       | Type           | Description
 `totalFinalValueVat`        | `double`       | VAT information of total final value given in *V.4) Information on value of contract*.
 `winnerOrg`                 | `Organization` | *V.3) Name and address of economic operator in favour of whom the contract award decision has been taken*
 
+To be able to map documents using *2014/24/EU* directive, we introduced the following new fields:
+
+Field                   | Type       | Description
+------------------------|------------|------------
+`awarded`               | `boolean`  | *A contract/lot is awarded: yes/no*, given in the header of *Section V* (default value is `true`)
+`nonAward`              | `String`   | *V.1) Information on non-award*
+`rawAwarded`            | `String`   | *A contract/lot is awarded: yes/no*, given in the header of *Section V*
+
 
 
 ## ContractingAuthority.java

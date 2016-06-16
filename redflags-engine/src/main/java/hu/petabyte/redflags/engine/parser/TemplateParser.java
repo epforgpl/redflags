@@ -28,7 +28,9 @@ import java.util.regex.Pattern;
  * @author Zsolt Jurányi
  *
  */
-public class TemplateParser {
+public class TemplateParser { // TODO logging...
+
+	private static final boolean PRINT_DEBUG = false;
 
 	protected static final String OPT_PREFIX = "???#";
 	protected int i;
@@ -96,8 +98,10 @@ public class TemplateParser {
 		// THE MAGIC
 
 		while (t < tpl.length && i < inp.length) {
-			// System.out.println("TPL " + stripPrefix(tpl[t]));
-			// System.out.println("INP " + inp[i]);
+			if (PRINT_DEBUG) {
+				System.out.println("TPL " + stripPrefix(tpl[t]));
+				System.out.println("INP " + inp[i]);
+			}
 			if (StrUtils.matchesCaseInsensitive(inp[i], stripPrefix(tpl[t]))) {
 				parseVars();
 				lookForward();
@@ -131,7 +135,9 @@ public class TemplateParser {
 						var.put(name, matchedValue);
 					}
 				}
-				// System.out.println("MAP " + name + " += " + matchedValue);
+				if (PRINT_DEBUG) {
+					System.out.println("MAP " + name + " += " + matchedValue);
+				}
 			}
 		}
 	}

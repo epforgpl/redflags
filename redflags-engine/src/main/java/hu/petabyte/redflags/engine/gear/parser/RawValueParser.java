@@ -97,6 +97,10 @@ public class RawValueParser extends AbstractGear {
 			Map<String, String> map = new TemplateParser().parse(
 					a.getRawHeader(), template);
 			MappingUtils.setDeepProperties(a, map);
+
+			if (null != a.getRawAwarded()) {
+				parseBoolean(a, "rawAwarded", "awarded");
+			}
 			parseDate(a, "rawDecisionDate", "decisionDate");
 			parseInteger(a, "rawLotNumber", "lotNumber");
 			parseInteger(a, "rawNumber", "number");

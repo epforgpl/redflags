@@ -15,9 +15,9 @@
  */
 package hu.petabyte.redflags.engine.model.noticeparts;
 
-import java.util.Date;
-
 import hu.petabyte.redflags.engine.model.Organization;
+
+import java.util.Date;
 
 /**
  *
@@ -26,12 +26,15 @@ import hu.petabyte.redflags.engine.model.Organization;
  */
 public class Award {
 
+	private boolean awarded = true;
 	private Date decisionDate;
 	private String id;
 	private int lotNumber;
 	private String lotTitle;
+	private String nonAward;
 	private int number;
 	private int numberOfOffers;
+	private String rawAwarded;
 	private String rawDecisionDate;
 	private String rawHeader;
 	private String rawLotNumber;
@@ -71,12 +74,20 @@ public class Award {
 		return lotTitle;
 	}
 
+	public String getNonAward() {
+		return nonAward;
+	}
+
 	public int getNumber() {
 		return number;
 	}
 
 	public int getNumberOfOffers() {
 		return numberOfOffers;
+	}
+
+	public String getRawAwarded() {
+		return rawAwarded;
 	}
 
 	public String getRawDecisionDate() {
@@ -151,6 +162,14 @@ public class Award {
 		return winnerOrg;
 	}
 
+	public boolean isAwarded() {
+		return awarded;
+	}
+
+	public void setAwarded(boolean awarded) {
+		this.awarded = awarded;
+	}
+
 	public void setDecisionDate(Date decisionDate) {
 		this.decisionDate = decisionDate;
 	}
@@ -167,12 +186,20 @@ public class Award {
 		this.lotTitle = lotTitle;
 	}
 
+	public void setNonAward(String nonAward) {
+		this.nonAward = nonAward;
+	}
+
 	public void setNumber(int number) {
 		this.number = number;
 	}
 
 	public void setNumberOfOffers(int numberOfOffers) {
 		this.numberOfOffers = numberOfOffers;
+	}
+
+	public void setRawAwarded(String rawAwarded) {
+		this.rawAwarded = rawAwarded;
 	}
 
 	public void setRawDecisionDate(String rawDecisionDate) {
@@ -249,8 +276,10 @@ public class Award {
 
 	@Override
 	public String toString() {
-		return "Award(decisionDate=" + decisionDate + ", lotNumber=" + lotNumber + ", number=" + number
-				+ ", numberOfOffers=" + numberOfOffers + ", totalEstimatedValue=" + totalEstimatedValue
-				+ ", totalFinalValue=" + totalFinalValue + ", winnerOrg=" + winnerOrg + ")";
+		return "Award(decisionDate=" + decisionDate + ", lotNumber="
+				+ lotNumber + ", number=" + number + ", numberOfOffers="
+				+ numberOfOffers + ", totalEstimatedValue="
+				+ totalEstimatedValue + ", totalFinalValue=" + totalFinalValue
+				+ ", winnerOrg=" + winnerOrg + ")";
 	}
 }

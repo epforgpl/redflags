@@ -185,13 +185,18 @@ public class MySQLExporter extends AbstractExporter {
 			csv.writeCell(a.getTotalFinalValueVat());
 			csv.writeCell(notice.getId().toString());
 			csv.writeCell(rev);
+			// 2014/24/EU:
+			csv.writeCell(a.isAwarded());
+			csv.writeCell(a.getRawAwarded());
+			csv.writeCell(a.getNonAward());
+
 			csv.endLine();
 
 			if (null != a.getWinnerOrg()) {
 				exportOrganization(a.getWinnerOrg());
 				exportRelation(//
 						"AWARD-" + a.getId() + "-2-ORG-"
-								+ a.getWinnerOrg().getId(), //
+						+ a.getWinnerOrg().getId(), //
 						"AWARD_TO_ORGANIZATION", "winnerOrg", //
 						a.getId(), a.getWinnerOrg().getId());
 			}
@@ -319,7 +324,7 @@ public class MySQLExporter extends AbstractExporter {
 		for (CPV cpv : data.getOriginalCpvCodes()) {
 			exportRelation(//
 					"DATA-" + data.getId() + "-2-CPV-" + cpv.getId()
-							+ "-originalCpv", //
+					+ "-originalCpv", //
 					"DATA_TO_CPV", "originalCpvCodes", //
 					data.getId(), Integer.toString(cpv.getId()));
 		}
@@ -343,7 +348,12 @@ public class MySQLExporter extends AbstractExporter {
 		csv.writeCell(duration.getEnd());
 		csv.writeCell(duration.getInDays());
 		csv.writeCell(duration.getInMonths());
-		csv.writeCell(duration.getRaw());
+		if (null != duration.getRaw() && duration.getRaw().length() > 200) {
+			csv.writeCell(duration.getRaw().substring(0, 150) + " [TRIMMED]");
+			// TODO investigate trimmed ones - parser bug? or correct?
+		} else {
+			csv.writeCell(duration.getRaw());
+		}
 		csv.writeCell(rev);
 		csv.endLine();
 	}
@@ -660,7 +670,7 @@ public class MySQLExporter extends AbstractExporter {
 						+ proc.getQualificationSystemDuration().getId(),
 						"PROCEDURE_TO_DURATION", "qualificationSystemDuration",
 						proc.getId(), proc.getQualificationSystemDuration()
-								.getId());
+						.getId());
 			}
 		}
 

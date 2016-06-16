@@ -61,6 +61,14 @@ Field                       | Type            | Description
 `totalFinalValueCurr`       | `varchar(200)`  |
 `totalFinalValueVat`        | `decimal(22,2)` |
 
+To be able to map documents using *2014/24/EU* directive, we introduced the following new fields:
+
+Field                   | Type            | Description
+------------------------|-----------------|------------
+`awarded`               | `decimal(1,0)`  |
+`nonAward`              | `longtext`      |
+`rawAwarded`            | `varchar(200)`  |
+
 Winner organization is stored in `te_organization` and the relation in `te_relationdescriptor` looks like this:
 
 Field             | Value (as Java code)
