@@ -143,7 +143,7 @@ public class Filters {
 			} else if ("indicators".equals(type)) {
 				parameter = parameter.replaceAll("[\\[\\] ]", "");
 				if ("null".equals(parameter)
-						|| !parameter.matches("[A-Za-z0-9]+(,[A-Za-z0-9]+)*")) {
+						|| !parameter.matches("[A-Za-z0-9.]+(,[A-Za-z0-9.]+)*")) {
 					return null;
 				}
 
