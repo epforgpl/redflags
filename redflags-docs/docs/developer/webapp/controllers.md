@@ -79,14 +79,14 @@ URL            | Description | Parameters
 
 Serves notice list pages.
 
-URL                               | Description
-----------------------------------|------------
+URL                               | Description | Parameters
+----------------------------------|-------------|-----------
 `/notices`                        | Redirects to `/notices/10/1/by-date`
 `/notices/`                       | Redirects to `/notices/10/1/by-date`
 `/notices/{count}`                | Redirects to `/notices/{count}/1/by-date`
 `/notices/{count}/`               | Redirects to `/notices/{count}/1/by-date`
 `/notices/{count}/{page}`         | Redirects to `/notices/{count}/{page}/by-date`
-`/notices/{count}/{page}/{order}` | Validates parameters, gathers filtered data, builds model and displays list page (view: [notices](/developer/webapp/views/#notices))
+`/notices/{count}/{page}/{order}` | Validates parameters, gathers filtered data, builds model and displays list page (view: [notices](/developer/webapp/views/#notices)) | `contr` - contracting authority filter<br>`cpv` - CPV code filter<br>`date` - publication date filter<br>`doc` - document type filter<br>`filter` - filters in compact string format<br>`flags` - flag count filter<br>`indicators` - indicator filter<br>`saveFilter` - value of *Save filter* button<br>`text` - text filter<br>`value` - total value filter<br>`winner` - winner organizaiton filter
 
 
 
@@ -116,7 +116,7 @@ URL                             | Description | Parameters
 
 
 
-## SecuritySvc
+## SecurityCtrl
 
 Handles requests related to user accounts.
 

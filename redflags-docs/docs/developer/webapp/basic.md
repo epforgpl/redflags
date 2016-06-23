@@ -8,7 +8,7 @@ The *Red Flags* webapplication is built on top of [Spring Boot](http://projects.
 
 To generate HTML output, *RedFlags* uses [Freemarker](http://freemarker.org/) template engine.
 
-The client side uses [Bootstrap](http://getbootstrap.com/) CSS/JS framework and [jQuery](http://jquery.com/). Charts are generated with [HighCharts](http://www.highcharts.com/) and the carousel on the front page is made with [Owl Carousel](https://github.com/OwlFonk/OwlCarousel). 3rd party scripts and stylesheets are linked from CDNs.
+The client side uses [Bootstrap](http://getbootstrap.com/) CSS/JS framework and [jQuery](http://jquery.com/). Charts are generated with [HighCharts](http://www.highcharts.com/), the carousel on the front page is made with [Owl Carousel](https://github.com/OwlFonk/OwlCarousel), and the notices' filter form is using [Bootstrap Date Range Picker](http://www.daterangepicker.com/) and [Bootstrap Select](https://silviomoreto.github.io/bootstrap-select/). 3rd party scripts and stylesheets are linked from CDNs.
 
 Here you can see the workflow of the web application. If you are familiar with the MVC pattern, you won't see anything new.
 

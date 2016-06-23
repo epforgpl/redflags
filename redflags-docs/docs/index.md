@@ -38,28 +38,28 @@ The developer documentation goes deep into the **architecture** of the *Red Flag
 
 * [Getting started with the source code](/developer/first/)
 * Data model
-	* [Overview                  ](/developer/data/)
-	* [Data classes in the engine](/developer/data/classes/)
-	* [Tables of the engine      ](/developer/data/engine-tables/)
-	* [Tables of the webapp      ](/developer/data/webapp-tables/)
+	* [Overview                    ](/developer/data/)
+	* [Data classes in the engine  ](/developer/data/classes/)
+	* [Tables of the engine        ](/developer/data/engine-tables/)
+	* [Tables of the webapp        ](/developer/data/webapp-tables/)
 * Engine
-	* [Understanding the engine  ](/developer/engine/)
+	* [Understanding the engine    ](/developer/engine/)
 	* List of implemented gears:
-		* [Downloader gears      ](/developer/engine/gears/downloaders/)
-		* [Parser gears          ](/developer/engine/gears/parsers/)
-		* [Filter gears          ](/developer/engine/gears/filters/)
-		* [Indicator gears       ](/developer/engine/gears/indicators/)  ![](https://img.shields.io/badge/progress-0_%-red.svg)
-		* [Exporter gears        ](/developer/engine/gears/exporters/)
-	* [TED Interface             ](/developer/engine/tedinterface/)
-	* [Template parser           ](/developer/engine/templateparser/)
+		* [Downloader gears        ](/developer/engine/gears/downloaders/)
+		* [Parser gears            ](/developer/engine/gears/parsers/)
+		* [Filter gears            ](/developer/engine/gears/filters/)
+		* [Indicator gears         ](/developer/engine/gears/indicators/)  ![](https://img.shields.io/badge/progress-0_%-red.svg)
+		* [Exporter gears          ](/developer/engine/gears/exporters/)
+	* [TED Interface               ](/developer/engine/tedinterface/)
+	* [Template parser             ](/developer/engine/templateparser/)
 	* Webapp
-		* [Basics                ](/developer/webapp/basic/)
-		* [ControllerAdvice beans](/developer/webapp/controller-advices/)
-		* [Controllers           ](/developer/webapp/controllers/)
-		* [Services              ](/developer/webapp/services/)          ![](https://img.shields.io/badge/progress-0_%-red.svg)
-		* [Views                 ](/developer/webapp/views/)
-		* [Filters               ](/developer/webapp/filters/)           ![](https://img.shields.io/badge/progress-0_%-red.svg)
-* [Cookbook for extending        ](/developer/cookbook/)                 ![](https://img.shields.io/badge/progress-25_%-orange.svg)
+		* [Basics                  ](/developer/webapp/basic/)
+		* [ControllerAdvice beans  ](/developer/webapp/controller-advices/)
+		* [Controllers             ](/developer/webapp/controllers/)
+		* [Services                ](/developer/webapp/services/)          ![](https://img.shields.io/badge/progress-0_%-red.svg)
+		* [Views                   ](/developer/webapp/views/)
+		* [How notice filters work ](/developer/webapp/filters/)
+* [Cookbook for extending          ](/developer/cookbook/)                 ![](https://img.shields.io/badge/progress-25_%-orange.svg)
 
 
 
