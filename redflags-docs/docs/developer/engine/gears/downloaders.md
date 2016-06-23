@@ -19,9 +19,9 @@ Takes an empty `Notice` and **downloads all available tabs** from *TED* using `T
 
 *Parameters:*
 
-||
--------------------------------------|--------|---
-`redflags.engine.gear.archive.langs` | String | A list of valid `DisplayLanguage` values. Items can be separated by any non-alpha characters. `Archiver` will download all available tabs for all given display languages.
+Property                             | Type     | Description
+-------------------------------------|----------|------------
+`redflags.engine.gear.archive.langs` | `String` | A list of valid `DisplayLanguage` values. Items can be separated by any non-alpha characters. `Archiver` will download all available tabs for all given display languages.
 
 *Before session:*
 

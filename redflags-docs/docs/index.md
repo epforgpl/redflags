@@ -46,12 +46,12 @@ The developer documentation goes deep into the **architecture** of the *Red Flag
 	* [Understanding the engine  ](/developer/engine/)
 	* List of implemented gears:
 		* [Downloader gears      ](/developer/engine/gears/downloaders/)
-		* [Parser gears          ](/developer/engine/gears/parsers/)     ![](https://img.shields.io/badge/progress-0_%-red.svg)
+		* [Parser gears          ](/developer/engine/gears/parsers/)
 		* [Filter gears          ](/developer/engine/gears/filters/)
 		* [Indicator gears       ](/developer/engine/gears/indicators/)  ![](https://img.shields.io/badge/progress-0_%-red.svg)
 		* [Exporter gears        ](/developer/engine/gears/exporters/)
 	* [TED Interface             ](/developer/engine/tedinterface/)
-	* [Template parser           ](/developer/engine/templateparser/)    ![](https://img.shields.io/badge/progress-75_%-yellow.svg)
+	* [Template parser           ](/developer/engine/templateparser/)
 	* Webapp
 		* [Basics                ](/developer/webapp/basic/)
 		* [ControllerAdvice beans](/developer/webapp/controller-advices/)

@@ -64,6 +64,8 @@ Check forward:
 
 Variables are parsed into a `Map<String, String>`, where the key is the variable name (capturing group's name). If a variable already exists in the *Map*, a new line (`\n`) and the new value will be appended to the existing one. Multiline data is handled this way.
 
+Note that `TemplateParser` is **not thread-safe**, don't call the same instance simultaneously from multiple threads.
+
 
 
 ## Examples
@@ -249,6 +251,13 @@ SAME AS first
 
 In this case `getTemplate("second")` will return the contents of `first.tpl`.
 
+There's an additional loader method in this class: `getTemplate(Notice n, String lang)`. It will select a template version automatically by the given language, the documenty type and the directive used by the given notice:
+
+* First, it tries to load `TD-{TD}-{LANG}-{DIRECTIVE}.tpl`.
+* If `notice.data.directive` is null no matchin template found, it will load `TD-{TD}-{LANG}.tpl`.
+* `TD-{TD}` is the identifier of the document type.
+* `{DIRECTIVE}` is the value of `notice.data.directive` field where characters outside parenthesis are cutted out as well as slashes, e.g. `Public procurement (2014/24/EU)` will be `201424EU`.
+
 
 
 ## Document parsing in RED FLAGS
@@ -261,4 +270,133 @@ In the *Red Flags* engine the following gears are responsible for the parsing:
 
 
 
-**TODO** input, norm input, template examples; repeating blx, blx resolver mechanism
+### DocumentNormalizer class
+
+`DocumentNormalizer` has only one method called `normalizeDocument` which accepts the input HTML code as a `String` and returns with the normalized text.
+
+On TED, HTML code of documents contains blocks of the following structure:
+
+```html
+<div class="grseq">
+  <p class="tigrseq"><span id="...">SECTION</span></p>
+  <div class="mlioccur">
+    <span class="nomark">CHAPTER NUMBER, e.g. 1.2)</span>
+    <span class="timark">CHAPTER TITLE</span>
+    <div class="txtmark">
+      TEXT<br>
+      TEXT<br>
+    </div>
+  </div>
+  ...
+</div>
+```
+
+The normalized document for the above code will look like this:
+
+<pre>
+#SECTION
+##CHAPTER NUMBER, e.g. 1.2) CHAPTER TITLE
+TEXT
+TEXT
+</pre>
+
+This format makes the text available to be splitted in the same way as the template.
+
+And here we have a hint for creating templates: if we run the normalizer algorithm on an input document, we just have to delete and modify some lines to have patterns and variabes in it to have a template for that document.
+
+
+
+### Tab012Parser class
+
+`Tab012Parser` normalizes the HTML code, splits the input and the template, then calls `DocumentParser` for each block and stores the result values in the `Notice` object. Before calling the document parser it resolves anomalies around repeating blocks. Sometimes repeating blocks in notices look like this:
+
+<pre>
+Section X
+x.1) A
+x.2) B
+x.3) C
+x.1) A
+x.2) B
+x.3) C
+</pre>
+
+`Tab012Parser` rebuilds the block structure to have an understandable format for the document parser:
+
+<pre>
+Section X
+x.1) A
+x.2) B
+x.3) C
+Section X
+x.1) A
+x.2) B
+x.3) C
+</pre>
+
+After it performs this restructuring and calls the parser it stores the parsed values into the `Notice`. It is done block by block while checking which blocks are repeating blocks using the patterns come from configuration parameters (see below).
+
+**Important:** `parse` method has a code part which contains Hungarian-specific parameters for the above restructuring mechanism. These will be moved out into configuration properties in the future.
+
+Storing the `Map` values in POJOs are done by `MappingUtils` which uses *Spring's* `BeanWrapper` utility. `MappingUtils` adds the functionality of instantiating deeper structures using default constructors.
+
+
+
+### Tab012Config class
+
+This class represents the configuration parameters of `Tab012Parser` and filled automatically by *Spring*.
+
+You can specify the following parameters for each language:
+
+Property                                                        | Description
+----------------------------------------------------------------|------------
+`redflags.engine.parser.tab012.langspec.{LANG}.repeatingBlocks` | List of patterns that match normalized section header lines of repeating blocks
+`redflags.engine.parser.tab012.langspec.{LANG}.objBlock`        | Pattern that matches normalized header line of *Section II. Object of the contract* section
+`redflags.engine.parser.tab012.langspec.{LANG}.lotBlock`        | Pattern that matches normalized header line of lot sections
+`redflags.engine.parser.tab012.langspec.{LANG}.awardBlock`      | Pattern that matches normalized header line of *Section V. Contract award* section
+
+`{LANG}` must be the language code in upper case, same as in the parse language property.
+
+As an example here's the configuration for Hungarian notices:
+
+<pre>
+redflags.engine.parser.tab012:
+    langspec:
+        HU:
+            repeatingBlocks:
+                - "#II\\.?[AB]?\\.? szakasz: .* tárgya.*"
+                - "#II\\. szakasz: Tárgy"
+                - "#((A )?Részekre vonatkozó információk#)?Rész száma:?.*"
+                - "#(V\\. szakasz: Az eljárás eredménye|(V\\. szakasz.*#)?((A )?szerződés|Rész) száma.*|V\\. SZAKASZ(?!: Eljárás).*)"
+            objBlock: "#II\\.?[AB]?\\.? szakasz:.* tárgy.*"
+            lotBlock: "#((A )?Részekre vonatkozó információk#)?Rész száma.*"
+            awardBlock: "#(V\\. szakasz: Az eljárás eredménye|(V\\. szakasz.*#)?((A )?szerződés|Rész) száma.*|V\\. SZAKASZ(?!: Eljárás).*)"
+</pre>
+
+`Tab012Parser` will use the appropriate language specific configuration automatically.
+
+### Example template
+
+<pre>
+#II\. szakasz: A szerződés tárgya
+##II\.1\.?\) Meghatározás
+##II\.1\.1\.?\) Az ajánlatkérő által a szerződéshez rendelt elnevezés:?
+(?&lt;contractTitle&gt;.*)
+##II\.1\.2\.?\) A szerződés típusa.*teljesítés helye
+(?&lt;contractTypeInfo&gt;(^(?!NUTS|HU\d+|A telj).*))
+A teljesítés helye:? (?&lt;placeOfPerformance&gt;.*)
+???#A szerződés típusa:? (?&lt;contractTypeInfo&gt;.*)
+(?&lt;placeOfPerformance&gt;(^(?!NUTS|HU\d+).*))
+##II\.1\.3\.?\) A hirdetmény tárgya
+(?&lt;shortDescription&gt;.*)
+##II\.1\.3\.?\) Közbeszerzésre, keretmegállapodásra és dinamikus beszerzési rendszerre \(DBR\) vonatkozó információk
+(?&lt;pcFaDps&gt;.*)
+##II\.1\.4\.?\) (Keretmegállapodásra vonatkozó információk|Információ a keretmegállapodásról)
+(?&lt;frameworkAgreement&gt;.*)
+##II\.1\.5\.?\) A szerződés.*rövid (meghatározása|leírása):?
+(?&lt;shortDescription&gt;.*)
+##II\.1\.6\.?\) Közös közbeszerzési szójegyzék \(CPV\)
+##II\.1\.7\.?\) .*\(GPA\).*
+(?&lt;gpa&gt;.*)
+</pre>
+
+You can see the full version of this along with all templates in `src/main/resources/templates` directory.
