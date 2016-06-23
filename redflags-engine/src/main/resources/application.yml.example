@@ -69,6 +69,7 @@ redflags.engine.gears:
     - countOfInvOpsParser
     - awardCriteriaParser
     - openingDateParser
+    - renewalCountParser
 
     # magic II. - indicators
     - fwAgOneParticipantIndicator
@@ -93,7 +94,6 @@ redflags.engine.gears:
     - techCapRefCondManyYearsIndicator
     - techCapEURefCondIndicator
     - procTypeAcceleratedIndicator
-    - procTypeNegotiatedNoJustificationIndicator
     - countOfInvOpsLowIndicator
     - countOfInvOpsNoCondIndicator
     - awCritLacksIndicator
@@ -156,11 +156,12 @@ redflags.engine.parser.tab012:
         HU:
             repeatingBlocks:
                 - "#II\\.?[AB]?\\.? szakasz: .* tárgya.*"
+                - "#II\\. szakasz: Tárgy"
                 - "#((A )?Részekre vonatkozó információk#)?Rész száma:?.*"
-                - "#((V\\. szakasz.*#)?((A )?szerződés|Rész) száma.*|V\\. SZAKASZ(?!: Eljárás).*)"
-            objBlock: "#II\\.?[AB]?\\.? szakasz: .* tárgya.*"
+                - "#(V\\. szakasz: Az eljárás eredménye|(V\\. szakasz.*#)?((A )?szerződés|Rész) száma.*|V\\. SZAKASZ(?!: Eljárás).*)"
+            objBlock: "#II\\.?[AB]?\\.? szakasz:.* tárgy.*"
             lotBlock: "#((A )?Részekre vonatkozó információk#)?Rész száma.*"
-            awardBlock: "#((V\\. szakasz.*#)?((A )?szerződés|Rész) száma.*|V\\. SZAKASZ(?!: Eljárás).*)"
+            awardBlock: "#(V\\. szakasz: Az eljárás eredménye|(V\\. szakasz.*#)?((A )?szerződés|Rész) száma.*|V\\. SZAKASZ(?!: Eljárás).*)"
 
 #hu.petabyte.redflags.engine.gear.indicator:
 #    AcceleratedProcedureIndicator:
@@ -243,6 +244,7 @@ redflags.engine.gears:
     - countOfInvOpsParser
     - awardCriteriaParser
     - openingDateParser
+    - renewalCountParser
     - fwAgOneParticipantIndicator
     - fwAgFewParticipantsIndicator
     - fwAgLongDurationIndicator
