@@ -18,26 +18,15 @@ package hu.petabyte.redflags.web.svc;
 import hu.petabyte.redflags.web.model.Account;
 import hu.petabyte.redflags.web.model.AccountRepo;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.UUID;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * @author Zsolt Jurányi
@@ -47,6 +36,7 @@ public class SecuritySvc implements CaptchaValidator {
 
 	private @Autowired AccountRepo accounts;
 	private @Autowired AccountSvc accountService;
+	private @Autowired CaptchaValidatorSvc captchaValidator;
 	private @Autowired EmailSvc email;
 	private @Autowired MessageSource msg;
 	private @Value("${site.useCaptcha:true}") boolean useCaptcha;
@@ -134,42 +124,8 @@ public class SecuritySvc implements CaptchaValidator {
 
 	@Override
 	public boolean validateCaptcha(String response) {
-		if (!useCaptcha) { // site.useCaptcha property
-			return true;
-		}
-		String url = "https://www.google.com/recaptcha/api/siteverify";
-		String secret = "...";
-		try {
-			// send to Google
-			HttpsURLConnection con = (HttpsURLConnection) new URL(url)
-			.openConnection();
-			String urlParameters = String.format("secret=%s&response=%s",
-					secret, response);
-			con.setDoOutput(true);
-			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-			wr.writeBytes(urlParameters);
-			wr.flush();
-			wr.close();
-
-			// read response
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-					con.getInputStream()));
-			String inputLine;
-			StringBuffer s = new StringBuffer();
-			while ((inputLine = in.readLine()) != null) {
-				s.append(inputLine);
-			}
-			in.close();
-
-			// parse response
-			Map<String, Object> map = new ObjectMapper().readValue(
-					s.toString(), new TypeReference<HashMap<String, Object>>() {
-					});
-			return Boolean.TRUE.equals(map.get("success"));
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+		// site.useCaptcha property
+		return useCaptcha ? captchaValidator.validateCaptcha(response) : true;
 	}
 
 	public boolean validateToken(long id, String token) {

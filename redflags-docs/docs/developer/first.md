@@ -30,7 +30,7 @@ These files are:
 
 * `redflags-auto.sh` - you have to edit the database connection parameters, the domain and the trigger secret for subscription emails in the top section of the file.
 * `redflags-engine/src/main/resources/application.yml` - you have to edit the database connection parameters, in the "GEAR SETTINGS" section.
-* `redflags-web/src/main/java/hu/petabyte/redflags/web/svc/SecuritySvc.java` - you have to provide the Google reCaptcha secret, or you can modify the code to disable this function.
+* `redflags-web/src/main/java/hu/petabyte/redflags/web/svc/CaptchaValidatorSvc.java` - you have to provide the Google reCaptcha secret, or you can modify the code to disable this function.
 * `redflags-web/src/main/resources/application.yml` - you have to provide the database connection parameters and the trigger secret.
 
 The `dbhost` parameter must have `HOST:PORT` format, e.g. `localhost:3306` or `127.0.0.1:3306`. The value of the trigger secret is up to you.

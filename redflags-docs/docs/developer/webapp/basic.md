@@ -46,7 +46,7 @@ The message can contain HTML tags as well. It will be wrapped inside a `well-sm`
 
 Users need to fill a captcha to log in, register or request a password change. Sometimes it gets annoying to fill in everytime when developers need to test the site. There is an option to turn off the captcha for test purposes.
 
-If you set `site.useCaptcha` property to `false` the captcha validator mechanism (`SecuritySvc.java` and `LoginCaptchaFilter.java`) will return constant `true` and also the captchas won't appear on the site (handled in `SiteAdvice.java` and `login.ftl`).
+If you set `site.useCaptcha` property to `false` the captcha validator mechanism (`SecuritySvc.java`) will return constant `true` and also the captchas won't appear on the site (handled in `SiteAdvice.java` and `login.ftl`).
 
 
 
