@@ -75,7 +75,7 @@ URL            | Description | Parameters
 
 
 
-## NoticesCtrl (TODO: params)
+## NoticesCtrl
 
 Serves notice list pages.
 

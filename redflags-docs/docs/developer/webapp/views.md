@@ -6,26 +6,6 @@ Views are *FreeMarker* templates and they are located in `src/main/resources/tem
 
 
 
-## Globals
-
-`header.ftl` and `footer.ftl` are included in every page and they use the following global attributes:
-
-Model&nbsp;attribute       | Type       | Description
----------------------------|------------|------------
-`appTitle`                 | `String`   | Title of the application
-`lang`                     | `String`   | Language code
-`languages`                | `String[]` | Available language codes
-`needDateRangePicker`      | `Object`   | *(Optional)* If specified and not null, *DateRange Picker* script tag will be included
-`needHiCharts`             | `Object`   | *(Optional)* If specified and not null, *HighCharts*, *OwlCarousel* and related resources used on the front page will be included
-`needReCaptcha`            | `Object`   | *(Optional)* If specified and not null, *Google reCaptcha* script tag will be included
-`pageTitle`                | `String`   | *(Optional)* Title of the page. It will be shown in the window header as `"pageTitle - appTitle"`
-`pageTitleLabel`           | `String`   | *(Optional)* Message property to be used as page title. This attribute sets and overrides the value of `pageTitle`
-`prevPageTitleLabel`       | `String`   | *(Optional)* Message property to be used as the title of the previous page
-`prevPageUrl`              | `String`   | *(Optional)* URL of the previous page
-`siteMessage`              | `String`   | *(Optional)* Message property to be displayed in a `well` above content
-
-
-
 ## change-password
 
 Displays the password changer form if the token is valid. Otherwise it displays a message.
@@ -165,3 +145,72 @@ Model&nbsp;attribute | Type                       | Description
 `page`               | `Integer`                  | Current page number (1-based)
 `pages`              | `Integer`                  | Page count
 `queryTime`          | `Long`                     | Query time in milliseconds
+
+
+
+## Included templates
+
+
+
+### header and footer
+
+`header.ftl` and `footer.ftl` are included in every page and they use the following global attributes:
+
+Model&nbsp;attribute       | Type       | Description
+---------------------------|------------|------------
+`appTitle`                 | `String`   | Title of the application
+`lang`                     | `String`   | Language code
+`languages`                | `String[]` | Available language codes
+`needDateRangePicker`      | `Object`   | *(Optional)* If specified and not null, *DateRange Picker* script tag will be included
+`needHiCharts`             | `Object`   | *(Optional)* If specified and not null, *HighCharts*, *OwlCarousel* and related resources used on the front page will be included
+`needReCaptcha`            | `Object`   | *(Optional)* If specified and not null, *Google reCaptcha* script tag will be included
+`pageTitle`                | `String`   | *(Optional)* Title of the page. It will be shown in the window header as `"pageTitle - appTitle"`
+`pageTitleLabel`           | `String`   | *(Optional)* Message property to be used as page title. This attribute sets and overrides the value of `pageTitle`
+`prevPageTitleLabel`       | `String`   | *(Optional)* Message property to be used as the title of the previous page
+`prevPageUrl`              | `String`   | *(Optional)* URL of the previous page
+`siteMessage`              | `String`   | *(Optional)* Message property to be displayed in a `well` above content
+
+
+
+### filter-readable
+
+This one contains the funtion `readableFilter` which accepts a `List<Filter>` as its only one argument. It prints the filter in a human readable format using labels and HTML formatting.
+
+You can read more about it in the [notice filters](/developer/webapp/filters/#generating-form-after-filtering) chapter.
+
+
+
+### flag-info
+
+This contains helper functions and macros to generate or print some informations related to flags and indicators:
+
+Function        | Description | Parameters
+----------------|-------------|-----------
+`flagInfo`      | Generates flag information using the appropriate label | `info` - `information` field from `te_flag` table
+`indName`       | Returns with the name of the indicator using the appropriate label | `id` - flag ID
+`indDesc`       | Returns with the description of the indicator using the appropriate label | `id` - flag ID
+
+Macro           | Description | Parameters
+----------------|-------------|-----------
+`smallFlags`    | Generates small flags for a notice list item, where the tooltip is the indicator name | `flags` - `List<Flag>`
+`detailedFlags` | Generates a flag table for a notice where the text is the flag information and there's a button for the indicator description | `flags` - `List<Flag>`
+
+
+### general-macros
+
+Contains macros that can be used even outside *Red Flags*.
+
+Macro             | Description | Parameters
+------------------|-------------|-----------
+`label`           | Displays the message using the given key | `id` - message property key<br>`notfoundtext` - *optional*, text to be displayed if message not found; default value is `id`
+`pager`           | Generates Bootstrap pagination buttons (items per page buttons and page links too) | `pages` - page count<br>`page` - current page (1-based)<br>`counts` - array of items/page options<br>`count` - items/page<br>`urlFormat` - page URL format<br>`pagePlaceholder` - character sequence in `urlFormat` to be replaced with page number<br>`countPlaceholder` - character sequence in `urlFormat` to be replaced with items/page<br>
+`accordion`       | Shorthand for an accordion inside some `div` tags. It has a `#nested` placeholder.
+`accordion_panel` | Generates an accordion panel | `id` - ID to be included in `div` ID-s, like `panel-{ID}-header`, `panel-{ID}-content`<br>`headingLabel` - message key to use for panel heading<br>`open` - whether to open accordion panel<br>`headingSuffix` - text to be appended to heading
+`details`         | Prints a table with field names and their values, uses `print_value` | `map` - object or `Map` to read values from<br>`fields` - list of fields to be displayed<br>`labelPrefix` - field labels will use message key `{labelPrefix}.{field}`
+`print_value`     | Prints a value but handles dates as dates and replaces URLs with links in texts. It also wraps values in `p` tag and replaces line breaks with `&lt;/p&gt;&lt;p&gt;`. | `v` - value to be displayed
+
+
+
+### import-spring
+
+Imports `spring.ftl`.
