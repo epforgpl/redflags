@@ -56,7 +56,7 @@ The developer documentation goes deep into the **architecture** of the *Red Flag
 		* [Basics                  ](/developer/webapp/basic/)
 		* [ControllerAdvice beans  ](/developer/webapp/controller-advices/)
 		* [Controllers             ](/developer/webapp/controllers/)
-		* [Services                ](/developer/webapp/services/)          ![](https://img.shields.io/badge/progress-0_%-red.svg)
+		* [Services                ](/developer/webapp/services/)
 		* [Views                   ](/developer/webapp/views/)
 		* [How notice filters work ](/developer/webapp/filters/)
 * [Cookbook for extending          ](/developer/cookbook/)                 ![](https://img.shields.io/badge/progress-25_%-orange.svg)

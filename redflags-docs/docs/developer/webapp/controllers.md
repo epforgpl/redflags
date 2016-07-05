@@ -2,7 +2,7 @@
 
 
 
-Below I list the controllers with their mapped URLs and their description and parameters.
+Below I list the controllers with their mapped URLs and their description and parameters. All controller class is in `hu.petabyte.redflags.web.ctrl` package.
 
 
 

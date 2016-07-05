@@ -43,5 +43,6 @@ pages:
     - ControllerAdvice beans:        developer/webapp/controller-advices.md
     - Controllers:                   developer/webapp/controllers.md
     - Views:                         developer/webapp/views.md
+    - Services:                      developer/webapp/services.md
     - How notice filters work:       developer/webapp/filters.md
   - Cookbook for extending:          developer/cookbook.md
