@@ -1,0 +1,8 @@
+site_name: RED FLAGS API Documentation
+site_author: Péter Szűcs
+site_description: "Documentation of the REDFLAGS API"
+site_favicon: favicon.ico
+copyright: "<a rel='license' href='http://creativecommons.org/licenses/by-nc-sa/4.0/'><img alt='Creative Commons License' style='border-width:0;margin-bottom:5px' src='https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png' /></a> <br> This work is licensed under a <a rel='license' href='http://creativecommons.org/licenses/by-nc-sa/4.0/'>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a> <br> <b>Copyright &copy; 2016, PetaByte Research Ltd.</b>"
+theme: simplex
+pages:
+- Home: index.md

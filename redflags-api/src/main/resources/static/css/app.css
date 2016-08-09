@@ -1,0 +1,304 @@
+/*
+   Copyright 2014-2016 PetaByte Research Ltd.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
+ 
+ /*
+világos piros 1 EA465F
+világos piros 2 DA2A46
+sötét piros BC2A52
+világos kék 95D8D1
+sötét kék 76A8A6
+kékesszürke 8B928C
+*/
+
+a { color: #638C8B; }
+
+a:hover { color: #000; }
+
+body {
+	background-color: #E4E3D8;
+	background-image: url("/img/background.png");
+	background-attachment: fixed;
+	background-position: center 99px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-bottom: 125px; /* sticky footer */
+}
+
+.btn-danger {
+	background-color: #DA2A46 !important;
+	border-color: #BC2A52 !important;
+}
+
+.btn-default, .popover-title, ul.pagination li:not(.active) a {
+	background-color: rgba(252, 250, 248, 1.0) !important;
+}
+
+.btn-default, .dropdown-menu, .navbar-default, .panel, .panel-group .panel, ul.pagination li:not(.active) a {
+	border-color: rgba(195, 193, 191, 0.4) !important;
+}
+
+.btn-primary, ul.pagination li.active a {
+	background-color: #76A8A6 !important;
+	border-color: #638C8B !important;
+}
+
+.btn-success {
+	background-color: #76A882 !important;
+	border-color: #638C6D !important;
+}
+
+.fblike-row {
+	margin-top: 50px;
+}
+
+.footer {
+	padding: 0px;
+	/* sticky footer */
+	position: absolute;
+	bottom: 20px;
+	height: 60px;
+	width: 100%;
+}
+
+.footer .container {
+	background-color: #fff !important;
+	border-radius: 5px;
+	padding: 1em;
+}
+
+.footer .container, .dropdown-menu, #header-right .badge, .jumbotron, .navbar-default, .panel, .well {
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.4);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.4);
+	box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.4);
+}
+
+.g-recaptcha { display: table; margin: 0 auto; }
+
+h1 { margin-top: 2em; margin-bottom: 1em; }
+
+.has-success .input-group-addon {
+	background-color: #76A882 !important;
+	color: #fff;
+}
+
+.has-success .input-group-addon, .has-success .form-control {
+	border-color: #638C6D;
+}
+
+#header {
+	background-image: url("/img/header.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: table;
+	height: 100px;
+	left: 0px;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	z-index: 100;
+}
+@media all and (max-width: 1000px) { #header { background-position: -450px center; } }
+@media all and (max-width: 900px) {	#header { background-position: -550px center; } }
+
+#header-nav, #header-right { display: table-cell; height: 100px; vertical-align: middle; }
+
+#header-nav { padding-top: 10px; text-align: left; }
+
+#header-right { text-align: right; }
+
+#header-right .badge {
+	background-color: white;
+	border-radius: 2px;
+	font-weight: bold;
+	color: black;
+	margin: 5px;
+}
+
+#header-table { display: table; width: 100%; }
+
+#header-outer-left, #header-outer-right {
+	background-repeat: repeat-x;
+	position: fixed;
+	top: 0px;
+	height: 100px;
+	width: 50%;
+	z-index: -1;
+}
+
+#header-outer-left {
+	background-color: #BC2A52;
+	background-image: url("/img/header-left.png");
+	right: 50%;
+	right: -moz-calc(50% + 1000px);
+	right: -o-calc(50% + 1000px);
+	right: -webkit-calc(50% + 1000px);
+}
+
+#header-outer-right {
+	background-color: #95D8D1;
+	background-image: url("/img/header-right.png");	
+	left: 50%;
+	left: -moz-calc(50% + 1000px);
+	left: -o-calc(50% + 1000px);
+	left: -webkit-calc(50% + 1000px);
+}
+
+html {
+	/* sticky footer */
+	position: relative;
+	min-height: 100%;
+}
+
+.jumbotron, .navbar-default, .panel, .well {
+	background-color: rgba(252, 250, 248, 0.4) !important;
+}
+
+.jumbotron { margin-top: 4em; }
+
+.jumbotron h1 { margin-top: 0.2em; margin-bottom: 0.2em; }
+
+.list-table a { text-decoration: none !important; }
+
+.list-table a:hover { text-decoration: underline !important; }
+
+#logo {
+	background-image: url("/img/redflags-logo.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: table-cell;
+	height: 100px;
+	width: 100px;
+}
+
+#logo a { display: block; height: 100%; width: 100%; }
+
+.logos img { margin-left: 20px; margin-right: 20px; }
+
+ul.menu { list-style-type: none; }
+
+ul.menu li { display: inline-block; margin: 0px; padding: 0px; }
+
+ul.menu li a {
+	color: white;
+	font-size: 12pt;
+	font-weight: bold;
+	margin: 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+	opacity: 0.6;
+	-webkit-transition: opacity 200ms ease;
+	-moz-transition: opacity 200ms ease;
+	-o-transition: opacity 200ms ease;
+	transition: opacity 200ms ease;
+}
+
+ul.menu.submenu li a {
+	font-size: 10pt;
+}
+
+ul.menu li a:hover, ul.menu li.current a { color: white; opacity: 1.0; }�
+
+ul.menu li a:hover, ul.menu li.active a { color: white; opacity: 1.0; }
+
+.opacity {
+	opacity: 0.6;
+	-webkit-transition: opacity 200ms ease;
+	-moz-transition: opacity 200ms ease;
+	-o-transition: opacity 200ms ease;
+	transition: opacity 200ms ease;
+}
+
+.opacity:hover { opacity: 1.0; }
+
+.panel, .panel-group .panel { margin-bottom: 1em; }
+
+.panel-default .panel-heading { background-color: rgba(252, 250, 248, 0.7) !important; }
+
+.panel-danger .panel-heading { background-color: #EA465F; }
+
+.panel-info .panel-heading { background-color: #95D8D1; }
+
+.panel-success .panel-heading { background-color: #76A8A6; }
+
+.panel-title a:hover, .panel-title a:focus { text-decoration: none !important; }
+
+.popover {
+	max-width: 300px !important;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd), .input-group-addon {
+	background-color: rgba(195, 193, 191, 0.2) !important;
+}
+
+.table-striped tr:hover {
+	background-color: inherit !important;
+}
+
+.text-danger { color: #EA465F; }
+
+/* animations */
+
+.animated { 
+    -webkit-animation-duration: 1s; 
+    animation-duration: 1s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s; 
+} 
+
+@-webkit-keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+} 
+@keyframes fadeIn {
+	0% {opacity: 0; }
+	100% { opacity: 1; }
+}
+.fadeIn { -webkit-animation-name: fadeIn; animation-name: fadeIn; }
+
+@-webkit-keyframes fadeInDown {
+	0% { opacity: 0; -webkit-transform: translateY(-20px); } 
+    100% { opacity: 1; -webkit-transform: translateY(0); } 
+}
+@keyframes fadeInDown { 
+    0% { opacity: 0; transform: translateY(-20px); } 
+    100% { opacity: 1; transform: translateY(0); } 
+}
+.fadeInDown { -webkit-animation-name: fadeInDown; animation-name: fadeInDown; }
+
+.slideContent {
+	padding-left: 70px;
+	padding-right: 70px;
+}
+
+.fp-tooltip {
+	color: black !important;
+}
+
+#content {
+	margin-top: 130px;
+}
+
+.alert-danger {
+	background-color: #EA465F !important;
+	border-color: #EA465F !important;
+}
+
+.alert-success {
+	background-color: #76A8A6 !important;
+	border-color: #76A8A6 !important;
+}

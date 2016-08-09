@@ -10,6 +10,8 @@ You can read about the project on its website:
 
 **http://www.REDFLAGS.eu/**
 
+API: http://api.REDFLAGS.eu/
+
 
 
 ## Documentation
@@ -24,6 +26,8 @@ You can read about the project on its website:
 
 ```
 redflags/
+	redflags-api/               - The webapp which provides API
+	redflags-api-docs/          - API documentation
 	redflags-docs/              - User, admin and developer documentation
 	redflags-engine/            - The engine which crawls, parses, flags notices
 	redflags-web/               - The webapp which serves the data
