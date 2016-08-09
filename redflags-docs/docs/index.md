@@ -48,7 +48,7 @@ The developer documentation goes deep into the **architecture** of the *Red Flag
 		* [Downloader gears        ](/developer/engine/gears/downloaders/)
 		* [Parser gears            ](/developer/engine/gears/parsers/)
 		* [Filter gears            ](/developer/engine/gears/filters/)
-		* [Indicator gears         ](/developer/engine/gears/indicators/)  ![](https://img.shields.io/badge/progress-0_%-red.svg)
+		* [Indicator gears         ](/developer/engine/gears/indicators/)
 		* [Exporter gears          ](/developer/engine/gears/exporters/)
 	* [TED Interface               ](/developer/engine/tedinterface/)
 	* [Template parser             ](/developer/engine/templateparser/)
@@ -59,7 +59,7 @@ The developer documentation goes deep into the **architecture** of the *Red Flag
 		* [Services                ](/developer/webapp/services/)
 		* [Views                   ](/developer/webapp/views/)
 		* [How notice filters work ](/developer/webapp/filters/)
-* [Cookbook for extending          ](/developer/cookbook/)                 ![](https://img.shields.io/badge/progress-25_%-orange.svg)
+* [Cookbook for extending          ](/developer/cookbook/)
 
 
 

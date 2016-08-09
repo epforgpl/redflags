@@ -15,6 +15,7 @@ This chapter is a tutorial-like short summary of the documentation to help you s
 
 Gears are notice processors: they receive a `Notice` object and they have to return a `Notice` object or `null`. They can
 
+* filter out notices matching some criteria
 * fill notice data from other sources,
 * analyze notice data (e.g. further parsing, or indicator)
 * or export notice data.
@@ -206,3 +207,94 @@ I think each button must have the same tooltip in every language, I mean `lang.e
 Language chooser is generated in `header.ftl`, it can be configured easily through `site.languages` application property. You have to **add your language code to the list**, for example: `site.languages: en,hu,pl`.
 
 The language chooser will print out all languages that are not the current one.
+
+
+
+## Setting up engine for another country
+
+
+### Step 1: Configure engine
+
+Edit your configuration properties (`application.yml`):
+
+<pre>
+redflags.engine.gear:
+
+    # in which display languages do you need pages to be downloaded
+    # specify a list of display language codes, separated by ","
+    archive.langs:                      HU,EN
+
+    # set the parsing language (display language code)
+    # this will be used for loading templates, selecting language
+    # specific configuration in Tab012Parser
+    parse.lang:                         HU
+
+    # filter notices - these are all optional
+    filter:
+        country:                        HU
+        originalLanguage:               HU
+        directive:                      .*2004/18/.*  # classic directive
+        publicationDateMin:             2012-07-01
+
+redflags.engine.parser.tab012:
+    langspec:
+
+        # specify language specific configuration
+        HU:
+
+            # list regex patterns of document block headers which can
+            # appear more than once in a document
+            repeatingBlocks:
+                - "#II\\.?[AB]?\\.? szakasz: .* tárgya.*"
+                - "#II\\. szakasz: Tárgy"
+                - "#((A )?Részekre vonatkozó információk#)?Rész száma:?.*"
+                - "#(V\\. szakasz: Az eljárás eredménye|(V\\. szakasz.*#)?((A )?szerződés|Rész) száma.*|V\\. SZAKASZ(?!: Eljárás).*)"
+
+            # specify regex patterns to help parser recognize
+            # important blocks of documents
+            objBlock: "#II\\.?[AB]?\\.? szakasz:.* tárgy.*"
+            lotBlock: "#((A )?Részekre vonatkozó információk#)?Rész száma.*"
+            awardBlock: "#(V\\. szakasz: Az eljárás eredménye|(V\\. szakasz.*#)?((A )?szerződés|Rész) száma.*|V\\. SZAKASZ(?!: Eljárás).*)"
+</pre>
+
+Of course, constructing those regular expressions need **a lot of** testing.
+
+
+
+### Step 2: Review gears
+
+First, you shoud **remove Hungarian-specific parser gears**, which extract more values from the result of `TemplateBasedDocumentParser` gear:
+
+<pre>
+- awardCriteriaParser
+- countOfInvOpsParser
+- estimatedValueParser
+- frameworkAgreementParser
+- openingDateParser
+- renewableParser
+- renewalCountParser
+</pre>
+
+Unfortunately, `Tab012Parser.parse` method (called by `TemplateBasedDocumentParser` gear) contains 3 Hungary-specific calls for resolving document block order anomalies. These will be refactored in the future, but currently - if you're using this gear - you need to comment them out, or replace the regular expressions to match documents of your country.
+
+Then you should provide your own parser and indicator gears (see [above](#adding-a-new-gear)).
+
+
+
+### Step 3: Create document templates
+
+If you use `TemplateBasedDocumentParser` you have to **create template files for documents**. Take a look at existing Hungarian templates in `src/main/resources/templates` directory.
+
+You have 2 ways to start creating your template:
+
+* You can modify one of the existing templates: rename it (language code) and replace Hungarian patterns with your ones.
+* You can use `DocumentNormalizer` to generate a normalized file from a TED document: then you should replace content with regular expressions containing named groups referring to fields of data model.
+
+Some important things:
+
+* The **file name** of templates must follow this **pattern**: `TD-{TD}-{LANG}-{DIRECTIVE}.tpl`. `{TD}` is the one-character identifier of the document type, `{DIRECTIVE}` is the only alphanumeric version of the directive's code (e.g. `201424EU` for `Public procurement (2014/24/EU)`). `-{DIRECTIVE}` part is optional.
+* If you want to create one template for multiple document types, you still need to create the files for them but you can place only a `SAME AS other-template` line in them to redirect template loader to `other-template.tpl`. (This redirection is **not** recursive!)
+* All lines of the template must be valid **regular expressions** (without the optional row prefix `???`) - so make sure you escape special characters (e.g. dots) in your patterns.
+* Use **named groups** in patterns to refer **fields of data model**. Deeper structures can be called too, but replace dot with zero, e.g. to parse field `a.b.c` use group name `a0b0c`.
+
+Read more about templates [here](/developer/engine/templateparser) and about model [here](#/developer/data).

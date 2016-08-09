@@ -34,7 +34,7 @@ pages:
       - Downloader gears:            developer/engine/gears/downloaders.md
       - Parser gears:                developer/engine/gears/parsers.md
       - Filter gears:                developer/engine/gears/filters.md
-      - Indicator gears:             developer/engine/gears/filters.md
+      - Indicator gears:             developer/engine/gears/indicators.md
       - Exporter gears:              developer/engine/gears/exporters.md
     - TED Interface:                 developer/engine/tedinterface.md
     - Template parser:               developer/engine/templateparser.md
