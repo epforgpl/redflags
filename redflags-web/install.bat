@@ -1,0 +1,1 @@
+mvn install:install-file -DgroupId=hu.petabyte -DartifactId=redflags-web -Dversion=1.0.1468 -Dpackaging=jar -Dfile=target\redflags-web-1.0.1468.jar

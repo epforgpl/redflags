@@ -26,6 +26,12 @@
 	
 </div><#-- content -->
 
+<p class="text-center license">
+	<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin-bottom:10px" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>
+	<br>
+	This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><b>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</b></a>.
+</p>
+
 <div class="footer">
 	<div class="container text-center logos">	
 		<a href="http://ec.europa.eu/dgs/home-affairs/" target="_blank"><img src="/img/eu-logo.png" alt="European Commission" width="53" height="35" /></a>		
@@ -92,6 +98,7 @@
 			$("#filter-feature-box").click(function(){location.href="/notices#"});
 			$("#subscribe-feature-box").click(function(){location.href="/filters"});
 			$("#update-feature-box").click(function(){location.href="/notices"});
+			$("#api-feature-box").click(function(){location.href="http://api.redflags.eu/"});
 		</#if>
 	});
 </script>

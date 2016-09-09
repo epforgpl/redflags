@@ -45,7 +45,7 @@
 		<h1><@label "about.heading" /></h1>
 		<p class="text-justify">
 			<#include "/about_${lang}.html">
-		</p>
+		</p>	
 	</div>
 </div>
 
@@ -76,24 +76,32 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-xs-12 col-md-10 col-md-offset-1">
-		<div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+<div class="row features">
+	<div class="col-xs-12 col-lg-6">
+		<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
 			<div class="well well-lg feature-box" id="filter-feature-box">
 				<h1 class="text-center"><span class="glyphicon glyphicon-search"></span></h1>
 				<p class="text-center"><@label "features.filter" /></p>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
 			<div class="well well-lg feature-box" id="subscribe-feature-box">
 				<h1 class="text-center"><span class="glyphicon glyphicon-envelope"></span></h1>
 				<p class="text-center"><@label "features.subscribe" /></p>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+	</div>
+	<div class="col-xs-12 col-lg-6">
+		<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
 			<div class="well well-lg feature-box" id="update-feature-box">
 				<h1 class="text-center"><span class="glyphicon glyphicon-refresh"></span></h1>
 				<p class="text-center"><@label "features.update" /></p>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-0">
+			<div class="well well-lg feature-box" id="api-feature-box">
+				<h1 class="text-center"><span class="glyphicon glyphicon-cog"></span></h1>
+				<p class="text-center"><@label "features.api" /></p>
 			</div>
 		</div>
 	</div>
