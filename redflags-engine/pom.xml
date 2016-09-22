@@ -36,6 +36,16 @@
 				<role>developer</role>
 			</roles>
 		</developer>
+		<developer>
+			<id>dzierzy</id>
+			<name>Marcin Dzierżak</name>
+			<email>marcin.dzierzak@realis.pro</email>
+			<organization>realis.pro</organization>
+			<organizationUrl>http://realis.pro</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
 	</developers>
 
 	<properties>
