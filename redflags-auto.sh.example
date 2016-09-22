@@ -54,6 +54,7 @@ log "Backuping users and filters ($USERS_BACKUP_FILE)"
 mysqldump -u $DBUSER -p$DBPASS $DBNAME rfwl_users rfwl_userfilters >$USERS_BACKUP_FILE
 gzip $USERS_BACKUP_DIR/*.sql
 
+
 log "Calling SQL script ($SQL_SCRIPT)"
 mysql -u $DBUSER -p$DBPASS $DBNAME <$SQL_SCRIPT 
 
