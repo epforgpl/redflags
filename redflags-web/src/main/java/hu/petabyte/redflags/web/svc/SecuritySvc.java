@@ -115,7 +115,9 @@ public class SecuritySvc implements CaptchaValidator {
 				String.format("%s.%s", labelPrefix, "mail"), null, loc), a
 				.getName(), String.format(urlFormat, a.getId(), token));
 
-		if (email.send(to, subject, text)) {
+		this.validateToken(a.getId(), token); // TODO remove it - temporary autoconfirm
+		this.activate(a.getId()); // ... and this
+		if (false/*email.send(to, subject, text)*/) {
 			return String.format("%s.%s", labelPrefix, "sent");
 		} else {
 			return String.format("%s.%s", labelPrefix, "failed");

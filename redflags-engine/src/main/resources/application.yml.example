@@ -179,7 +179,8 @@ redflags.engine.parser.tab012:
 redflags.engine.tedinterface:
     retryCount: 5
 
-
+redflags.engine.epf:
+    host: https://api-v3.mojepanstwo.pl/dane
 
 # ______________________________________________________________________________
 #

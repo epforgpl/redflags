@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import hu.petabyte.redflags.engine.epforgpl.EPFScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,11 @@ public class ScopeProvider {
 	public AbstractScope scope(String scopeStr) {
 		checkNotNull(scopeStr, "scopeStr should not be null.");
 		checkArgument(!scopeStr.isEmpty(), "scopeStr should not be blank.");
+
+		// EPF
+		if (scopeStr.equalsIgnoreCase("epf")) {
+			return new EPFScope();
+		}
 
 		// DIRECTORY SCOPE: "directory"
 

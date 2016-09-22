@@ -28,7 +28,7 @@ import org.springframework.util.StreamUtils;
 /**
  * @author Zsolt Jurányi
  */
-@Service
+//@Service
 public class DefaultUsers implements InitializingBean {
 
 	private @Autowired JdbcTemplate jdbc;

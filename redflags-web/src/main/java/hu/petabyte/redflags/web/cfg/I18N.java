@@ -44,7 +44,7 @@ public class I18N extends WebMvcConfigurerAdapter {
 	@Bean
 	public LocaleResolver localeResolver() {
 		SessionLocaleResolver slr = new SessionLocaleResolver();
-		slr.setDefaultLocale(Locale.forLanguageTag("en"));
+		slr.setDefaultLocale(Locale.forLanguageTag("pl"));
 		return slr;
 	}
 

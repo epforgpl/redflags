@@ -53,7 +53,7 @@ public class OrganizationSvc {
 		try {
 			return jdbc
 					.queryForObject(
-							"select count(distinct id) from rfwl_notices where contractingOrgId = ? and typeId = \"TD-3\"",
+							"select count(distinct id) from rfwl_notices where contractingOrgId = ?",
 							new Object[] { id }, Long.class);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -65,7 +65,7 @@ public class OrganizationSvc {
 		try {
 			List<Map<String, Object>> lm = jdbc
 					.queryForList(
-							"select * from rfwl_notices where contractingOrgId = ? and typeId = \"TD-3\" limit 10;",
+							"select * from rfwl_notices where contractingOrgId = ? limit 10;",
 							id);
 			for (Map<String, Object> m : lm) {
 				String nid = (String) m.get("id");

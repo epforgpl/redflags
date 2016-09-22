@@ -58,8 +58,9 @@ public class NoticeCtrl {
 				Map<String, Object> d = (Map<String, Object>) m.get("data");
 				// dt = (String) d.get("documentType");
 				String dtid = (String) d.get("documentTypeId");
+				String msgKey = dtid!=null ? "notice.data.documentType." + dtid.split("-")[1] : "notice.data.documentType";
 				dt = msg.getMessage(
-						"notice.data.documentType." + dtid.split("-")[1], null,
+						msgKey, null,
 						loc);
 			}
 			m.put("flags", notice.flags(id)); // list

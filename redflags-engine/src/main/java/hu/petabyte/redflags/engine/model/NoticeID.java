@@ -38,15 +38,19 @@ public class NoticeID implements Comparable<NoticeID> {
 	}
 
 	private static int validateNumber(int n) {
-		checkArgument(n >= MIN_NUMBER, "Number should be at least %s.", MIN_NUMBER);
-		checkArgument(n <= MAX_NUMBER, "Number should be at most %s.", MAX_NUMBER);
+		checkArgument(n >= MIN_NUMBER, "Number should be at least %s. Your is %s", MIN_NUMBER, n);
+		checkArgument(n <= MAX_NUMBER, "Number should be at most %s. Your is %s", MAX_NUMBER, n);
 		return n;
+	}
+
+	public String calculateURL(){
+		return String.format("http://ted.europa.eu/udl?uri=TED:NOTICE:%d-%d:TEXT:EN:HTML&tabId=1", this.number(),this.year());
 	}
 
 	private static int validateStringID(String s) {
 		Matcher m = ID_PATTERN.matcher(s);
 		checkArgument(m.find(),
-				"String ID should have the format 'number-year', where number length is between 1 and 6, and year is always 4 characters long.");
+				"String ID should have the format 'number-year', where number length is between 1 and 6, and year is always 4 characters long. Yours: " + s);
 		return calculateID(Integer.parseInt(m.group("n")), Integer.parseInt(m.group("y")));
 	}
 
@@ -56,10 +60,21 @@ public class NoticeID implements Comparable<NoticeID> {
 		return y;
 	}
 
-	private final int id;
+	protected final int id;
 
-	private NoticeID(int id) {
+	private final String lang;
+
+	public NoticeID(int id) {
+		this(id, "HU");
+	}
+
+	public NoticeID(int id, String lang) {
 		this.id = id;
+		this.lang = lang;
+	}
+
+	public String getLang() {
+		return lang;
 	}
 
 	public NoticeID(int number, int year) {

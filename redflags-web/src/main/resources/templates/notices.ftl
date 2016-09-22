@@ -143,7 +143,7 @@ Model:
 					<option value=""><@label "notices.filter.doc.all" /></option>
 					<#if docTypes??>
 						<#list docTypes as dt>
-							<option value="${dt.id}" <#if filters["doc"]?? && dt.id == filters["doc"]>selected</#if>><@label "notice.data.documentType.${dt.id}" dt.name /></option>
+						    <#-- <option value="${dt.id}" <#if filters["doc"]?? && dt.id == filters["doc"]>selected</#if>><@label "notice.data.documentType.${dt.id}" dt.name /></option> -->
 						</#list>
 					</#if>
 				</select>

@@ -105,9 +105,10 @@ public class CSV2MySQL {
 		s.execute(String.format(
 				"LOAD DATA LOCAL INFILE '%s' " + //
 						"REPLACE INTO TABLE %s " + //
+						"CHARACTER SET %s " + //
 						"COLUMNS TERMINATED BY '%s' " + //
 						"LINES TERMINATED BY '%s';", //
-				filename, table, colDelimiter, rowDelimiter));
+				filename, table, "UTF8", colDelimiter,  rowDelimiter));
 		s.close();
 	}
 }

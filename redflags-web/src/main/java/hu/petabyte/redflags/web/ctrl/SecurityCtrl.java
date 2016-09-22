@@ -105,7 +105,7 @@ public class SecurityCtrl {
 	public String forgotSend(
 			Map<String, Object> m,
 			@RequestParam(required = true) String email,
-			@RequestParam(value = "g-recaptcha-response", required = true) String captcha,
+			@RequestParam(value = "g-recaptcha-response", required = false) String captcha,
 			Locale loc) {
 
 		if (svc.validateCaptcha(captcha)) {
@@ -136,7 +136,7 @@ public class SecurityCtrl {
 			@RequestParam(required = true) String email,
 			@RequestParam(required = true) String password,
 			@RequestParam(required = true) String name,
-			@RequestParam(value = "g-recaptcha-response", required = true) String captcha,
+			@RequestParam(value = "g-recaptcha-response", required = false) String captcha,
 			Locale loc) {
 
 		email = email.toLowerCase();

@@ -53,9 +53,9 @@ public class Notice {
 
 	public Notice(NoticeID id) {
 		this.id = id;
-		this.url = String.format("http://ted.europa.eu/udl?uri=TED:NOTICE:%d-%d:TEXT:EN:HTML&tabId=1", id.number(),
-				id.year());
+		this.url = id.calculateURL();
 	}
+
 
 	public List<Award> getAwards() {
 		return awards;
@@ -139,7 +139,21 @@ public class Notice {
 
 	@Override
 	public String toString() {
-		return "Notice [id=" + id + "]";
+		return "Notice{" +
+				"id=" + id +
+				", url='" + url + '\'' +
+				", documentFamilyId=" + documentFamilyId +
+				", cancelled=" + cancelled +
+				", data=" + data +
+				", familyMembers=" + familyMembers +
+				", contr=" + contr +
+				", objs=" + objs +
+				", lots=" + lots +
+				", left=" + left +
+				", proc=" + proc +
+				", awards=" + awards +
+				", compl=" + compl +
+				", indicatorResults=" + indicatorResults +
+				'}';
 	}
-
 }

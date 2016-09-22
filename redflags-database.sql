@@ -186,7 +186,7 @@ CREATE TABLE `te_data` (
   `originalLanguage` varchar(200) DEFAULT NULL,
   `place` varchar(200) DEFAULT NULL,
   `publicationDate` datetime DEFAULT NULL,
-  `title` varchar(200) DEFAULT NULL,
+  `title` varchar(1024) DEFAULT NULL,
   `noticeId` varchar(200) DEFAULT NULL,
   `rev` decimal(22,0) DEFAULT NULL,
   PRIMARY KEY (`id`)

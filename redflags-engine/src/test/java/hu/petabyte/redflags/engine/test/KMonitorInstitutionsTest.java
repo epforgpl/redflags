@@ -27,7 +27,7 @@ public class KMonitorInstitutionsTest {
 
 	private static final KMonitorInstitutions kmdb = new KMonitorInstitutions();
 
-	@BeforeClass
+	//@BeforeClass
 	public static void init() {
 		kmdb.setDbhost("kmonitor.hu");
 		kmdb.setDbname("kmonitordb");
@@ -43,7 +43,7 @@ public class KMonitorInstitutionsTest {
 		return k;
 	}
 
-	@Test
+	//@Test
 	public void test() {
 		// qnp("Mezőgazdasági és Vidékfejlesztési Hivatal");
 		// qnp("Budapest Főváros Önkormányzata");

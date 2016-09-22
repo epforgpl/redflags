@@ -24,9 +24,9 @@ redflags:
     url:                       http://www.redflags.eu
     triggerSecret:             ...
 
-#site.useCaptcha:               false
+site.useCaptcha:               false
 #site.message:                  site.message.newDirective
-site.languages:                en,hu
+site.languages:                pl,en,hu
 
 
 

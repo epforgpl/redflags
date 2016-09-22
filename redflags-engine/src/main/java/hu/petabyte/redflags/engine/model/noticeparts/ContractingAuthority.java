@@ -33,6 +33,16 @@ public class ContractingAuthority {
 	private String rawPurchasingOnBehalfOfOther;
 	private Organization sendTendersToOrg;
 
+	public int getOffersCount() {
+		return offersCount;
+	}
+
+	public void setOffersCount(int offersCount) {
+		this.offersCount = offersCount;
+	}
+
+	private int offersCount;
+
 	public ContractingAuthority() {
 		// needed by BeanWrapper
 	}
@@ -101,4 +111,17 @@ public class ContractingAuthority {
 		this.sendTendersToOrg = sendTendersToOrg;
 	}
 
+	@Override
+	public String toString() {
+		return "ContractingAuthority{" +
+				"contractingOrg=" + contractingOrg +
+				", id='" + id + '\'' +
+				", obtainFurtherInfoFromOrg=" + obtainFurtherInfoFromOrg +
+				", obtainSpecsFromOrg=" + obtainSpecsFromOrg +
+				", purchasingOnBehalfOfOrg=" + purchasingOnBehalfOfOrg +
+				", purchasingOnBehalfOfOther=" + purchasingOnBehalfOfOther +
+				", rawPurchasingOnBehalfOfOther='" + rawPurchasingOnBehalfOfOther + '\'' +
+				", sendTendersToOrg=" + sendTendersToOrg +
+				'}';
+	}
 }
