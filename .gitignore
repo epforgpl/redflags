@@ -18,7 +18,10 @@ redflags-docs/docs/doc/
 .idea/
 *.iml
 
+__AUTO_SCRIPT_IS_RUNNING.lck
+automation-logs/
+backups/
+		
 # there are censored versions of these with ".example" suffix:
 application.yml
 redflags-auto.sh
-CaptchaValidatorSvc.java
