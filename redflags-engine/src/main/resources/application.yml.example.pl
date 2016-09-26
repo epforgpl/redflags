@@ -41,78 +41,22 @@ redflags.engine:
 
 redflags.engine.gears:
 
-    # parse metadata
-    - metadataParser
-    #- cancelledNoticeFilter
+    # magic I. - fetch and parse EPF notice
+    - procurementParser
 
-    # skip non-Hungarian notices
+    # skip non-Polish notices
     - countryFilter
     - originalLanguageFilter
 
-    # download all tabs, and related notice tabs
-    - archiver
-    - docFamilyFetcher
-    - docFamilyArchiver
-
     # skip further processing of old notices and tenders with non-classic dir.
-    - publicationDateFilter
-    - docFamilyDateFilter
-    - directiveCorrector
-    - directiveFilter
-
-    # magic I. - parse document based on template
-    - templateBasedDocumentParser
-    - rawValueParser
-    - frameworkAgreementParser
-    - estimatedValueParser
-    - renewableParser
-    - countOfInvOpsParser
-    - awardCriteriaParser
-    - openingDateParser
-    - renewalCountParser
+    # ? - publicationDateFilter
 
     # magic II. - indicators
-    - fwAgOneParticipantIndicator
-    - fwAgFewParticipantsIndicator
-    - fwAgLongDurationIndicator
-    - fwAgHighEstimatedValueIndicator
-    - contrDescCartellingIndicator
-    - highEstimatedValueIndicator
-    - totalQuantityHiDeltaIndicator
-    - renewalOfContractIndicator
-    - durationLongOrIndefiniteIndicator
-    - persSitMissingCondIndicator
-    - finAbMissingMinCondIndicator
-    - finAbEquityCondIndicator
-    - finAbRevenueCondExceedEstimValIndicator
-    - finAbRevenueCondManyYearsIndicator
-    - techCapMissingMinCondIndicator
-    - techCapSingleContractRefCondIndicator
-    - techCapExpertsExpCondManyYearsIndicator
-    - techCapGeoCondIndicator
-    - techCapRefCondExceedEstimValIndicator
-    - techCapRefCondManyYearsIndicator
-    - techCapEURefCondIndicator
-    - procTypeAcceleratedIndicator
-    - countOfInvOpsLowIndicator
-    - countOfInvOpsNoCondIndicator
-    - awCritLacksIndicator
-    - awCritPaymentDeadlineCondIndicator
-    - awCritMethodMissingIndicator
-    - deadlineIsTightIndicator
-    - openingDateDiffersFromDeadlineIndicator
-    - offerGuaranteeIsHighIndicator
-    - finalValFarFromEstimValIndicator
-    - procWithoutContractNoticeIndicator
-    - numberOfOffersLowIndicator
-    - unsuccessfulProcWithRiskIndicator
-    - unsuccessfulProcWithoutInfo1Indicator
-    - unsuccessfulProcWithoutInfo2Indicator
-    - decisionDateDiffersFromOpeningDateIndicator
-    - highFinalValueIndicator
-
-    #- contractingOrgInKMDBIndicator
-    #- winnerOrgInKMDBIndicator
+    - durationLongIndicator
+    - economicAbilityNoMinReqsIndicator
+    - economicAbilityCriteriaForCapitalIndicator
+    - technicalCapacityPeriodOfExperienceIndicator
+    - smallNumberOfTendersIndicator
 
     # output
     #- flagExporter
@@ -129,25 +73,19 @@ redflags.engine.gears:
 # ______________________________________________________________________________
 #
 
-db: 0
+db: 1
 dbhost: ...
 dbname: ...
 dbuser: ...
 dbpass: ...
 rev: 6
 
-kmonitor.inst:
-    dbhost: ...
-    dbname: ...
-    dbuser: ...
-    dbpass: ...
-
 redflags.engine.gear:
-    archive.langs:                      HU,EN
+    archive.langs:                      PL,HU,EN
     parse.lang:                         HU
     filter:
-        country:                        HU
-        originalLanguage:               HU
+        country:                        PL
+        originalLanguage:               PL
         directive:                      .*2004/18/.*  # classic directive
         publicationDateMin:             2012-07-01    # Kbt. 2011 filter
 
@@ -178,9 +116,6 @@ redflags.engine.parser.tab012:
 
 redflags.engine.tedinterface:
     retryCount: 5
-
-redflags.engine.epf:
-    host: https://api-v3.mojepanstwo.pl/dane
 
 # ______________________________________________________________________________
 #

@@ -23,4 +23,5 @@ automation-logs/
 backups/
 		
 # there are censored versions of these with ".example" suffix:
+application.yml
 redflags-auto.sh
