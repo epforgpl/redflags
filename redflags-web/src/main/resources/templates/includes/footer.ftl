@@ -37,7 +37,9 @@
 		<a href="http://ec.europa.eu/dgs/home-affairs/" target="_blank"><img src="/img/eu-logo.png" alt="European Commission" width="53" height="35" /></a>		
 		<a href="http://k-monitor.hu/" target="_blank"><img src="/img/kmonitor-logo.png" alt="K-Monitor" width="111" height="35" /></a>
 		<a href="http://petabyte-research.org/" target="_blank"><img src="/img/petabyte-logo.png" alt="Petabyte" width="88" height="35" /></a>			
-		<a href="http://transparency.hu/" target="_blank"><img src="/img/transparency-international-logo.png" alt="Transparency International" width="120" height="35" /></a>			
+		<a href="http://transparency.hu/" target="_blank"><img src="/img/transparency-international-logo.png" alt="Transparency International" width="120" height="35" /></a>
+		<a href="http://epf.org.pl/en/" target="_blank"><img src="/img/epanstwo.png" alt="ePanstwo Foundation" height="35" /></a> 
+		<a href="http://transparencee.org/" target="_blank"><img src="/img/transparencee.png" alt="TransparenCEE network" height="35" /></a> 	
 	</div>
 </div>
 
