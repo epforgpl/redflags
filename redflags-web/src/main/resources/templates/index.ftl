@@ -116,7 +116,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<p class="lead"><@label "contact.text" /></p>
-		<p class="lead text-center"><br/><strong>info @ redflags . eu</strong></p>
+		<p class="lead text-center"><br/><strong>${contact!"info@redflags.eu"}</strong></p>
 	</div>
 </div>
 

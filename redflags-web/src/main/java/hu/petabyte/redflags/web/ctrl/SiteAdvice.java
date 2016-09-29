@@ -32,8 +32,16 @@ public class SiteAdvice {
 
 	private @Autowired SecuritySvc security;
 
+	@Value("${redflags.contact}")
+	private String contact;
+
 	@Value("${site.message:}")
 	private String message;
+
+	@ModelAttribute("contact")
+	public String getContact() {
+		return contact;
+	}
 
 	@ModelAttribute("siteMessage")
 	public String getMessage() {
