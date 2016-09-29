@@ -29,7 +29,7 @@
 <p class="text-center license">
 	<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;margin-bottom:10px" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>
 	<br>
-	This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><b>Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</b></a>.
+        <@label "license.cc-by-nc-sa-4.0" />
 </p>
 
 <div class="footer">
