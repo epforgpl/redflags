@@ -27,6 +27,7 @@ redflags:
 #site.useCaptcha:               false
 #site.message:                  site.message.newDirective
 site.languages:                en,hu
+site.facebookLanguages:        en_US,hu_HU
 
 
 

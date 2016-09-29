@@ -15,6 +15,7 @@
  */
 package hu.petabyte.redflags.web.ctrl;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -27,8 +28,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @ControllerAdvice
 public class LangAdvice {
 
+	@Value("${site.facebookLanguages:en_US,hu_HU}")
+	private String facebookLanguages;
+
 	@Value("${site.languages:en,hu}")
 	private String languages;
+
+	@ModelAttribute("fblang")
+	public String fblang(Locale loc) {
+		int i = Arrays.asList(languages.split(",")).indexOf(lang(loc));
+		String[] fls = facebookLanguages.split(",");
+		return -1 == i || i >= fls.length ? "en_US" : fls[i];
+	}
 
 	@ModelAttribute("lang")
 	public String lang(Locale loc) {

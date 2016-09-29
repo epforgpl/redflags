@@ -24,6 +24,8 @@ Of course, the *Red Flags* website designed to be able to read in multiple langa
 
 The language chooser loads the **list of languages** from the `site.languages` property (handled in `LangAdvice.java`), which must contain language codes separated by comma, e.g. `site.languages: en,hu,pl`.
 
+There's an additional language code list property called `site.facebookLanguages` which is needed for the Facebook Like plugin, because it uses a different language code format. You must list the same languages in the same order as above, like this: `site.facebookLanguages: en_US,hu_HU,pl_PL`.
+
 The tooltip texts of the **language chooser buttons** are defined in `lang.{LANG}` message properties, e.g. `lang.en=English version`. I think each button must have the same tooltip in every language, I mean `lang.en=English version` should be the same in any language file, because this button is only for people who speak English.
 
 One last thing: the *"About the project"* section on the front page is also multilingual but it's outside of properties files. The texts are in `src/main/resources/templates/about_{LANG}.html` files and imported automatically by `index.ftl`.
