@@ -78,18 +78,11 @@ public class EPFScope extends AbstractScope {
         if(!hasNext){
             LOG.info("scope processing finished");
         }
-        if(count>300){
-            return false;
-        }
         return hasNext;
     }
 
     @Override
     public NoticeID next() {
-        /*if(first){
-            first = false;
-            return new NoticeID(2820754, "PL");
-        }*/
         int nId = Integer.parseInt(itr.next());
         LOG.info("processing notice " + nId + ", " + count + " procurement in row");
         return new BZPNoticeId(nId);
