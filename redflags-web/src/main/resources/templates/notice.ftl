@@ -48,7 +48,7 @@ Model:
 	</div>
 	<div class="col-md-2 text-right">
 		<a class="btn btn-xs btn-success" href="${basic.tedUrl}" target="_blank">
-			<@label "notice.tedlink" />
+			<@label "notice.checkSource" />
 			&nbsp;<span class="glyphicon glyphicon-new-window"></span>
 		</a>
 	</div>
