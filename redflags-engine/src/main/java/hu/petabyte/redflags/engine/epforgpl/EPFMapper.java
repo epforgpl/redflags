@@ -304,7 +304,7 @@ public class EPFMapper {
 
 
         } catch (Exception e) {
-            LOG.trace("error while mapping", e);
+            LOG.trace("error while mapping contracting authority", e);
         }
 
         return ca;
