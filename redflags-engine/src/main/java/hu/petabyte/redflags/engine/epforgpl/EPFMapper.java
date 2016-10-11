@@ -196,7 +196,7 @@ public class EPFMapper {
 
             Duration d = new Duration();
             d.setInMonths(jsonObject.getInt("zamowienia_publiczne.liczba_miesiecy"));
-            obj.setFrameworkDuration(d);
+            obj.setDuration(d);
 
             obj.setLots(jsonObject.getString("zamowienia_publiczne.oferty_czesciowe"));
 

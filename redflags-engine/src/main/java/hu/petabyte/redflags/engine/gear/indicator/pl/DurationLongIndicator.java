@@ -18,7 +18,6 @@ import org.springframework.stereotype.Component;
  Załącznik I (informacje dotyczące ofert częściowych) pkt 3 - wskazany okres przekracza 4 lata
  */
 
-// TODO map framework agreement
 @Component
 @ConfigurationProperties(prefix = "durationLongIndicator")
 public class DurationLongIndicator extends BZP2013Indicator {
@@ -28,9 +27,8 @@ public class DurationLongIndicator extends BZP2013Indicator {
     @Override
     public IndicatorResult flagImpl(Notice notice) {
         for(ObjOfTheContract o : notice.getObjs()){
-            if(!Boolean.TRUE.toString().equals(o.getFrameworkAgreement()) && o.getFrameworkDuration().getInMonths()>4*12){
-
-                return returnFlag("durationLong", "months=" + o.getFrameworkDuration().getInMonths());
+            if( o.getDuration().getInMonths()>4*12){
+                return returnFlag("durationLong", "months=" + o.getDuration().getInMonths());
             }
         }
         return null;
