@@ -252,7 +252,7 @@ Model:
 					</div>
 				</#if>
 				
-				<#if o.renewalCount??>
+				<#if o.renewalCount &gt; 0>
 					<div class="row details-row">
 						<div class="col-md-3">
 							<strong><@label "notice.obj.renewalCount" /></strong>
