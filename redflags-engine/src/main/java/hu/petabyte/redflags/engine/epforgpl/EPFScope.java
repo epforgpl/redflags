@@ -31,7 +31,7 @@ public class EPFScope extends AbstractScope {
     @Autowired
     private EPFData dataSource = new EPFData();
 
-    private final static int PAGE_SIZE = 10000;
+    private final static int PAGE_SIZE = 500;
 
     private Iterator<String> itr;
 
