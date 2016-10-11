@@ -21,6 +21,8 @@ redflags-docs/docs/doc/
 __AUTO_SCRIPT_IS_RUNNING.lck
 automation-logs/
 backups/
+redflags-engine/te_* 
+# shouldn't te_* files be written to some tmp directory?
 		
 # there are censored versions of these with ".example" suffix:
 application.yml
