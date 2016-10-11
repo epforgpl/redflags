@@ -412,6 +412,11 @@ ul.menu li a:hover, ul.menu li.current a { color: white; opacity: 1.0; }
 	max-width: 300px !important;
 }
 
+.popover-content {
+    overflow: auto;
+    height: 200px;
+}
+
 .popover-title.flag-info {
 	background-image: url("/img/flag_red.png");
 	background-position: 4px center;

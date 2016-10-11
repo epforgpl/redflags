@@ -57,7 +57,7 @@
 					</div>
 					<div class="text-right" style="display: table-cell; vertical-align: middle;">
 						<span class="glyphicon glyphicon-info-sign flag-info-icon" tabindex="0" role="button"
-						data-toggle="popover" data-trigger="focus" data-placement="left" data-container="body"
+						data-toggle="popover" data-trigger="focus" data-placement="left" data-container="body" data-html="true"
 						title="<@label indName(f.id) />" data-content="<@label indDesc(f.id) />"
 						data-template='<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title flag-info <#if f.score &lt;= 0.5>pink-flag</#if>"></h3><div class="popover-content"></div></div>'
 						></span>
