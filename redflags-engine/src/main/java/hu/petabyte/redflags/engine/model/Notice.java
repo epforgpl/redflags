@@ -35,7 +35,6 @@ public class Notice {
 
 	// meta
 	private final NoticeID id;
-	private final String url;
 	private NoticeID documentFamilyId;
 	private boolean cancelled;
 	private final Data data = new Data();
@@ -53,7 +52,6 @@ public class Notice {
 
 	public Notice(NoticeID id) {
 		this.id = id;
-		this.url = id.calculateURL();
 	}
 
 
@@ -106,7 +104,7 @@ public class Notice {
 	}
 
 	public String getUrl() {
-		return url;
+		return this.id.calculateURL();
 	}
 
 	public boolean isCancelled() {
@@ -141,7 +139,7 @@ public class Notice {
 	public String toString() {
 		return "Notice{" +
 				"id=" + id +
-				", url='" + url + '\'' +
+				", url='" + this.id.calculateURL() + '\'' +
 				", documentFamilyId=" + documentFamilyId +
 				", cancelled=" + cancelled +
 				", data=" + data +
