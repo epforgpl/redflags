@@ -20,14 +20,14 @@
 
 redflags:
     from:                      noreply@redflags.eu
-    contact:                   zsolt.juranyi@petabyte-research.org
+    contact:                   info@redflags.eu
     url:                       http://www.redflags.eu
     triggerSecret:             ...
 
 site.useCaptcha:               false
 #site.message:                  site.message.newDirective
-site.languages:                pl,en,hu
-
+site.languages:                en,hu,pl
+site.facebookLanguages:        en_US,hu_HU,pl_PL
 
 
 # -----------------------------------------------------------------------------
