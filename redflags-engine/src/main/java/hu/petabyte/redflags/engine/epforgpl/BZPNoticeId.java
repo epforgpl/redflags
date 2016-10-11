@@ -8,11 +8,22 @@ import hu.petabyte.redflags.engine.model.NoticeID;
 public class BZPNoticeId extends NoticeID {
 
 
+    private String position;
+
+    private String year;
+
+
     public BZPNoticeId(int id) {
         super(id, "PL");
     }
+
+    public void setUrlParameters(String position, String year){
+        this.position = position;
+        this.year = year;
+    }
+
     public String calculateURL(){
-        return String.format("https://api-v3.mojepanstwo.pl/dane/zamowienia_publiczne/%s", this.id);
+        return String.format("http://bzp0.portal.uzp.gov.pl/index.php?ogloszenie=show&pozycja=%s&rok=%s", this.position, this.year);
     }
 
     @Override

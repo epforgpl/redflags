@@ -44,6 +44,17 @@ public class EPFMapper {
         return null;
     }
 
+    public void fillNoticeId(BZPNoticeId id){
+        try {
+            JSONObject jsonObject = getProcurementJSON().getJSONObject("data");
+            id.setUrlParameters(jsonObject.getString("zamowienia_publiczne.pozycja"),
+                    jsonObject.getString("zamowienia_publiczne.data_publikacji"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public Notice getNotice(Notice n){
 
         JSONObject data = null;
@@ -53,6 +64,7 @@ public class EPFMapper {
             LOG.warn("exception while parsing procurement data", e);
         }
 
+        fillNoticeId((BZPNoticeId) n.getId());
 
         n.setContr(getContractibnAuthority());
 
