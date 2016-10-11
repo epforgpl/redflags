@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class EPFScope extends AbstractScope {
     public EPFScope() {
     }
 
-    private void parseAnswer(Answer a) throws JSONException {
+    private Iterator parseAnswer(Answer a) throws JSONException {
         List<String> ids = new ArrayList<>();
         JSONArray json = new JSONObject(a.getBody()).getJSONArray("Dataobject");
         for (int i = 0; i < json.length(); i++) {
@@ -51,26 +52,20 @@ public class EPFScope extends AbstractScope {
             String id = objectInArray.getString("id");
             ids.add(id);
         }
-        itr = ids.iterator();
+        return ids.iterator();
     }
 
     @Override
     public boolean hasNext() {
-        /*if(first){
-            return true;
-        }*/
-        boolean hasNext = itr != null ? hasNext = itr.hasNext() : false;
+
+        boolean hasNext = itr != null ? itr.hasNext() : false;
 
         if(!hasNext){
             LOG.info("loading procurements. Page number: " + (currentPage+1));
             try {
-                if(itr==null){
-                    parseAnswer(dataSource.getProcurementIdsAnswer(++currentPage, PAGE_SIZE));
-                } else {
-                    return false;
-                }
+                itr = parseAnswer(dataSource.getProcurementIdsAnswer(++currentPage, PAGE_SIZE));
                 hasNext = itr.hasNext();
-            } catch (JSONException e) {
+            } catch (JSONException | RestClientException e) {
                 LOG.error("error while parsing scope page", e);
             }
         }

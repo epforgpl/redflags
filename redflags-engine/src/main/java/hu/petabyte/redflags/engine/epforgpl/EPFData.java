@@ -50,7 +50,6 @@ public class EPFData {
 
     public Answer getProcurementIdsAnswer(Integer pageNo, Integer pageSize) {
         LOG.info("fetching procurement list");
-        List<String> ids = new ArrayList<>();
         Answer a = connector.fetch("zamowienia_publiczne/?limit=" + pageSize + "&page=" + pageNo);
         return a;
     }

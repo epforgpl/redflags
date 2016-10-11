@@ -252,7 +252,7 @@ public class EPFMapper {
                         ca.setOffersCount(Integer.parseInt(offersCount));
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    LOG.trace("error while mapping czesci-wykonawcy in contracting authority", e);
                 }
             }
             JSONObject jsonObject = getContractingAuthorityJSON().getJSONObject("data");
