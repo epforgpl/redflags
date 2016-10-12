@@ -83,7 +83,6 @@ create table rfwl_temp as
 		left join (
 			select contractingOrgId 'id', count(*) 'calls'
 			from rfwl_notices
-			where typeId = "TD-3"
 			group by contractingOrgId
 			) c on o.id = c.id
 		left join (
