@@ -84,6 +84,7 @@ public class MySQLExporter extends AbstractExporter {
 	@Override
 	public void afterSession() throws Exception {
 		if (!skipping) {
+			csvLoader = new CSV2MySQL(host, name, user, pass);
 			CSVFile csv;
 
 			// CPV - id, code, name, rev
@@ -127,7 +128,7 @@ public class MySQLExporter extends AbstractExporter {
 		skipping = 0 == enabled;
 		if (!skipping) {
 			tableCSVs.clear();
-			csvLoader = new CSV2MySQL(host, name, user, pass);
+			//csvLoader = new CSV2MySQL(host, name, user, pass);
 		} else {
 			LOG.debug("MySQL Exporter is off, start app with --db=1 option to turn it on");
 		}
