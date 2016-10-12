@@ -139,7 +139,7 @@ create table if not exists rfwl_temp as
 		rfwl_notices n
 		inner join te_relationdescriptor r on r.relationLeftId = n.id
 	where
-		typeId="TD-7" and r.additonalInfo = "contractType"
+		r.additonalInfo = "contractType"
 	group by year(n.date), r.relationRightId;
 drop table if exists rfwl_barplot;
 rename table rfwl_temp to rfwl_barplot;
