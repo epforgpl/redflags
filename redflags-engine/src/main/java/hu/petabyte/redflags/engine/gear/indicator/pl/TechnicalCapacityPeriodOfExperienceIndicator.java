@@ -20,12 +20,12 @@ import java.util.regex.Pattern;
 @ConfigurationProperties(prefix = "technicalCapacityPeriodOfExperienceIndicator")
 public class TechnicalCapacityPeriodOfExperienceIndicator extends BZP2013Indicator {
 
-    private static final String ROADWORKS = "Roboty budowlane";
-    private static final String SERVICES = "Usługi";
-    private static final String SUPPLIES = "Dostawy";
+    static final String PERIOD_OF_EXPERIENCE = "periodOfExperience";
+    static final String ROADWORKS = "Roboty budowlane";
+    static final String SERVICES = "Usługi";
+    static final String SUPPLIES = "Dostawy";
 
-    //private static final String PATTERN = "w okresie ostatnich(.*)lat przed upływem terminu składania ofert";
-    private static final String PATTERN = "w okresie ostatnich (.*) lat przed dniem wszczęcia";
+    private static final String PATTERN = "w okresie ostatnich (.*) lat przed upływem terminu składania ofert";
 
     @Override
     public IndicatorResult flagImpl(Notice notice) {
@@ -35,13 +35,13 @@ public class TechnicalCapacityPeriodOfExperienceIndicator extends BZP2013Indicat
         }
         if (type.getName().equalsIgnoreCase(ROADWORKS)) {
             for (ObjOfTheContract o : notice.getObjs()) {
-                if (o.getFinancingConditions() != null && !o.getFinancingConditions().trim().isEmpty()) {
+                if (o.getAdditionalInfo() != null && !o.getAdditionalInfo().trim().isEmpty()) {
                     return follows(o.getAdditionalInfo(), Arrays.asList("pięć", "pięciu", "5"));
                 }
             }
         } else if (type.getName().equalsIgnoreCase(SERVICES) || type.getName().equalsIgnoreCase(SUPPLIES)) {
             for (ObjOfTheContract o : notice.getObjs()) {
-                if (o.getFinancingConditions() != null && !o.getFinancingConditions().trim().isEmpty()) {
+                if (o.getAdditionalInfo() != null && !o.getAdditionalInfo().trim().isEmpty()) {
                     return follows(o.getAdditionalInfo(), Arrays.asList("trzy", "trzech", "3"));
                 }
             }
@@ -50,13 +50,15 @@ public class TechnicalCapacityPeriodOfExperienceIndicator extends BZP2013Indicat
         return null;
     }
 
+
     private IndicatorResult follows(String experience, Collection allowed) {
         Pattern pattern = Pattern.compile(PATTERN);
         Matcher m = pattern.matcher(experience);
         if (m.find()) {
             String found = m.group(1);
+            found = found!=null ? found.trim() : null;
             if (!allowed.contains(found)) {
-                return returnFlag("periodOfExperience", "period=" + found);
+                return returnFlag(PERIOD_OF_EXPERIENCE, "period=" + found);
             }
         }
         return null;

@@ -15,7 +15,17 @@ import org.springframework.stereotype.Component;
 
 public class EconomicAbilityCriteriaForCapitalIndicator extends BZP2013Indicator {
 
-    private static final String[] SHARE_CAPITAL_PHRASES = {"zakladowy", "akcyjny", "działalności"};
+    private static final String[] SHARE_CAPITAL_PHRASES = {
+            "kapitał zakładowy",
+            "kapitału zakładowego",
+            "kapitałowi zakładowemu",
+            "kapitałem zakładowym",
+            "kapitale zakładowym",
+            "kapitał akcyjny",
+            "kapitału akcyjnego",
+            "kapitałowi akcyjnemu",
+            "kapitałem akcyjnym",
+            "kapitale akcyjny"};
 
     @Override
     public IndicatorResult flagImpl(Notice notice) {
