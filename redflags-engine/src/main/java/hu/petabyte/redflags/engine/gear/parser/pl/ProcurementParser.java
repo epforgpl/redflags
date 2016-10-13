@@ -26,7 +26,7 @@ public class ProcurementParser extends AbstractGear {
     @Override
     protected Notice processImpl(Notice notice) throws Exception {
 
-        LOG.info("parsing procurement for notice {}", notice.getId());
+        LOG.debug("parsing procurement for notice {}", notice.getId());
 
         Answer a = dataSource.getProcurement(notice);
         String procurementBody = a.getBody();
@@ -41,7 +41,7 @@ public class ProcurementParser extends AbstractGear {
 
         notice = epfMapper.getNotice(notice);
 
-        LOG.info("mapping performed. Notice title {}", notice.getData().getTitle());
+        LOG.debug("mapping performed. Notice title {}", notice.getData().getTitle());
 
         return notice;
     }

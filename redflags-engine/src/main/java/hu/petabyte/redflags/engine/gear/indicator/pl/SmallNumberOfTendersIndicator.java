@@ -15,7 +15,10 @@ public class SmallNumberOfTendersIndicator extends BZP2013Indicator {
 
     @Override
     public IndicatorResult flagImpl(Notice notice) {
-        int offersCount = notice.getContr()!=null ? notice.getContr().getOffersCount() : -1;
+        int offersCount = -1;
+        if(notice.getObjs()!=null && notice.getObjs().size()>0 && notice.getObjs().get(0).getOffersCount()!=null){
+            offersCount = notice.getObjs().get(0).getOffersCount();
+        }
         if(offersCount<=2 && offersCount >0){
             return returnFlag("smallNumberOfTenders", "count=" + offersCount);
         }

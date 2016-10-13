@@ -24,7 +24,7 @@ public class EconomicAbilityNoMinReqsIndicator extends BZP2013Indicator {
         boolean noMinReqs = true;
         if(notice.getData().getContractType()!=null && notice.getData().getContractType().getName().equalsIgnoreCase(ROADWORKS)){
             for(ObjOfTheContract o : notice.getObjs()){
-                if(o.getFinancingConditions()!=null && !o.getFinancingConditions().trim().isEmpty()){
+                if(notice.getLeft()==null || notice.getLeft().getFinancialAbility()==null || notice.getLeft().getFinancialAbility().trim().isEmpty()){
                     noMinReqs = false;
                 }
             }

@@ -65,9 +65,21 @@ public class ObjOfTheContract {
 	private double totalFinalValueVat;
 	private String totalQuantity;
 	private String variants;
+	private Integer offersCount;
+
+
 
 	public ObjOfTheContract() {
 		// needed by BeanWrapper
+	}
+
+
+	public Integer getOffersCount() {
+		return offersCount;
+	}
+
+	public void setOffersCount(Integer offersCount) {
+		this.offersCount = offersCount;
 	}
 
 	public String getAdditionalInfo() {

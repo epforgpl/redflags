@@ -273,6 +273,9 @@ Model:
 						</div>
 					</div>
 				</#if>
+
+				<@details map=o fields=['offersCount'] labelPrefix="notice.obj" />
+
 				
 			</@accordion_panel>
 			<#assign i = i + 1 />

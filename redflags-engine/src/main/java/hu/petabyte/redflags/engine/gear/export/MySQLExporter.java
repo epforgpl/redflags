@@ -501,6 +501,7 @@ public class MySQLExporter extends AbstractExporter {
 			csv.writeCell(obj.getRawLotEstimatedValue());
 			csv.writeCell(obj.getLotEstimatedValue());
 			csv.writeCell(obj.getLotEstimatedValueCurr());
+			csv.writeCell(obj.getOffersCount());
 			csv.endLine();
 
 			if (null != obj.getDuration()) {

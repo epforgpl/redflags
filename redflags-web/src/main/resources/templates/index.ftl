@@ -262,12 +262,17 @@ function sumValueBars(data) {
 			}
 		},
 		title: { text: '<@label "charts.sumValues" />' },
+		<#assign arg1>
+            <@label "charts.defaultCurrency" />
+        </#assign>
+        <#assign argArray = ["${arg1}"]>
 		tooltip: {
 			shared: true,
 			valueDecimals: 2,
-			valueSuffix: ' <@label "charts.billionHUF" />'
+			valueSuffix: ' <@spring.messageArgs "charts.billionHUF" argArray/>'
 		},
-		yAxis: { title: { text: '<@label "charts.sumValueAxis" />' } }
+
+		yAxis: { title: { text: '<@spring.messageArgs "charts.sumValueAxis" argArray/>' } }
 	});
 }
 
