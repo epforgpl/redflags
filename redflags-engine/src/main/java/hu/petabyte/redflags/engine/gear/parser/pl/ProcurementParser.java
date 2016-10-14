@@ -31,13 +31,15 @@ public class ProcurementParser extends AbstractGear {
         Answer a = dataSource.getProcurement(notice);
         String procurementBody = a.getBody();
 
-        a = dataSource.getProcurementPurchaser(EPFMapper.getPurchaserId(a.getBody()));
+        EPFMapper epfMapper = new EPFMapper(procurementBody);
+
+        a = dataSource.getProcurementPurchaser(epfMapper.getPurchaserId());
         String contractingAuthBody = a.getBody();
 
         a = dataSource.getProcurementDocument(notice);
         String docsBody = a.getBody();
 
-        EPFMapper epfMapper = new EPFMapper(procurementBody, contractingAuthBody, docsBody);
+        epfMapper.feed(contractingAuthBody, docsBody);
 
         notice = epfMapper.getNotice(notice);
 

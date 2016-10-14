@@ -17,21 +17,21 @@ public class Connector {
 
     private String url;
 
-    private ResponseEntity<String> re;
+    RestTemplate restTemplate;
 
     public Connector(String url) {
         this.url = url;
+        this.restTemplate = new RestTemplate();
     }
 
     public Answer fetch(String uri){
-        LOG.info("fetching data from {}", uri);
-        RestTemplate restTemplate = new RestTemplate();
+        LOG.debug("fetching data from {}", uri);
+        ResponseEntity<String> re = null;
         try {
             re = restTemplate.getForEntity(url + "/" + uri, String.class);
         }catch (HttpClientErrorException e){
             LOG.trace("error while fetching from " + uri, e);
         }
-        LOG.trace(re.toString());
         return new Answer(re);
     }
 

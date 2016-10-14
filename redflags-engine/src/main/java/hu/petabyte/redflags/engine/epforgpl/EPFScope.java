@@ -35,9 +35,7 @@ public class EPFScope extends AbstractScope {
 
     private Iterator<String> itr;
 
-    private boolean first = false;
-
-    private int currentPage = 0;
+    private int currentPage = 1;
 
     private long count;
 
@@ -61,9 +59,10 @@ public class EPFScope extends AbstractScope {
         boolean hasNext = itr != null ? itr.hasNext() : false;
 
         if(!hasNext){
-            LOG.info("loading procurements. Page number: " + (currentPage+1));
+            LOG.info("loading procurements. Page number: " + currentPage);
             try {
-                itr = parseAnswer(dataSource.getProcurementIdsAnswer(++currentPage, PAGE_SIZE));
+                itr = parseAnswer(dataSource.getProcurementIdsAnswer(currentPage, PAGE_SIZE));
+                currentPage++;
                 hasNext = itr.hasNext();
             } catch (JSONException | RestClientException e) {
                 LOG.error("error while parsing scope page", e);

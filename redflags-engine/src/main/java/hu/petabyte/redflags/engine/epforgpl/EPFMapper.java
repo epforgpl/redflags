@@ -22,22 +22,24 @@ public class EPFMapper {
 
     private static final Logger LOG = LoggerFactory.getLogger(EPFMapper.class);
 
-    private String json;
+    private JSONObject json;
 
-    private String caJson;
+    private JSONObject caJson;
 
-    private String docsJson;
+    private JSONObject docsJson;
 
-    public EPFMapper(String json, String contrAuthJson, String docsBody) {
-        System.out.println(json);
-        this.json = json;
-        this.caJson = contrAuthJson;
-        this.docsJson = docsBody;
+    public EPFMapper(String json) throws JSONException {
+        this.json = new JSONObject(json);
     }
 
-    public static String getPurchaserId(String procurementJson){
+    public void feed(String contrAuthJson, String docsBody) throws JSONException {
+        this.caJson = new JSONObject(contrAuthJson);
+        this.docsJson = new JSONObject(docsBody);
+    }
+
+    public String getPurchaserId(){
         try {
-            JSONObject jsonObject = new JSONObject(procurementJson).getJSONObject("data");
+            JSONObject jsonObject = json.getJSONObject("data");
             return jsonObject.getString("zamowienia_publiczne_zamawiajacy.id");
         } catch (JSONException e) {
             LOG.warn("exception while parsing purchuaser", e);
@@ -47,7 +49,7 @@ public class EPFMapper {
 
     public void fillNoticeId(BZPNoticeId id){
         try {
-            JSONObject jsonObject = getProcurementJSON().getJSONObject("data");
+            JSONObject jsonObject = json.getJSONObject("data");
             id.setUrlParameters(jsonObject.getString("zamowienia_publiczne.pozycja"),
                     jsonObject.getString("zamowienia_publiczne.data_publikacji"));
         } catch (JSONException e) {
@@ -60,7 +62,7 @@ public class EPFMapper {
 
         JSONObject data = null;
         try {
-            data = getProcurementJSON().getJSONObject("data");
+            data = json.getJSONObject("data");
         } catch (JSONException e) {
             LOG.warn("exception while parsing procurement data", e);
         }
@@ -87,24 +89,12 @@ public class EPFMapper {
         return n;
     }
 
-    private JSONObject getProcurementJSON() throws JSONException {
-        return new JSONObject(json);
-    }
-
-
-    private JSONObject getContractingAuthorityJSON() throws JSONException {
-        return new JSONObject(caJson);
-    }
-
-    private JSONObject getDocsJSON() throws JSONException {
-        return new JSONObject(docsJson);
-    }
 
     private Procedure getProcedure() {
         Procedure p = new Procedure();
         JSONObject jsonObject = null;
         try {
-            jsonObject = getProcurementJSON().getJSONObject("data");
+            jsonObject = json.getJSONObject("data");
             p.setProcedureTypeInfo(jsonObject.getString("zamowienia_publiczne_tryby.nazwa"));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -117,7 +107,7 @@ public class EPFMapper {
     private ObjOfTheContract getObjOfContract() {
         ObjOfTheContract obj = new ObjOfTheContract();
         try {
-            JSONObject jsonObject = getProcurementJSON().getJSONObject("data");
+            JSONObject jsonObject = json.getJSONObject("data");
 
             Duration d = new Duration();
             d.setInMonths(jsonObject.getInt("zamowienia_publiczne.liczba_miesiecy"));
@@ -127,7 +117,7 @@ public class EPFMapper {
             obj.setContractTitle(jsonObject.getString("zamowienia_publiczne.nazwa"));
             obj.setShortDescription(jsonObject.getString("zamowienia_publiczne.przedmiot"));
 
-            JSONArray jsonArray = getDocsJSON().getJSONArray("Dataobject");
+            JSONArray jsonArray = docsJson.getJSONArray("Dataobject");
             for(int i=0; i<jsonArray.length(); i++){
                 JSONObject o1 = (JSONObject) jsonArray.get(i);
                 try {
@@ -152,7 +142,7 @@ public class EPFMapper {
 
         LEFTInfo left = new LEFTInfo();
         try {
-            JSONArray jsonArray = getDocsJSON().getJSONArray("Dataobject");
+            JSONArray jsonArray = docsJson.getJSONArray("Dataobject");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject o1 = (JSONObject) jsonArray.get(i);
                 try {
@@ -189,7 +179,7 @@ public class EPFMapper {
 
         try {
 
-            JSONObject jsonObject = getContractingAuthorityJSON().getJSONObject("data");
+            JSONObject jsonObject = caJson.getJSONObject("data");
 
             ca.setId(jsonObject.getString("zamowienia_publiczne_zamawiajacy.id"));
 
@@ -206,7 +196,7 @@ public class EPFMapper {
             a.setPhone(jsonObject.getString("zamowienia_publiczne_zamawiajacy.telefon"));
             a.setUrl(jsonObject.getString("zamowienia_publiczne_zamawiajacy.www"));
             a.setCountry("POLSKA");
-            a.setRaw(caJson);
+            a.setRaw(caJson.toString());
 
         } catch (Exception e) {
             LOG.trace("error while mapping contracting authority", e);
