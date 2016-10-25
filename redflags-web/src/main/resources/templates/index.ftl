@@ -262,10 +262,7 @@ function sumValueBars(data) {
 			}
 		},
 		title: { text: '<@label "charts.sumValues" />' },
-		<#assign arg1>
-            <@label "charts.defaultCurrency" />
-        </#assign>
-        <#assign argArray = ["${arg1}"]>
+        <#assign argArray = ["${currency}"]>
 		tooltip: {
 			shared: true,
 			valueDecimals: 2,

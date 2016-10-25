@@ -34,6 +34,9 @@ public class LangAdvice {
 	@Value("${site.languages:en,hu}")
 	private String languages;
 
+	@Value("${site.currency:PLN}")
+	private String currency;
+
 	@ModelAttribute("fblang")
 	public String fblang(Locale loc) {
 		int i = Arrays.asList(languages.split(",")).indexOf(lang(loc));
@@ -49,6 +52,11 @@ public class LangAdvice {
 	@ModelAttribute("language")
 	public String language(Locale loc) {
 		return loc.getDisplayLanguage();
+	}
+
+	@ModelAttribute("currency")
+	public String currency() {
+		return currency;
 	}
 
 	@ModelAttribute("languages")

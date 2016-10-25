@@ -28,6 +28,7 @@ site.useCaptcha:               false
 #site.message:                  site.message.newDirective
 site.languages:                en,hu,pl
 site.facebookLanguages:        en_US,hu_HU,pl_PL
+site.currency:                 PLN
 
 
 # -----------------------------------------------------------------------------
