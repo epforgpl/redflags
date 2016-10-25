@@ -15,6 +15,9 @@ hs_err_pid*
 target/
 default-users.sql
 redflags-docs/docs/doc/
+redflags-docs/site
+redflags-api-docs/site
+docs-indicators/site
 .idea/
 *.iml
 
