@@ -1,0 +1,46 @@
+site_name: Red Flags Indicators
+site_author: Zsolt Jurányi, Krzysztof Madejski, Maciej Lubiszewski
+site_description: Description of algorithms used to automatically flag risky public procurement notices
+site_favicon: favicon.ico
+theme: simplex
+markdown_extensions:
+    - markdown_include.include       # pip install markdown-include
+pages:
+- Home:                              index.md
+- Polish:                            pl/index.md
+#  - Navigating on the site:          user/navigation.md
+#  - User accounts:                   user/accounts.md
+#  - Browsing notices:                user/notices.md
+#  - Browsing organizations:          user/organizations.md
+#  - List of indicators:              user/indicators.md
+#- For administrators:
+#  - System overview:                 maintainer/overview.md
+#  - About the database:              maintainer/database.md
+#  - Maintaining the engine:          maintainer/engine.md
+#  - Maintaining the webapp:          maintainer/webapp.md
+#  - Setting up the cron script:      maintainer/cron.md
+#- For developers:
+#  - Getting started:                 developer/first.md
+#  - Data model:
+#    - Data overview:                 developer/data/index.md
+#    - Data classes:                  developer/data/classes.md
+#    - Tables of the engine:          developer/data/engine-tables.md
+#    - Tables of the webapp:          developer/data/webapp-tables.md
+#  - Engine:
+#    - Understanding the engine:      developer/engine/index.md
+#    - Gears:
+#      - Downloader gears:            developer/engine/gears/downloaders.md
+#      - Parser gears:                developer/engine/gears/parsers.md
+#      - Filter gears:                developer/engine/gears/filters.md
+#      - Indicator gears:             developer/engine/gears/indicators.md
+#      - Exporter gears:              developer/engine/gears/exporters.md
+#    - TED Interface:                 developer/engine/tedinterface.md
+#    - Template parser:               developer/engine/templateparser.md
+#  - Webapp:
+#    - Webapp basics:                 developer/webapp/basic.md
+#    - ControllerAdvice beans:        developer/webapp/controller-advices.md
+#    - Controllers:                   developer/webapp/controllers.md
+#    - Views:                         developer/webapp/views.md
+#    - Services:                      developer/webapp/services.md
+#    - How notice filters work:       developer/webapp/filters.md
+#  - Cookbook for extending:          developer/cookbook.md
