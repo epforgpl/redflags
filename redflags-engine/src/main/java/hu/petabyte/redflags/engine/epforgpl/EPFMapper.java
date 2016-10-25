@@ -116,6 +116,11 @@ public class EPFMapper {
             obj.setLots(jsonObject.getString("zamowienia_publiczne.oferty_czesciowe"));
             obj.setContractTitle(jsonObject.getString("zamowienia_publiczne.nazwa"));
             obj.setShortDescription(jsonObject.getString("zamowienia_publiczne.przedmiot"));
+            try{
+                obj.setTotalFinalValue(jsonObject.getLong("zamowienia_publiczne.wartosc_cena"));
+            } catch (Exception e) {
+                LOG.trace("error while mapping value of contract", e);
+            }
 
             JSONArray jsonArray = docsJson.getJSONArray("Dataobject");
             for(int i=0; i<jsonArray.length(); i++){
