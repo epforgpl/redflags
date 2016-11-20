@@ -143,7 +143,7 @@ public class CSVFile {
 		} else if (o instanceof Long) {
 			w.write(Long.toString((Long) o));
 		} else {
-			w.write(o.toString());
+			w.write(o.toString().replace("\\", "\\\\"));
 		}
 		w.write(columnDelimiter);
 		return this;

@@ -107,8 +107,9 @@ public class CSV2MySQL {
 						"REPLACE INTO TABLE %s " + //
 						"CHARACTER SET %s " + //
 						"COLUMNS TERMINATED BY '%s' " + //
+						"ESCAPED BY '%s' " + //
 						"LINES TERMINATED BY '%s';", //
-				filename, table, "UTF8", colDelimiter,  rowDelimiter));
+				filename, table, "UTF8", colDelimiter,  "\\\\", rowDelimiter));
 		s.close();
 	}
 }
